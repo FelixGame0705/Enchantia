@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     protected float MoveY;
     [SerializeField] protected CharacterData characterData;
     [SerializeField] protected Character character;
+    [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
 
     protected void Start()
     {

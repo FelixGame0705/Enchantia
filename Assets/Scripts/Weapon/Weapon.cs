@@ -16,6 +16,7 @@ public class Weapon
     [SerializeField]private float _specialEffects;
     [SerializeField]private float _basePrice;
     [SerializeField]private float _unlockedBy;
+    [SerializeField]private String _id;
 
     public float Damage { get => _damage; set => _damage = value; }
     public float AttackSpeed { get => _attackSpeed; set => _attackSpeed = value; }
@@ -27,4 +28,5 @@ public class Weapon
     public float SpecialEffects { get => _specialEffects; set => _specialEffects = value; }
     public float BasePrice { get => _basePrice; set => _basePrice = value; }
     public float UnlockedBy { get => _unlockedBy; set => _unlockedBy = value; }
+    public String ID { get => _id; set => _id = value; }
 }
