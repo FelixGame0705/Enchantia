@@ -3,15 +3,15 @@ using UnityEngine;
 public abstract class EnemyBase : MonoBehaviour
 {
     //Use flyweigt pattern to optimize
-    [SerializeField] protected EnemyData EnemyData;
+    [SerializeField] protected EnemyData EnemyDataConfig;
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] protected float CurrentSpeed;
 
     protected void Start()
     {
-        CurrentHealth = EnemyData.EnemyStats.MaxHealth;
-        CurrentSpeed = EnemyData.EnemyStats.Speed;
+        CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth;
+        CurrentSpeed = EnemyDataConfig.EnemyStats.Speed;
     }
 
     abstract protected void Attack();

@@ -6,18 +6,21 @@ public class CharacterController : MonoBehaviour
 {
     protected float MoveX;
     protected float MoveY;
-    [SerializeField] protected CharacterData characterData;
-    [SerializeField] protected Character character;
+    [SerializeField] protected CharacterData CharacterData;
+    [SerializeField] protected Character Character;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
+    [SerializeField] protected GameObject Target;
 
     protected void Start()
     {
-        character = characterData.CharacterStats;
+        Character = CharacterData.CharacterStats;
     }
 
     protected void Update()
     {
         CheckInput();
+        if(Target != null)
+        WeaponSystemInCharacter.ExcuteAttack(Target.transform, gameObject.transform, true);
     }
 
     public void CheckInput()
@@ -54,11 +57,18 @@ public class CharacterController : MonoBehaviour
             Flip(false);
         }
         Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;
-        transform.Translate(moveDir * character.Speed  * Time.deltaTime);
+        transform.Translate(moveDir * Character.Speed  * Time.deltaTime);
     }
 
     private void Flip(bool isFlip)
     {
         //_model.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
     }
+
+    public void SetTarget(GameObject target)
+    {
+        Target = target;
+    }
+
+    
 }

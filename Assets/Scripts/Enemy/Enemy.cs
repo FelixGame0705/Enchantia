@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Enemy
 {
+    [SerializeField] private float _id;
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _hpAddPerWave;
     [SerializeField] private float _speed;
@@ -13,7 +14,6 @@ public class Enemy
     [SerializeField] private float _materialsDropped;
     [SerializeField] private float _lootCrateDropRate;
     [SerializeField] private float _firstWaveAppearing;
-    [SerializeField] private float _id;
 
     public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public float HpAddPerWave { get => _hpAddPerWave; set => _hpAddPerWave = value; }

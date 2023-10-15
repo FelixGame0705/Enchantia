@@ -6,20 +6,18 @@ public class BasicEnemy : EnemyBase
 {
     protected override void Attack()
     {
-        throw new System.NotImplementedException();
     }
 
     protected override void Move()
     {
-        throw new System.NotImplementedException();
+        transform.position = Vector2.MoveTowards(transform.position, Target.transform.position, EnemyDataConfig.EnemyStats.Speed * Time.deltaTime);
     }
 
     protected override void Rotate()
     {
-        throw new System.NotImplementedException();
     }
 
-    private void SetTarget(GameObject target)
+    public void SetTarget(GameObject target)
     {
         Target = target;
     }
@@ -33,6 +31,6 @@ public class BasicEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 }
