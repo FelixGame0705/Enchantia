@@ -17,6 +17,7 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         _character = Instantiate(_characterPattern);
         
+        
     }
 
     private void OnEnable()
@@ -38,7 +39,7 @@ public class GamePlayController : Singleton<GamePlayController>
         switch (GameState)
         {
             case GAME_STATES.START:
-                StartCoroutine(SpawnEnemy());
+                StartCoroutine(WaitSpawnPlayer());
                 break;
             case GAME_STATES.WAVE_SHOP:
                 break;
@@ -49,9 +50,10 @@ public class GamePlayController : Singleton<GamePlayController>
         }
     }
 
-    private IEnumerator SpawnEnemy()
+    private IEnumerator WaitSpawnPlayer()
     {
-        yield return new WaitUntil(()=>_character!=null);
+        yield return new WaitUntil(() => _character != null);
+        CameraFollow.Instance.target = _character.transform;
         _enemies.Add(_enemyFactory.CreateEnemy(_character));
     }
 
