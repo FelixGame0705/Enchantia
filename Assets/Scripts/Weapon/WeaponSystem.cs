@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
-    [SerializeField]HashSet<WeaponBase> weaponBases = new HashSet<WeaponBase>();
+    [SerializeField] List<WeaponBase> weaponBases = new List<WeaponBase>();
     [SerializeField] List<Transform> weaponTransforms;
 
     public void EquipedWeapon(WeaponBase weapon)
@@ -34,6 +34,7 @@ public class WeaponSystem : MonoBehaviour
         {
             if (isCanAttack)
             {
+                Debug.Log("Attack");
                 weaponBases.ToArray()[i].SetTargetForAttack(target);
                 //weaponBases.ToArray()[i].SetPlayerPosition(player);
             }

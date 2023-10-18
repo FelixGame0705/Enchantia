@@ -65,4 +65,9 @@ public class BasicEnemyFactory : EnemyFactory
     {
         
     }
+
+    public override void ReturnEnemToPool(GameObject gameObject)
+    {
+        _enemyPool.ReturnObjectToPool(gameObject);
+    }
 }

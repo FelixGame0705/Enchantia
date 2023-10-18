@@ -8,6 +8,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private GameObject _character;
     [SerializeField] private GameObject _characterPattern;
     [SerializeField] private EnemyFactory _enemyFactory;
+    [SerializeField] private BulletFactory _bulletFactory;
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private GameObject TargetCharacter;
 
@@ -52,6 +53,16 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         yield return new WaitUntil(()=>_character!=null);
         _enemies.Add(_enemyFactory.CreateEnemy(_character));
+    }
+
+    public BulletFactory GetBulletFactory()
+    {
+        return _bulletFactory;
+    }
+
+    public EnemyFactory GetEnemyFactory()
+    {
+        return _enemyFactory;
     }
 
     private void FindNearestTarget()

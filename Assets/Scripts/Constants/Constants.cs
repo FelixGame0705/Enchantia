@@ -24,3 +24,11 @@ public enum GAME_STATES
     PLAYING,
     GAME_OVER
 }
+
+public enum ATTACK_STAGE
+{
+    START,
+    DURATION,
+    FINISHED,
+    END
+}

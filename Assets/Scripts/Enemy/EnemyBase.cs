@@ -17,4 +17,5 @@ public abstract class EnemyBase : MonoBehaviour
     abstract protected void Attack();
     abstract protected void Rotate();
     abstract protected void Move();
+    abstract public void TakeDamage(float health);
 }

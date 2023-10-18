@@ -22,15 +22,19 @@ public class BasicEnemy : EnemyBase
         Target = target;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         Move();
+    }
+
+    public override void TakeDamage(float health)
+    {
+        CurrentHealth -= health;
+        Debug.Log("Current health: " + CurrentHealth);
+        if(CurrentHealth <= 0)
+        {
+            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
+        }
     }
 }
