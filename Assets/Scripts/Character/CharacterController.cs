@@ -10,10 +10,12 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected Character Character;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
+    [SerializeField] protected float CurrentHealth;
 
     protected void Start()
     {
         Character = CharacterData.CharacterStats;
+        CurrentHealth = CharacterData.CharacterStats.MaxHP;
     }
 
     protected void Update()
@@ -70,5 +72,8 @@ public class CharacterController : MonoBehaviour
         Target = target;
     }
 
-    
+    public void TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+    }
 }

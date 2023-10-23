@@ -11,10 +11,12 @@ public class EnemyData : ScriptableObject
     [SerializeField] private ParticleSystem _particleHurt;
     [SerializeField] private AudioClip _attackSound;
     [SerializeField] private AudioClip _hurtSound;
+    [SerializeField] private Animator _animatorEnemy;
 
     public ParticleSystem ParticleAttack { get => _particleAttack; set => _particleAttack = value; }
     public AudioClip AttackSound { get => _attackSound; set => _attackSound = value; }
     public string EnemyName { get => _enemyName; set => _enemyName = value; }
     public ParticleSystem ParticleHurt { get => _particleHurt; set => _particleHurt = value; }
     public AudioClip HurtSound { get => _hurtSound; set => _hurtSound = value; }
+    public Animator AnimatorEnemy { get => _animatorEnemy; set => _animatorEnemy = value; }
 }

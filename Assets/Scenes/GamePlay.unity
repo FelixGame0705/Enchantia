@@ -339,12 +339,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyPattern: {fileID: 0}
   _enemyPatternList:
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
-  - {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
+  - {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
+  - {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
   _enemyPool: {fileID: 1793774059}
 --- !u!114 &1359198612
 MonoBehaviour:
@@ -389,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7192b9de4323d8418df3fe193148a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 5421856112675455500, guid: 2fd2764c808ae0749868798afb226720, type: 3}
+  objectPrefab: {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
   initialPoolSize: 10
 --- !u!4 &1793774060
 Transform:
