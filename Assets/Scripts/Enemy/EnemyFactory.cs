@@ -8,4 +8,5 @@ public abstract class EnemyFactory : MonoBehaviour
     [SerializeField] protected GameObject EnemyPattern;
     public abstract GameObject CreateEnemy(GameObject target);
     public abstract void ReturnEnemToPool(GameObject gameObject);
+    public abstract List<GameObject> SpawnRandomEnemy(GameObject target);
 }

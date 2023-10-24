@@ -11,18 +11,21 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private BulletFactory _bulletFactory;
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private GameObject TargetCharacter;
+    [SerializeField] private int _currentWave;
 
     // Start is called before the first frame update
     void Start()
     {
         _character = Instantiate(_characterPattern);
-        
+        _currentWave = 0;
         
     }
 
     private void OnEnable()
     {
-        UpdateState();
+        //SetState();
+        UpdateState(GAME_STATES.START);
+        
     }
 
     // Update is called once per frame
@@ -34,8 +37,14 @@ public class GamePlayController : Singleton<GamePlayController>
 
     //public void Spawning
 
-    public void UpdateState()
+    public void SetState(GAME_STATES state)
     {
+        GameState = state;
+    }
+
+    public void UpdateState(GAME_STATES state)
+    {
+        SetState(state);
         switch (GameState)
         {
             case GAME_STATES.START:
@@ -44,6 +53,9 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.WAVE_SHOP:
                 break;
             case GAME_STATES.PLAYING:
+                //GamePlayController
+                _enemies = _enemyFactory.SpawnRandomEnemy(_character);
+                UpdateState(GAME_STATES.WAVE_SHOP);
                 break;
             case GAME_STATES.GAME_OVER:
                 break;
@@ -54,7 +66,9 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         yield return new WaitUntil(() => _character != null);
         CameraFollow.Instance.target = _character.transform;
+        UpdateState(GAME_STATES.PLAYING);
         _enemies.Add(_enemyFactory.CreateEnemy(_character));
+        Debug.Log("Play");
     }
 
     public BulletFactory GetBulletFactory()
@@ -79,5 +93,10 @@ public class GamePlayController : Singleton<GamePlayController>
             }
         }
         _character.GetComponent<CharacterController>().SetTarget(TargetCharacter);
+    }
+
+    public void LevelWave()
+    {
+        _currentWave += 1;
     }
 }
