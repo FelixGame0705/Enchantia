@@ -31,5 +31,10 @@ public class ItemViewListController : MonoBehaviour
             if(cardController.IsLock != true) cardController.RenderCard(rerollDataList.Pop());
         }
     }
+
+    public ItemData GetItemDataOfCardUsingPosition(int pos)
+    {
+        return _cardControllerList[pos - 1].CardItemInfo;
+    }
     
 }

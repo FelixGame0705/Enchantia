@@ -37,7 +37,7 @@ public class ItemCardController : MonoBehaviour
     }
     public void Buy()
     {
-
+        WaveShopMainController.Instance.BuyItem(_cardIndex);
     }
 
     public void DisableItem()

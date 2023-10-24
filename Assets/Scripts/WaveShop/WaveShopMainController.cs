@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
@@ -12,6 +14,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentMoney = 100;
     [SerializeField] private int _currentWave = 1;
     [SerializeField] private ItemViewListController _viewListController;
+    [SerializeField] private Text _moneyText;
 
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
@@ -25,9 +28,15 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
        
     }
 
+    private void FixedUpdate()
+    {
+        _moneyText.text = _currentMoney.ToString();
+    }
+
     public void Reroll()
     {
         _viewListController.ReRoll(Random(4));
+        Debug.Log("Clicked");
     }
     private Stack<ItemData> Random(int amount)
     { 
@@ -39,9 +48,13 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         }
         return stack;
     }
-    public void BuyItem()
+    public void BuyItem(int cardIndex)
     {
-
+        var itemData = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
+        if(CurrentMoney> itemData.ItemPrice)
+        {
+            CurrentMoney -= itemData.ItemPrice;
+        }
     }
 
 }
