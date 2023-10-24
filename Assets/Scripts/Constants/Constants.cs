@@ -40,3 +40,9 @@ public enum RARITY
     TIER_3,
     TIER_4,
 }
+
+public enum ITEM_TYPE
+{
+    ITEM,
+    WEAPON
+}
