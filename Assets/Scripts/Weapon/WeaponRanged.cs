@@ -7,6 +7,7 @@ public class WeaponRanged : WeaponBase
 {
     [SerializeField] private Transform _firePoint;
 
+    private GameObject _player;
     protected override void Attack()
     {
 
@@ -16,6 +17,11 @@ public class WeaponRanged : WeaponBase
     {
         Target = target.gameObject;
         if(Target.activeSelf == false) Target = null;
+    }
+
+    public override void SetPlayerPosition(Transform player)
+    {
+        _player = player.gameObject;
     }
 
     // Start is called before the first frame update
@@ -28,7 +34,14 @@ public class WeaponRanged : WeaponBase
     void Update()
     {
         Rotate();
+        if(CanPerformAttack())
         AttackMechanism();
+    }
+
+    public bool CanPerformAttack()
+    {
+        if (Target != null && Target.activeSelf && Vector3.Distance(_player.transform.position, Target.transform.position) <= WeaponDataConfig.WeaponConfig.Range) return true;
+        return false;
     }
 
     public void AttackMechanism()
@@ -41,7 +54,7 @@ public class WeaponRanged : WeaponBase
                 SetStateAttacking(ATTACK_STAGE.DURATION, true);
                 break;
             case ATTACK_STAGE.DURATION:
-                if (CheckIsAttack(PlayerAttackStage) && Target != null)
+                if (CheckIsAttack(PlayerAttackStage))
                 {
                     StartCoroutine(DelayAttack(Target.transform));
                     //PlayerAttackStage = ATTACK_STAGE.FINISHED;

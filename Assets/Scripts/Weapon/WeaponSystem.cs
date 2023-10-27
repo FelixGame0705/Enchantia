@@ -23,6 +23,11 @@ public class WeaponSystem : MonoBehaviour
         
     }
 
+    public WeaponBase GetWeapon(int index)
+    {
+        return weaponBases[index];
+    }
+
     public void Attack()
     {
 
@@ -36,7 +41,7 @@ public class WeaponSystem : MonoBehaviour
             {
                 Debug.Log("Attack");
                 weaponBases.ToArray()[i].SetTargetForAttack(target);
-                //weaponBases.ToArray()[i].SetPlayerPosition(player);
+                weaponBases.ToArray()[i].SetPlayerPosition(player);
             }
         }
     }

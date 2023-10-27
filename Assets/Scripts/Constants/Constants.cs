@@ -32,3 +32,17 @@ public enum ATTACK_STAGE
     FINISHED,
     END
 }
+
+public enum RARITY
+{
+    TIER_1,
+    TIER_2,
+    TIER_3,
+    TIER_4,
+}
+
+public enum ITEM_TYPE
+{
+    ITEM,
+    WEAPON
+}
