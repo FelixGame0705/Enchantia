@@ -11,17 +11,20 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
+    [SerializeField] private UIPlayerController _uiPlayerController;
 
     protected void Start()
     {
         Character = CharacterData.CharacterStats;
         CurrentHealth = CharacterData.CharacterStats.MaxHP;
+        _uiPlayerController.SetMaxHealthValue(CurrentHealth);
+        _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
     }
 
     protected void Update()
     {
         CheckInput();
-        if(Target != null)
+        if (Target == null) return;
         WeaponSystemInCharacter.ExcuteAttack(Target.transform, gameObject.transform, true);
     }
 
@@ -75,5 +78,6 @@ public class CharacterController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
+        _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
     }
 }

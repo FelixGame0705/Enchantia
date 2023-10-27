@@ -10,6 +10,7 @@ public abstract class WeaponBase : MonoBehaviour
     protected bool [] IsStates = new bool[4];
     protected ATTACK_STAGE currentState;
     protected abstract void Attack();
+    public abstract void SetPlayerPosition(Transform player);
     protected virtual void Rotate() 
     {
         if (Target == null) return;
