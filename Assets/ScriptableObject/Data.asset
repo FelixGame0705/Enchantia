@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   CharacterStats:
-    _maxHP: 0
+    _maxHP: 100
     _hpRegeneration: 0
     _lifeSteal: 0
     _damage: 0
