@@ -671,6 +671,7 @@ MonoBehaviour:
     havesting: 0
   WeaponSystemInCharacter: {fileID: 7562479839322367366}
   Target: {fileID: 0}
+  CurrentHealth: 10
 --- !u!1 &5230241562136239925
 GameObject:
   m_ObjectHideFlags: 0

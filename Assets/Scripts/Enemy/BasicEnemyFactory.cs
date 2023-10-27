@@ -19,8 +19,19 @@ public class BasicEnemyFactory : EnemyFactory
         return enemy;
     }
 
+    public override List<GameObject> SpawnRandomEnemy(GameObject target)
+    {
+        List<GameObject> enemyList = new List<GameObject>();
+        for(int i = 0; i < 10; i++)
+        {
+            enemyList.Add(CreateEnemy(target));
+            Debug.Log("Spawn enemy");
+        }
+        return enemyList;
+    }
+
     //Tam thoi dung hardcode
-    private void SetPrefabSpawn(int wave)
+    public void SetPrefabSpawn(int wave)
     {
         if(wave <= 1)
         {

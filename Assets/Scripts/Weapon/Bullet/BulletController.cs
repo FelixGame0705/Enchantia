@@ -43,7 +43,7 @@ public class BulletController : MonoBehaviour
         GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Damage" + collision.gameObject.layer);
         if (collision.gameObject.layer == 6)
@@ -51,6 +51,7 @@ public class BulletController : MonoBehaviour
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             enemy.TakeDamage(_damage);
             Debug.Log("Damage" + _damage);
+            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
         }
     }
 }

@@ -7,6 +7,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] protected float CurrentSpeed;
+    [SerializeField] protected Animator AnimatorEnemy;
+    public ATTACK_STAGE _attackStage;
 
     protected void Start()
     {
@@ -18,4 +20,9 @@ public abstract class EnemyBase : MonoBehaviour
     abstract protected void Rotate();
     abstract protected void Move();
     abstract public void TakeDamage(float health);
+    public void Flip()
+    {
+        transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
+    }
+
 }

@@ -14,6 +14,7 @@ public class Enemy
     [SerializeField] private float _materialsDropped;
     [SerializeField] private float _lootCrateDropRate;
     [SerializeField] private float _firstWaveAppearing;
+    [SerializeField] private float _rangeAttack;
 
     public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public float HpAddPerWave { get => _hpAddPerWave; set => _hpAddPerWave = value; }
@@ -23,4 +24,5 @@ public class Enemy
     public float LootCrateDropRate { get => _lootCrateDropRate; set => _lootCrateDropRate = value; }
     public float FirstWaveAppearing { get => _firstWaveAppearing; set => _firstWaveAppearing = value; }
     public float Id { get => _id; set => _id = value; }
+    public float RangeAttack { get => _rangeAttack; set => _rangeAttack = value; }
 }
