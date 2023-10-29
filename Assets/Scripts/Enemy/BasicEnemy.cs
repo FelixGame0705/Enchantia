@@ -33,6 +33,8 @@ public class BasicEnemy : EnemyBase
         {
             AttackMechanism();
         }
+
+        if (CurrentHealth <= 0) GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
     }
 
     public override void TakeDamage(float health)
@@ -42,7 +44,7 @@ public class BasicEnemy : EnemyBase
         if(CurrentHealth <= 0)
         {
             GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
-            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
+            
         }
     }
 

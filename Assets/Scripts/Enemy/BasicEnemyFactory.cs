@@ -93,6 +93,7 @@ public class BasicEnemyFactory : EnemyFactory
     public override void ReturnEnemToPool(GameObject gameObject)
     {
         _enemyPool.ReturnObjectToPool(gameObject);
+        Debug.Log("Object queue ");
     }
 
     private float currentTime = 5f;
@@ -118,7 +119,12 @@ public class BasicEnemyFactory : EnemyFactory
         GameObject signal = _signalPool.GetObjectFromPool();
         signal.transform.position = signalPosition;
         currentTimeSignal = 2f;
-        StartCoroutine(CountdownSignal(signal, signalPosition));
+        //StartCoroutine(CountdownSignal(signal, signalPosition));
+    }
+
+    public override void ReturnSignalToPool(GameObject gameObject)
+    {
+        _signalPool.ReturnObjectToPool(gameObject);
     }
 
     private IEnumerator CountdownSignal(GameObject signal, Vector2 position)
@@ -129,6 +135,6 @@ public class BasicEnemyFactory : EnemyFactory
             currentTimeSignal--;
         }
         _signalPool.ReturnObjectToPool(signal);
-        Enemies.Add(CreateEnemy(TargetForEnemy, position));
+        //Enemies.Add(CreateEnemy(TargetForEnemy, position));
     }
 }

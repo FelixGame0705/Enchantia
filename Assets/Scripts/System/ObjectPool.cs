@@ -38,5 +38,6 @@ public class ObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
         objectPool.Enqueue(obj);
+        
     }
 }
