@@ -51,7 +51,7 @@ public class BulletController : MonoBehaviour
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             enemy.TakeDamage(_damage);
             Debug.Log("Damage" + _damage);
-            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
+            GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
         }
     }
 }

@@ -14,6 +14,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentMoney = 100;
     [SerializeField] private int _currentWave = 1;
     [SerializeField] private ItemViewListController _viewListController;
+    [SerializeField] private InventoryController inventoryController;
     [SerializeField] private Text _moneyText;
 
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
@@ -30,7 +31,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void FixedUpdate()
     {
-        _moneyText.text = _currentMoney.ToString();
+        //_moneyText.text = _currentMoney.ToString();
     }
 
     public void Reroll()
@@ -43,18 +44,26 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         Stack<ItemData> stack = new Stack<ItemData>();
         for(int i = 0; i < amount; i++)
         {
+            Debug.Log("Index card " + _itemDataList.Count);
             int index = UnityEngine.Random.Range(0, _itemDataList.Count);
+            Debug.Log("Index card " +index);
             stack.Push(_itemDataList[index]);
         }
         return stack;
     }
     public void BuyItem(int cardIndex)
     {
-        var itemData = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
-        if(CurrentMoney> itemData.ItemPrice)
+        ItemCardController itemCard = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
+        if(CurrentMoney> itemCard.CardItemInfo.ItemPrice)
         {
-            CurrentMoney -= itemData.ItemPrice;
+            CurrentMoney -= itemCard.CardItemInfo.ItemPrice;
+            inventoryController.AddCardToInventory(itemCard.CardItemInfo);
+            itemCard.DisableItem();
         }
     }
 
+    public void AddGoldValue(int amount)
+    {
+        CurrentMoney += amount;
+    }
 }

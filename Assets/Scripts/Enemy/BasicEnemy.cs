@@ -41,6 +41,7 @@ public class BasicEnemy : EnemyBase
         Debug.Log("Current health: " + CurrentHealth);
         if(CurrentHealth <= 0)
         {
+            GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
         }
     }

@@ -15,6 +15,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private int _currentWave;
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
+    [SerializeField] private CurrencyController _currencyController;
 
     // Start is called before the first frame update
     void Start()
@@ -55,12 +56,13 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
+                Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
-                //GamePlayController
-                
-                _enemies.AddRange(_enemyFactory.SpawnRandomEnemy(_character));
-                
+                Time.timeScale = 1;
+                _waveShop.SetActive(false);
+                _enemyFactory.SetIsSpawned(true);
+                _enemyFactory.SetTarget(_character);
                 break;
             case GAME_STATES.GAME_OVER:
                 UpdateState(GAME_STATES.WAVE_SHOP);
@@ -89,13 +91,14 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void FindNearestTarget()
     {
-        if (_enemies.Count == 0) return;
-        TargetCharacter = _enemies[0];
-        for (int i = 0; i < _enemies.Count; i++)
+        if (_enemyFactory.GetEnemies().Count == 0) return;
+        if(TargetCharacter==null)
+            TargetCharacter = _enemyFactory.GetEnemies().ToArray()[0];
+        for (int i = 0; i < _enemyFactory.GetEnemies().Count; i++)
         {
-            if (Vector2.Distance(_enemies[i].transform.position, _character.transform.position) >= Vector2.Distance(_enemies.ToArray()[i].transform.position, _character.transform.position) && _enemies[i].activeSelf)
+            if (Vector2.Distance(_enemyFactory.GetEnemies().ToArray()[i].transform.position, _character.transform.position) <= Vector2.Distance(TargetCharacter.transform.position, _character.transform.position) && _enemyFactory.GetEnemies().ToArray()[i].activeSelf)
             {
-                TargetCharacter = _enemies.ToArray()[i];
+                TargetCharacter = _enemyFactory.GetEnemies().ToArray()[i];
             }
         }
         if (TargetCharacter.activeSelf)
@@ -106,5 +109,10 @@ public class GamePlayController : Singleton<GamePlayController>
     public void LevelWave()
     {
         _currentWave += 1;
+    }
+
+    public CurrencyController GetCurrencyController()
+    {
+        return _currencyController;
     }
 }

@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class WaveTimeController : MonoBehaviour
 {
     [SerializeField] private Text waveTxt;
@@ -28,6 +30,7 @@ public class WaveTimeController : MonoBehaviour
 
         // Timer has reached zero; you can perform some actions here
         countdownTxt.text = "Time's up!";
+        GamePlayController.Instance.UpdateState(GAME_STATES.WAVE_SHOP);
         GamePlayController.Instance.LevelWave();
     }
 
