@@ -29,3 +29,4 @@ MonoBehaviour:
     _speed: 10
     _luck: 0
     havesting: 0
+    _havestRange: 3

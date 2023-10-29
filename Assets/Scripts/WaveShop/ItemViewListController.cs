@@ -18,6 +18,11 @@ public class ItemViewListController : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -32,9 +37,14 @@ public class ItemViewListController : MonoBehaviour
         }
     }
 
-    public ItemData GetItemDataOfCardUsingPosition(int pos)
+    public ItemCardController GetItemDataOfCardUsingPosition(int pos)
     {
-        return _cardControllerList[pos - 1].CardItemInfo;
+        return _cardControllerList[pos - 1].GetComponent<ItemCardController>();
+    }
+
+    public GameObject GetObjectCard(int pos)
+    {
+        return _cardControllerList[pos - 1].gameObject;
     }
     
 }

@@ -22,6 +22,7 @@ public class Character
     [SerializeField] private int _speed;
     [SerializeField] private float _luck;
     [SerializeField] private float havesting;
+    [SerializeField] private float _havestRange;
     public int MaxHP { get => _maxHP; set => SetHp(value); }
     public float HpRegeneration { get => _hpRegeneration; set => _hpRegeneration = value; }
     public float LifeSteal { get => _lifeSteal; set => _lifeSteal = value; }
@@ -38,6 +39,7 @@ public class Character
     public int Speed { get => _speed; set => _speed = value; }
     public float Luck { get => _luck; set => _luck = value; }
     public float Havesting { get => havesting; set => havesting = value; }
+    public float HavestRange { get => _havestRange; set => _havestRange = value; }
 
     private void SetHp(int hp)
     {

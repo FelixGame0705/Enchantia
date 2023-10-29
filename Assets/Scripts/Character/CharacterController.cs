@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] private UIPlayerController _uiPlayerController;
+    [SerializeField] protected Transform Model;
 
     protected void Start()
     {
@@ -23,9 +24,11 @@ public class CharacterController : MonoBehaviour
 
     protected void Update()
     {
+        HarvestGold();
         CheckInput();
         if (Target == null) return;
         WeaponSystemInCharacter.ExcuteAttack(Target.transform, gameObject.transform, true);
+        
     }
 
     public void CheckInput()
@@ -79,5 +82,34 @@ public class CharacterController : MonoBehaviour
     {
         CurrentHealth -= damage;
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+    }
+
+    private void HarvestGold()
+    {
+        HashSet<GameObject> golds = GamePlayController.Instance.GetCurrencyController().GetGolds();
+        if (golds != null)
+            foreach (GameObject gold in golds)
+            {
+                if (DistanceGold(gold.transform.position) <= CharacterData.CharacterStats.HavestRange && gold.activeSelf == true)
+                {
+                    MoveGoldToPlayer(gold);
+                }
+            }
+
+    }
+
+    private void MoveGoldToPlayer(GameObject gold)
+    {
+        gold.transform.position = Vector2.MoveTowards(gold.transform.position, Model.position, 15 * Time.deltaTime);
+        if (gold.transform.position == Model.position)
+        {
+            GamePlayController.Instance.GetCurrencyController().ReturnGoldToPool(gold);
+            GamePlayController.Instance.GetCurrencyController().AddGold(1);
+        }
+    }
+
+    private float DistanceGold(Vector2 target)
+    {
+        return Vector2.Distance(Model.position, target);
     }
 }
