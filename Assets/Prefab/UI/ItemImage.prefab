@@ -90,3 +90,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardItemInfo: {fileID: 0}
   _itemImg: {fileID: 2664055918078514421}
+  _id: 0

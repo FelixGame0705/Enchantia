@@ -21,9 +21,15 @@ MonoBehaviour:
     _rangeStat: 0
     _luck: 0
     _heal: 0
+    TYPE: 0
+    _attackSpeed: 0
+    _level: 0
+    _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: a581ff3810b2e0a4690cddcf7634ed22, type: 3}
   itemBG: {fileID: 21300000, guid: ff00345da0563d641903c5bd5bb748a4, type: 3}
   rarityColor: {r: 0.6, g: 0.6, b: 0.6, a: 0}
   itemName: Worm
   itemDescription: +2 HP Regeneration -1 HP recovered from consumables +3 Max HP
   itemPrice: 55
+  nextItemWeapon: {fileID: 0}
+  id: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ThiefGloves
   m_EditorClassIdentifier: 
   ItemStats:
-    _rangedDamage: 0
+    _rangedDamage: 1
     _meleeDamage: 0
     _elementalDamage: 0
     _armor: 0
@@ -21,9 +21,15 @@ MonoBehaviour:
     _rangeStat: 0
     _luck: 0
     _heal: 0
+    TYPE: 1
+    _attackSpeed: 0
+    _level: 0
+    _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
   itemImg: {fileID: -6066236442320969475, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
   itemBG: {fileID: -5691007311618604778, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  rarityColor: {r: 0.4056604, g: 0.380785, b: 0.380785, a: 0}
+  rarityColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   itemName: Thief Gloves
   itemDescription: +30% pickup range
   itemPrice: 25
+  nextItemWeapon: {fileID: 11400000, guid: 195d88a0e7ef00045b296c3ef55bf1fa, type: 2}
+  id: 0

@@ -82,6 +82,7 @@ public class CharacterController : MonoBehaviour
     {
         CurrentHealth -= damage;
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        if(CurrentHealth <= 0) MenuController.Instance.ReturnToMenu();
     }
 
     private void HarvestGold()
@@ -111,5 +112,12 @@ public class CharacterController : MonoBehaviour
     private float DistanceGold(Vector2 target)
     {
         return Vector2.Distance(Model.position, target);
+    }
+
+    public WeaponSystem GetWeaponSystem() { return WeaponSystemInCharacter; }
+
+    public CharacterData GetCharacterData()
+    {
+        return this.CharacterData;
     }
 }

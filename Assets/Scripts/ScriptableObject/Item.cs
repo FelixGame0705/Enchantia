@@ -16,6 +16,7 @@ public class Item
     [Header("Stats of weapon")]
     [SerializeField] private float _attackSpeed;
     [SerializeField] private int _level;
+    [SerializeField] private GameObject _weaponBaseModel;
 
     public float MeleeDamage { get => _meleeDamage; set => _meleeDamage = value; }
     public float RangedDamage { get => _rangedDamage; set => _rangedDamage = value; }
@@ -30,4 +31,5 @@ public class Item
     public ITEM_TYPE TYPE1 { get => TYPE; set => TYPE = value; }
     public float AttackSpeed { get => _attackSpeed; set => _attackSpeed = value; }
     public int Level { get => _level; set => _level = value; }
+    public GameObject WeaponBaseModel { get => _weaponBaseModel; set => _weaponBaseModel = value; }
 }

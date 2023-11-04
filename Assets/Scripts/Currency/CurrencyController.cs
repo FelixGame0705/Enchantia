@@ -8,6 +8,7 @@ public class CurrencyController : MonoBehaviour
     //[SerializeField] private CurrencyUI _currencyUI;
     [SerializeField] private ObjectPool _goldPool;
     [SerializeField] private HashSet<GameObject> _golds = new HashSet<GameObject>();
+    [SerializeField] private int _gold;
     public void SpawnGold(Vector2 position)
     {
         GameObject gold = _goldPool.GetObjectFromPool();
@@ -22,8 +23,13 @@ public class CurrencyController : MonoBehaviour
 
     public void AddGold(int amount)
     {
-        WaveShopMainController.Instance.AddGoldValue(amount);
+        _gold += 1;
         //_currencyUI.AddGoldValue(amount);
+    }
+
+    public int GetGold()
+    {
+        return _gold;
     }
 
     public void AddUniqueGold(GameObject gold)

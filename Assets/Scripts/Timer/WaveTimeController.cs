@@ -16,7 +16,7 @@ public class WaveTimeController : MonoBehaviour
     {
         currentTime = countdownTime;
         UpdateTimerText();
-        StartCoroutine(Countdown());
+        //StartCoroutine(Countdown());
     }
 
     public IEnumerator Countdown()
