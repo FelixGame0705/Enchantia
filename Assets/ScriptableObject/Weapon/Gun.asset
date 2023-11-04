@@ -27,4 +27,4 @@ MonoBehaviour:
   weaponName: 
   _particleAttack: {fileID: 0}
   _attackSound: {fileID: 0}
-  _nextWeapon: {fileID: 0}
+  _nextWeapon: {fileID: 11400000, guid: 1f9af1f69651ffa40a64432fc6b8f79d, type: 2}

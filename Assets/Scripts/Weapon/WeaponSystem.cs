@@ -8,24 +8,50 @@ public class WeaponSystem : MonoBehaviour
     [SerializeField] List<WeaponBase> weaponBases = new List<WeaponBase>();
     [SerializeField] List<Transform> weaponTransforms;
 
-    public void EquipedWeapon(WeaponBase weapon)
+    public void EquipedWeapon(GameObject weapon)
     {
-        weaponBases.Add(weapon);
+        foreach(var t in weaponTransforms)
+        {
+            if(t.childCount == 0)
+            {
+                GameObject weaponGameObject = Instantiate(weapon, t);
+                weaponGameObject.GetComponent<WeaponBase>().SetID(weaponBases.Count);
+                weaponBases.Add(weaponGameObject.GetComponent<WeaponBase>());
+                break;
+            }
+        }
     }
 
-    public void SellWeapon(WeaponBase weapon)
+    public void SellWeapon(int index)
     {
-        weaponBases.Remove(weapon);
+        if (index < 0) return;
+        Destroy(weaponBases[index].gameObject);
+        weaponBases.RemoveAt(index);
+        InitSetIDWeapon();
+        //weaponBases.Remove(weapon);
     }
 
-    public void CombineWeapon(WeaponBase weaponCombine, WeaponBase newWeapon)
+    private void InitSetIDWeapon()
     {
-        
+        for(int i = 0; i < weaponBases.Count; i++)
+        {
+            weaponBases[i].SetID(i);
+        }
+    }
+
+    public void UpgradeWeapon(int index)
+    {
+            weaponBases[index].SetWeaponDataConfig(weaponBases[index].WeaponDataConfig.NextWeapon);
     }
 
     public WeaponBase GetWeapon(int index)
     {
         return weaponBases[index];
+    }
+
+    public int GetCountWeapon()
+    {
+        return weaponBases.Count;
     }
 
     public void Attack()

@@ -28,7 +28,9 @@ public class GamePlayController : Singleton<GamePlayController>
     private void OnEnable()
     {
         //SetState();
+        //UpdateState(GAME_STATES.WAVE_SHOP);
         UpdateState(GAME_STATES.START);
+       
         
     }
 
@@ -56,10 +58,12 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
+                _waveTimeController.SetCoundownTime(60);
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
                 Time.timeScale = 1;
+                StartCoroutine(_waveTimeController.Countdown());
                 _waveShop.SetActive(false);
                 _enemyFactory.SetIsSpawned(true);
                 _enemyFactory.SetTarget(_character);
@@ -74,6 +78,7 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         yield return new WaitUntil(() => _character != null);
         CameraFollow.Instance.target = _character.transform;
+        UpdateState(GAME_STATES.WAVE_SHOP);
         UpdateState(GAME_STATES.PLAYING);
         //_enemies.Add(_enemyFactory.CreateEnemy(_character));
         Debug.Log("Play");
@@ -114,5 +119,15 @@ public class GamePlayController : Singleton<GamePlayController>
     public CurrencyController GetCurrencyController()
     {
         return _currencyController;
+    }
+
+    public WeaponSystem GetWeaponSystem()
+    {
+        return _character.GetComponent<CharacterController>().GetWeaponSystem();
+    }
+
+    public CharacterController GetCharacterController()
+    {
+        return _character.GetComponent<CharacterController>();
     }
 }
