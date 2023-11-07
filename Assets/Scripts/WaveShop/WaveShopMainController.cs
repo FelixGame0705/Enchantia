@@ -1,14 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
-using static UnityEditor.Progress;
-using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
