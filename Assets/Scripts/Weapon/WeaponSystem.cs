@@ -24,6 +24,7 @@ public class WeaponSystem : MonoBehaviour
 
     public void SellWeapon(int index)
     {
+        Debug.Log("Weapon index " + index);
         if (index < 0) return;
         Destroy(weaponBases[index].gameObject);
         weaponBases.RemoveAt(index);

@@ -45,8 +45,9 @@ public class DetailWeapon : MonoBehaviour
         if (FindIndexRemove(oldIndex, oldID) < 0) return;
         WaveShopMainController.Instance.GetWeaponInventory().UpgradeCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().UpgradeWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(FindIndexRemove(oldIndex, oldID));
         GamePlayController.Instance.GetWeaponSystem().SellWeapon(FindIndexRemove(oldIndex, oldID));
+        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(FindIndexRemove(oldIndex, oldID));
+        
 
     }
 
