@@ -15,7 +15,8 @@ public class BasicEnemyFactory : EnemyFactory
     public override GameObject CreateEnemy(GameObject target, Vector2 position)
     {
         //_enemyPool.objectPrefab = _enemyPatternList[Random.Range(MIN_LEVEL_ENEMY, MAX_LEVEL_ENEMY)];
-        _enemyPool.objectPrefab = _enemyPatternList[1].gameObject;
+        _enemyPool.objectPrefab = _enemyPatternList[Random.Range(0, _enemyPatternList.Count)];
+        //_enemyPool.objectPrefab = _enemyPatternList[1].gameObject;
         GameObject enemy = _enemyPool.GetObjectFromPool();
         enemy.transform.position = position;
         Debug.Log("Target la " + enemy);
