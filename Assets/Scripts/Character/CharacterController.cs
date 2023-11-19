@@ -13,6 +13,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected float CurrentHealth;
     [SerializeField] private UIPlayerController _uiPlayerController;
     [SerializeField] protected Transform Model;
+    [SerializeField] protected Animator AnimatorPlayer;
+
+    private Vector3 initModelScale;
 
     protected void Start()
     {
@@ -20,6 +23,11 @@ public class CharacterController : MonoBehaviour
         CurrentHealth = CharacterData.CharacterStats.MaxHP;
         _uiPlayerController.SetMaxHealthValue(CurrentHealth);
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        initModelScale = Model.transform.localScale;
+        if (AnimatorPlayer == null)
+        {
+            AnimatorPlayer = GetComponent<Animator>();
+        }
     }
 
     protected void Update()
@@ -35,15 +43,6 @@ public class CharacterController : MonoBehaviour
     {
         MoveX = 0;
         MoveY = 0;
-
-        if (MoveX == 0 && MoveY == 0)
-        {
-            //AnimatorPlayer.Play("Idle");
-        }
-        else
-        {
-            //AnimatorPlayer.Play("Run");
-        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -64,13 +63,23 @@ public class CharacterController : MonoBehaviour
             MoveX = -1f;
             Flip(false);
         }
+
+        if (MoveX == 0 && MoveY == 0)
+        {
+            AnimatorPlayer.SetBool("isMoving", false);
+        }
+        else
+        {
+            AnimatorPlayer.SetBool("isMoving", true);
+        }
+
         Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;
         transform.Translate(moveDir * Character.Speed  * Time.deltaTime);
     }
 
     private void Flip(bool isFlip)
     {
-        //_model.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        Model.transform.localScale = new Vector3(isFlip ? initModelScale.x : -initModelScale.x, initModelScale.y, initModelScale.z);
     }
 
     public void SetTarget(GameObject target)
