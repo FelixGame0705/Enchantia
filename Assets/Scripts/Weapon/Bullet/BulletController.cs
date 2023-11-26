@@ -52,6 +52,8 @@ public class BulletController : MonoBehaviour
             enemy.TakeDamage(_damage);
             Debug.Log("Damage" + _damage);
             GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
+
+            DynamicTextManager.CreateText2D(collision.transform.position, _damage.ToString(), DynamicTextManager.defaultData);
         }
     }
 }
