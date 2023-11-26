@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e895f60c44d481a4abd2f731dd5f4a0f, type: 3}
+  m_Name: RedLitteData
+  m_EditorClassIdentifier: 
+  CharacterStats:
+    _maxHP: 100
+    _hpRegeneration: 0
+    _lifeSteal: 0
+    _damage: 0
+    _meleeDamage: 0
+    _rangedDamage: 0
+    _elementalDamage: 0
+    _attackSpeed: 0
+    _critChance: 0
+    _engineering: 0
+    _range: 0
+    _armor: 0
+    _dodge: 0
+    _speed: 10
+    _luck: 0
+    havesting: 0
+    _havestRange: 3
+    firstItems:
+    - {fileID: 11400000, guid: 90cf6721416b1cb4287eec11ca6dc992, type: 2}
