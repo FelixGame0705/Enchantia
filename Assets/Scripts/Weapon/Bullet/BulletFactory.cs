@@ -6,7 +6,9 @@ using static UnityEngine.GraphicsBuffer;
 public class BulletFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject BulletPattern;
+    [SerializeField] protected GameObject BulletMeleePattern;
     [SerializeField] private ObjectPool _bulletPool = new ObjectPool();
+    [SerializeField] private ObjectPool _bulletMeleePool = new ObjectPool();
     private BulletController bulletController;
     public virtual GameObject CreateBullet(Vector3 target)
     {
@@ -22,6 +24,18 @@ public class BulletFactory : MonoBehaviour
     {
         _bulletPool.objectPrefab = BulletPattern;
         GameObject bullet = _bulletPool.GetObjectFromPool();
+        bullet.transform.position = positionBullet;
+        bulletController = bullet.GetComponent<BulletController>();
+        bulletController.SetDistance(distance);
+        bulletController.SetDirection(direction);
+        bulletController.SetDamage(damage);
+        return bullet;
+    }
+    
+    public virtual GameObject CreateBulletMelee(Vector3 direction, float distance, Vector3 positionBullet, float damage)
+    {
+        _bulletMeleePool.objectPrefab = BulletMeleePattern;
+        GameObject bullet = _bulletMeleePool.GetObjectFromPool();
         bullet.transform.position = positionBullet;
         bulletController = bullet.GetComponent<BulletController>();
         bulletController.SetDistance(distance);
