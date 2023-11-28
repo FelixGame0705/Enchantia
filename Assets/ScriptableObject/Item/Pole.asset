@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Pole
   m_EditorClassIdentifier: 
   ItemStats:
+    _name: 
+    _maxHP: 0
+    _hpRegeneration: 0
+    _lifeSteal: 0
     _rangedDamage: 1
     _meleeDamage: 0
     _elementalDamage: 0
@@ -25,11 +29,11 @@ MonoBehaviour:
     _attackSpeed: 0
     _level: 0
     _weaponBaseModel: {fileID: 3563874935191199179, guid: ec870758c97437c4cb9417ad658349bd, type: 3}
-  itemImg: {fileID: -6066236442320969475, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
+  itemImg: {fileID: 21300000, guid: 6e692738689e7914a977b29a1d055467, type: 3}
   itemBG: {fileID: -5691007311618604778, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
   rarityColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   itemName: Thief Gloves
   itemDescription: +30% pickup range
   itemPrice: 25
   nextItemWeapon: {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
-  id: 0
+  id: 4

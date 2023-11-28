@@ -160,7 +160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: LifeSteal
 --- !u!1 &2545142867493003173
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: Range
 --- !u!1 &3354970354445451797
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4
+  m_Text: AttackSpeed
 --- !u!1 &3980713380195364176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,6 +1244,10 @@ MonoBehaviour:
   - {fileID: 8039592173521726149}
   statNames:
   - MaxHP
+  - Speed
+  - LifeSteal
+  - Range
+  - AttackSpeed
 --- !u!1 &8780917780115860575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,7 +1408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: Speed
 --- !u!1 &8922975796775388315
 GameObject:
   m_ObjectHideFlags: 0

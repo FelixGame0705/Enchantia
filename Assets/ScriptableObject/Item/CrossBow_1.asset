@@ -10,10 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b89274630ab003741b6afaf9285c538e, type: 3}
-  m_Name: ThiefGloves 2
+  m_Name: CrossBow_1
   m_EditorClassIdentifier: 
   ItemStats:
-    _rangedDamage: 2
+    _name: 
+    _maxHP: 0
+    _hpRegeneration: 0
+    _lifeSteal: 0
+    _rangedDamage: 1
     _meleeDamage: 0
     _elementalDamage: 0
     _armor: 0
@@ -25,11 +29,11 @@ MonoBehaviour:
     _attackSpeed: 0
     _level: 0
     _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
-  itemImg: {fileID: -6066236442320969475, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  itemBG: {fileID: -5691007311618604778, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  rarityColor: {r: 0, g: 0.019360065, b: 1, a: 1}
+  itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
+  itemBG: {fileID: 0}
+  rarityColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   itemName: Thief Gloves
   itemDescription: +30% pickup range
   itemPrice: 25
-  nextItemWeapon: {fileID: 0}
-  id: 2
+  nextItemWeapon: {fileID: 11400000, guid: 195d88a0e7ef00045b296c3ef55bf1fa, type: 2}
+  id: 3

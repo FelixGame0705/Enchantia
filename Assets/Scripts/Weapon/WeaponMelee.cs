@@ -58,8 +58,6 @@ public class WeaponMelee : WeaponBase
                 if (CheckIsAttack(PlayerAttackStage))
                 {
                     StartCoroutine(DelayAttack(Target.transform));
-                    //PlayerAttackStage = ATTACK_STAGE.FINISHED;
-                    //SetStateAttacking(ATTACK_STAGE.FINISHED, true);
                 }
                 break;
             case ATTACK_STAGE.FINISHED:

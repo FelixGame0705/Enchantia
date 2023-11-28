@@ -512,7 +512,37 @@ MonoBehaviour:
   Model: {fileID: 5569247176494871072}
   AnimatorPlayer: {fileID: 6923671712007570716}
   stats:
-    Strength:
+    MaxHP:
+      BaseValue: 0
+    HPRegeneration:
+      BaseValue: 0
+    LifeSteal:
+      BaseValue: 0
+    Damage:
+      BaseValue: 0
+    MeleeDamage:
+      BaseValue: 0
+    RangedDamage:
+      BaseValue: 0
+    ElementalDamage:
+      BaseValue: 0
+    AttackSpeed:
+      BaseValue: 0
+    CritChance:
+      BaseValue: 0
+    Engineering:
+      BaseValue: 0
+    Range:
+      BaseValue: 0
+    Armor:
+      BaseValue: 0
+    Dodge:
+      BaseValue: 0
+    Speed:
+      BaseValue: 0
+    Luck:
+      BaseValue: 0
+    Havesting:
       BaseValue: 0
 --- !u!1001 &5866593966837822956
 PrefabInstance:

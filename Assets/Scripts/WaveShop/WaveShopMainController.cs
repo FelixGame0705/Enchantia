@@ -39,7 +39,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             _characterController = GamePlayController.Instance.GetCharacterController();
-            _statsPanel.SetStats(_characterController.stats.MaxHP, _characterController.stats.MeleeDamage
+            _statsPanel.SetStats(_characterController.stats.MaxHP, _characterController.stats.MeleeDamage, _characterController.stats.LifeSteal
                ) ;
             _statsPanel.UpdateStatValues();
         }
@@ -127,5 +127,12 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public DetailWeapon GetDetailWeapon()
     {
         return _detailWeapon.GetComponent<DetailWeapon>();
+    }
+
+    bool isPanel = false;
+    public void WatchStats()
+    {
+        isPanel = !isPanel;
+        _statsPanel.gameObject.SetActive(isPanel);
     }
 }

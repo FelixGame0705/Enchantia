@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class StatDisplay : MonoBehaviour
 {
     public Text NameText;
     public Text ValueText;
@@ -18,13 +18,13 @@ public class StatDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         ValueText = texts[1];
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        StatTooltip.Instance.ShowTooltip(Stat, NameText.text);
-    }
+    //public void OnPointerEnter(PointerEventData eventData)
+    //{
+    //    StatTooltip.Instance.ShowTooltip(Stat, NameText.text);
+    //}
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        StatTooltip.Instance.HideTooltip();
-    }
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    StatTooltip.Instance.HideTooltip();
+    //}
 }
