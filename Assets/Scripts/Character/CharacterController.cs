@@ -14,7 +14,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private UIPlayerController _uiPlayerController;
     [SerializeField] protected Transform Model;
     [SerializeField] protected Animator AnimatorPlayer;
-
+    public Character_Mod stats;
     private Vector3 initModelScale;
 
     protected void Start()
@@ -74,7 +74,7 @@ public class CharacterController : MonoBehaviour
         }
 
         Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;
-        transform.Translate(moveDir * Character.Speed  * Time.deltaTime);
+        transform.Translate(moveDir * DeathWithSpeed() * Time.deltaTime); ;
     }
 
     private void Flip(bool isFlip)
@@ -128,5 +128,19 @@ public class CharacterController : MonoBehaviour
     public CharacterData GetCharacterData()
     {
         return this.CharacterData;
+    }
+
+    private float DeathWithSpeed()
+    {
+        return CharacterData.CharacterStats.Speed;
+    }
+
+    public void LifeSteal()
+    {
+        if(Random.value < CharacterData.CharacterStats.LifeSteal)
+        {
+            CurrentHealth += 1;
+            _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        }
     }
 }

@@ -13,6 +13,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private Text _moneyText;
     [SerializeField] private CurrencyController _currentController;
     [SerializeField] private GameObject _detailWeapon;
+    [SerializeField] private StatsPanelController _statsPanel;
+    [SerializeField] private CharacterController _characterController;
 
     private int _indexWeaponSelected;
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
@@ -34,13 +36,20 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void OnEnable()
     {
+        if (GamePlayController.Instance.GetCharacterController() != null)
+        {
+            _characterController = GamePlayController.Instance.GetCharacterController();
+            _statsPanel.SetStats(_characterController.stats.MaxHP, _characterController.stats.MeleeDamage
+               ) ;
+            _statsPanel.UpdateStatValues();
+        }
         CurrentMoney = _currentController.GetGold();
         Reroll();
         UpdateMoney();
         if(weaponInventoryController.GetCountWeapon() == 0)
         {
-            for (int i = 0; i < GamePlayController.Instance.GetCharacterController().GetCharacterData().CharacterStats.FirstItems.Count; i ++)
-                EquipItemWeapon(GamePlayController.Instance.GetCharacterController().GetCharacterData().CharacterStats.FirstItems[i], GamePlayController.Instance.GetCharacterController().GetCharacterData().CharacterStats.FirstItems[i].ItemStats.WeaponBaseModel);
+            for (int i = 0; i < _characterController.GetCharacterData().CharacterStats.FirstItems.Count; i ++)
+                EquipItemWeapon(_characterController.GetCharacterData().CharacterStats.FirstItems[i], _characterController.GetCharacterData().CharacterStats.FirstItems[i].ItemStats.WeaponBaseModel);
         }
     }
 
@@ -68,8 +77,12 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         {
             CurrentMoney -= itemCard.CardItemInfo.ItemPrice;
             if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
+            {
                 inventoryController.AddCardToInventory(itemCard.CardItemInfo);
-            else if(weaponInventoryController.GetCountWeapon() < 6)
+                itemCard.CardItemInfo.ItemStats.Equip(_characterController.stats);
+                _statsPanel.UpdateStatValues();
+            }
+            else if (weaponInventoryController.GetCountWeapon() < 6)
             {
                 EquipItemWeapon(itemCard.CardItemInfo, itemCard.CardItemInfo.ItemStats.WeaponBaseModel);
             }

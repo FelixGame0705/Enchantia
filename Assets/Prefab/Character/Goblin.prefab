@@ -858,6 +858,7 @@ MonoBehaviour:
   CurrentHealth: 10
   _uiPlayerController: {fileID: 7490254885591990239}
   Model: {fileID: 3143793113387148697}
+  AnimatorPlayer: {fileID: 0}
 --- !u!1 &1631404634319562
 GameObject:
   m_ObjectHideFlags: 0
