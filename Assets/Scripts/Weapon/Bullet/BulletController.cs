@@ -9,6 +9,9 @@ public class BulletController : MonoBehaviour
     private float _distance;
     private Vector3 _direction;
     private float _damage;
+    private bool isMeleeWeapon;
+
+    public bool IsMeleeWeapon { get => isMeleeWeapon; set => isMeleeWeapon = value; }
 
     private void Update()
     {
