@@ -17,7 +17,7 @@ MonoBehaviour:
     _maxHP: 0
     _hpRegeneration: 0
     _lifeSteal: 0
-    _rangedDamage: 1
+    _rangedDamage: 0.5
     _meleeDamage: 0
     _elementalDamage: 0
     _armor: 0

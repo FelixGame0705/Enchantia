@@ -45,12 +45,12 @@ public class BulletController : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Damage" + collision.gameObject.layer);
+        Debug.Log("Damage " + collision.gameObject.layer);
         if (collision.gameObject.layer == 6)
         {
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             enemy.TakeDamage(_damage);
-            Debug.Log("Damage" + _damage);
+            Debug.Log("Damage " + _damage);
             GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
 
             DynamicTextManager.CreateText2D(collision.transform.position, _damage.ToString(), DynamicTextManager.defaultData);
