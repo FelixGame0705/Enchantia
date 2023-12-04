@@ -85,7 +85,7 @@ public class WeaponRanged : WeaponBase
 
     private float DealWithDamage()
     {
-        return WeaponDataConfig.WeaponConfig.Damage + GamePlayController.Instance.GetCharacterController().GetCharacterData().CharacterStats.RangedDamage;
+        return WeaponDataConfig.WeaponConfig.Damage + GamePlayController.Instance.GetCharacterController().CharacterModStats.RangedDamage.Value;
     }
 
     public void SpawnBullet()

@@ -115,6 +115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveShopPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 737416141282247410, guid: c7651ea94712efd4d9012f63d9ad1dc7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 737416141282247411, guid: c7651ea94712efd4d9012f63d9ad1dc7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

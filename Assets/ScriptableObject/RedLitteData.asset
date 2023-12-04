@@ -12,23 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e895f60c44d481a4abd2f731dd5f4a0f, type: 3}
   m_Name: RedLitteData
   m_EditorClassIdentifier: 
-  CharacterStats:
-    _maxHP: 100
-    _hpRegeneration: 0
-    _lifeSteal: 0
-    _damage: 0
-    _meleeDamage: 0
-    _rangedDamage: 0
-    _elementalDamage: 0
-    _attackSpeed: 0
-    _critChance: 0
-    _engineering: 0
-    _range: 0
-    _armor: 0
-    _dodge: 0
-    _speed: 10
-    _luck: 0
-    havesting: 0
-    _havestRange: 3
-    firstItems:
-    - {fileID: 11400000, guid: 90cf6721416b1cb4287eec11ca6dc992, type: 2}
+  Character_Mod:
+    MaxHP:
+      BaseValue: 20
+    HPRegeneration:
+      BaseValue: 5
+    LifeSteal:
+      BaseValue: 0
+    Damage:
+      BaseValue: 0
+    MeleeDamage:
+      BaseValue: 0
+    RangedDamage:
+      BaseValue: 0
+    ElementalDamage:
+      BaseValue: 0
+    AttackSpeed:
+      BaseValue: 0
+    CritChance:
+      BaseValue: 0
+    Engineering:
+      BaseValue: 0
+    Range:
+      BaseValue: 0
+    Armor:
+      BaseValue: 0
+    Dodge:
+      BaseValue: 0
+    Speed:
+      BaseValue: 5
+    Luck:
+      BaseValue: 0
+    Harvesting:
+      BaseValue: 0
+    HarvestRange:
+      BaseValue: 0
+  firstItems:
+  - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
