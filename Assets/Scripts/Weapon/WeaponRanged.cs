@@ -57,11 +57,10 @@ public class WeaponRanged : WeaponBase
                 if (CheckIsAttack(PlayerAttackStage))
                 {
                     StartCoroutine(DelayAttack(Target.transform));
-                    //PlayerAttackStage = ATTACK_STAGE.FINISHED;
-                    //SetStateAttacking(ATTACK_STAGE.FINISHED, true);
                 }
                 break;
             case ATTACK_STAGE.FINISHED:
+                GamePlayController.Instance.GetCharacterController().LifeSteal();
                 PlayerAttackStage = ATTACK_STAGE.END;
                 SetStateAttacking(ATTACK_STAGE.END, true);
                 break;
@@ -77,11 +76,16 @@ public class WeaponRanged : WeaponBase
     {
         SetStateAttacking(ATTACK_STAGE.DURATION, false);
         yield return new WaitForSecondsRealtime(WeaponDataConfig.WeaponConfig.AttackSpeed);
-        GameObject bullet = GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, WeaponDataConfig.WeaponConfig.Damage);
+        GameObject bullet = GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
         //SetStateAttacking(ATTACK_STAGE.DURATION, true);
         PlayerAttackStage = ATTACK_STAGE.FINISHED;
         SetStateAttacking(PlayerAttackStage, true);
         Debug.Log("Nooooo");
+    }
+
+    private float DealWithDamage()
+    {
+        return WeaponDataConfig.WeaponConfig.Damage + GamePlayController.Instance.GetCharacterController().GetCharacterData().CharacterStats.RangedDamage;
     }
 
     public void SpawnBullet()

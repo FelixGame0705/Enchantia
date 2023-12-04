@@ -12,6 +12,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] private UIPlayerController _uiPlayerController;
+    [SerializeField] protected Transform Model;
+    [SerializeField] protected Animator AnimatorPlayer;
+    public Character_Mod stats;
+    private Vector3 initModelScale;
 
     protected void Start()
     {
@@ -19,28 +23,26 @@ public class CharacterController : MonoBehaviour
         CurrentHealth = CharacterData.CharacterStats.MaxHP;
         _uiPlayerController.SetMaxHealthValue(CurrentHealth);
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        initModelScale = Model.transform.localScale;
+        if (AnimatorPlayer == null)
+        {
+            AnimatorPlayer = GetComponent<Animator>();
+        }
     }
 
     protected void Update()
     {
+        HarvestGold();
         CheckInput();
         if (Target == null) return;
         WeaponSystemInCharacter.ExcuteAttack(Target.transform, gameObject.transform, true);
+        
     }
 
     public void CheckInput()
     {
         MoveX = 0;
         MoveY = 0;
-
-        if (MoveX == 0 && MoveY == 0)
-        {
-            //AnimatorPlayer.Play("Idle");
-        }
-        else
-        {
-            //AnimatorPlayer.Play("Run");
-        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -61,13 +63,23 @@ public class CharacterController : MonoBehaviour
             MoveX = -1f;
             Flip(false);
         }
+
+        if (MoveX == 0 && MoveY == 0)
+        {
+            AnimatorPlayer.SetBool("isMoving", false);
+        }
+        else
+        {
+            AnimatorPlayer.SetBool("isMoving", true);
+        }
+
         Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;
-        transform.Translate(moveDir * Character.Speed  * Time.deltaTime);
+        transform.Translate(moveDir * DeathWithSpeed() * Time.deltaTime); ;
     }
 
     private void Flip(bool isFlip)
     {
-        //_model.transform.localScale = new Vector3(isFlip ? -1 : 1, 1, 1);
+        Model.transform.localScale = new Vector3(isFlip ? initModelScale.x : -initModelScale.x, initModelScale.y, initModelScale.z);
     }
 
     public void SetTarget(GameObject target)
@@ -79,5 +91,56 @@ public class CharacterController : MonoBehaviour
     {
         CurrentHealth -= damage;
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        if(CurrentHealth <= 0) MenuController.Instance.ReturnToMenu();
+    }
+
+    private void HarvestGold()
+    {
+        HashSet<GameObject> golds = GamePlayController.Instance.GetCurrencyController().GetGolds();
+        if (golds != null)
+            foreach (GameObject gold in golds)
+            {
+                if (DistanceGold(gold.transform.position) <= CharacterData.CharacterStats.HavestRange && gold.activeSelf == true)
+                {
+                    MoveGoldToPlayer(gold);
+                }
+            }
+
+    }
+
+    private void MoveGoldToPlayer(GameObject gold)
+    {
+        gold.transform.position = Vector2.MoveTowards(gold.transform.position, Model.position, 15 * Time.deltaTime);
+        if (gold.transform.position == Model.position)
+        {
+            GamePlayController.Instance.GetCurrencyController().ReturnGoldToPool(gold);
+            GamePlayController.Instance.GetCurrencyController().AddGold(1);
+        }
+    }
+
+    private float DistanceGold(Vector2 target)
+    {
+        return Vector2.Distance(Model.position, target);
+    }
+
+    public WeaponSystem GetWeaponSystem() { return WeaponSystemInCharacter; }
+
+    public CharacterData GetCharacterData()
+    {
+        return this.CharacterData;
+    }
+
+    private float DeathWithSpeed()
+    {
+        return CharacterData.CharacterStats.Speed;
+    }
+
+    public void LifeSteal()
+    {
+        if(Random.value < CharacterData.CharacterStats.LifeSteal)
+        {
+            CurrentHealth += 1;
+            _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
+        }
     }
 }

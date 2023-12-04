@@ -1,12 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
@@ -14,8 +8,15 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentMoney = 100;
     [SerializeField] private int _currentWave = 1;
     [SerializeField] private ItemViewListController _viewListController;
+    [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
+    [SerializeField] private CurrencyController _currentController;
+    [SerializeField] private GameObject _detailWeapon;
+    [SerializeField] private StatsPanelController _statsPanel;
+    [SerializeField] private CharacterController _characterController;
 
+    private int _indexWeaponSelected;
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
     
@@ -30,7 +31,26 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void FixedUpdate()
     {
-        _moneyText.text = _currentMoney.ToString();
+        //_moneyText.text = _currentMoney.ToString();
+    }
+
+    private void OnEnable()
+    {
+        if (GamePlayController.Instance.GetCharacterController() != null)
+        {
+            _characterController = GamePlayController.Instance.GetCharacterController();
+            _statsPanel.SetStats(_characterController.stats.MaxHP, _characterController.stats.MeleeDamage, _characterController.stats.LifeSteal
+               ) ;
+            _statsPanel.UpdateStatValues();
+        }
+        CurrentMoney = _currentController.GetGold();
+        Reroll();
+        UpdateMoney();
+        if(weaponInventoryController.GetCountWeapon() == 0)
+        {
+            for (int i = 0; i < _characterController.GetCharacterData().CharacterStats.FirstItems.Count; i ++)
+                EquipItemWeapon(_characterController.GetCharacterData().CharacterStats.FirstItems[i], _characterController.GetCharacterData().CharacterStats.FirstItems[i].ItemStats.WeaponBaseModel);
+        }
     }
 
     public void Reroll()
@@ -43,18 +63,76 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         Stack<ItemData> stack = new Stack<ItemData>();
         for(int i = 0; i < amount; i++)
         {
+            Debug.Log("Index card " + _itemDataList.Count);
             int index = UnityEngine.Random.Range(0, _itemDataList.Count);
+            Debug.Log("Index card " +index);
             stack.Push(_itemDataList[index]);
         }
         return stack;
     }
     public void BuyItem(int cardIndex)
     {
-        var itemData = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
-        if(CurrentMoney> itemData.ItemPrice)
+        ItemCardController itemCard = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
+        if(CurrentMoney> itemCard.CardItemInfo.ItemPrice)
         {
-            CurrentMoney -= itemData.ItemPrice;
+            CurrentMoney -= itemCard.CardItemInfo.ItemPrice;
+            if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
+            {
+                inventoryController.AddCardToInventory(itemCard.CardItemInfo);
+                itemCard.CardItemInfo.ItemStats.Equip(_characterController.stats);
+                _statsPanel.UpdateStatValues();
+            }
+            else if (weaponInventoryController.GetCountWeapon() < 6)
+            {
+                EquipItemWeapon(itemCard.CardItemInfo, itemCard.CardItemInfo.ItemStats.WeaponBaseModel);
+            }
+            itemCard.DisableItem();
         }
+        UpdateMoney();
     }
 
+    private void UpdateMoney()
+    {
+        _moneyText.text = CurrentMoney.ToString();
+    }
+
+    public void AddGoldValue(int amount)
+    {
+        CurrentMoney += amount;
+    }
+
+    public void EquipItemWeapon(ItemData itemInfo, GameObject weaponModel)
+    {
+        weaponInventoryController.AddCardToWeapon(itemInfo);
+        GamePlayController.Instance.GetWeaponSystem().EquipedWeapon(weaponModel);
+    }
+
+    public InventoryController GetWeaponInventory()
+    {
+        return weaponInventoryController;
+    }
+
+    public void SetDetailWeapon(Transform anchorTransform, bool isActive)
+    {
+        _detailWeapon.SetActive(isActive);
+        //_detailWeapon.transform.position = anchorTransform.position + new Vector3(130, 0, 0);
+        _indexWeaponSelected = anchorTransform.gameObject.GetComponent<ItemImageController>().GetID();
+    }
+
+    public int GetIndexWeaponSelected()
+    {
+        return _indexWeaponSelected;
+    }
+
+    public DetailWeapon GetDetailWeapon()
+    {
+        return _detailWeapon.GetComponent<DetailWeapon>();
+    }
+
+    bool isPanel = false;
+    public void WatchStats()
+    {
+        isPanel = !isPanel;
+        _statsPanel.gameObject.SetActive(isPanel);
+    }
 }

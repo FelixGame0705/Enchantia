@@ -12,7 +12,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected void Start()
     {
-        CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth;
+        
         CurrentSpeed = EnemyDataConfig.EnemyStats.Speed;
     }
 
@@ -25,4 +25,8 @@ public abstract class EnemyBase : MonoBehaviour
         transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
     }
 
+    private void OnEnable()
+    {
+        CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth;
+    }
 }

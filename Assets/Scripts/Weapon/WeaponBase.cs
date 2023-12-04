@@ -11,6 +11,16 @@ public abstract class WeaponBase : MonoBehaviour
     protected ATTACK_STAGE currentState;
     protected abstract void Attack();
     public abstract void SetPlayerPosition(Transform player);
+    protected int ID;
+    public virtual int GetID()
+    {
+        return ID;
+    }
+    
+    public virtual void SetID(int id)
+    {
+        ID = id;
+    }
     protected virtual void Rotate() 
     {
         if (Target == null) return;
@@ -36,5 +46,10 @@ public abstract class WeaponBase : MonoBehaviour
     public void SetStateAttacking(ATTACK_STAGE currentState, bool isActive)
     {
         IsStates[(int)currentState] = isActive;
+    }
+
+    public void SetWeaponDataConfig(WeaponData config)
+    {
+        WeaponDataConfig = config;
     }
 }

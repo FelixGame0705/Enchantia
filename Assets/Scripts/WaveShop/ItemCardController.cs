@@ -23,7 +23,7 @@ public class ItemCardController : MonoBehaviour
         if(_cardItemInfo != null)
         {
             _itemIcon.sprite = _cardItemInfo.ItemImg;
-            _itemName.text = _cardItemInfo.ItemName;
+            //_itemName.text = _cardItemInfo.ItemName;
             _itemPrice = _cardItemInfo.ItemPrice;
             _itemDescription.text = _cardItemInfo.ItemDescription;
             _itemPriceBtn.text = _itemPrice.ToString();
@@ -54,7 +54,7 @@ public class ItemCardController : MonoBehaviour
         DisableItem();
         _cardItemInfo = data;
         _itemIcon.sprite = _cardItemInfo.ItemImg;
-        _itemName.text = _cardItemInfo.ItemName;
+        //_itemName.text = _cardItemInfo.ItemName;
         _itemPrice = _cardItemInfo.ItemPrice;
         _itemDescription.text = _cardItemInfo.ItemDescription;
         _itemPriceBtn.text = _itemPrice.ToString();
