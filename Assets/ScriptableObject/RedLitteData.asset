@@ -26,7 +26,7 @@ MonoBehaviour:
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
-      BaseValue: 0
+      BaseValue: 5
     AttackSpeed:
       BaseValue: 0
     CritChance:
@@ -44,8 +44,8 @@ MonoBehaviour:
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0
+      BaseValue: 0.1
     HarvestRange:
-      BaseValue: 0
+      BaseValue: 3
   firstItems:
   - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}

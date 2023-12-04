@@ -46,3 +46,11 @@ public enum ITEM_TYPE
     ITEM,
     WEAPON
 }
+
+public enum DROPPED_ITEM_TYPE
+{
+    GOLD,
+    FRUIT,
+    CRATE,
+    LENGENDARY_CRATE
+}

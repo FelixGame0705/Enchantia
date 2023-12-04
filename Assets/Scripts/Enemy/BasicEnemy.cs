@@ -43,7 +43,8 @@ public class BasicEnemy : EnemyBase
 
         if(CurrentHealth <= 0)
         {
-            GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
+            //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
+            GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.GOLD, new Vector2(transform.position.x, transform.position.y));
             
         }
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7544174329852747189}
   - component: {fileID: 7544174329852747188}
+  - component: {fileID: -2632729694760353333}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -82,3 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2632729694760353333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544174329852747185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93889f5e2ed89e84db745815260f01b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemData: {fileID: 11400000, guid: 502f465b005dc8d41b1b9a15054f5d01, type: 2}

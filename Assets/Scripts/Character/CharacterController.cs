@@ -13,7 +13,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private UIPlayerController _uiPlayerController;
     [SerializeField] protected Transform Model;
     [SerializeField] protected Animator AnimatorPlayer;
-    [SerializeField] protected int CurrentGold;// this is number of gold that character harvesting in game
+    [SerializeField] protected int CurrentGold = 0;// this is number of gold that character harvesting in game
     public Character_Mod CharacterModStats;
     private Vector3 initModelScale;
 
@@ -32,7 +32,7 @@ public class CharacterController : MonoBehaviour
 
     protected void Update()
     {
-        HarvestGold();
+        HarvestDroppedItem();
         CheckInput();
         RegenerateHealth();
         if (Target == null) return;
@@ -99,28 +99,28 @@ public class CharacterController : MonoBehaviour
         if(CurrentHealth <= 0) MenuController.Instance.ReturnToMenu();
     }
 
-    private void HarvestGold()
+    private void HarvestDroppedItem()
     {
-        HashSet<GameObject> golds = GamePlayController.Instance.GetCurrencyController().GetGolds();
-        if (golds != null)
-            foreach (GameObject gold in golds)
+        //HashSet<GameObject> golds = GamePlayController.Instance.GetCurrencyController().GetGolds();
+        HashSet<GameObject> droppedItems = GamePlayController.Instance.GetDroppedItemController().GetDroppedItems();
+        if (droppedItems != null)
+            foreach (GameObject droppedItem in droppedItems)
             {
-                if (DistanceGold(gold.transform.position) <= CharacterModStats.HarvestRange.Value && gold.activeSelf == true)
+                if (DistanceGold(droppedItem.transform.position) <= CharacterModStats.HarvestRange.Value && droppedItem.activeSelf == true)
                 {
-                    MoveGoldToPlayer(gold);
+                    MoveDroppedItemToPlayer(droppedItem);
                 }
             }
 
     }
 
-    private void MoveGoldToPlayer(GameObject gold)
+    private void MoveDroppedItemToPlayer(GameObject droppedItem)
     {
-        gold.transform.position = Vector2.MoveTowards(gold.transform.position, Model.position, 15 * Time.deltaTime);
-        if (gold.transform.position == Model.position)
+        droppedItem.transform.position = Vector2.MoveTowards(droppedItem.transform.position, Model.position, 15 * Time.deltaTime);
+        if (droppedItem.transform.position == Model.position)
         {
-            GamePlayController.Instance.GetCurrencyController().ReturnGoldToPool(gold);
-            _uiPlayerController.AddCurrentGoldValue(1);
-            //GamePlayController.Instance.GetCurrencyController().AddGold(1);
+            HarvestDroppedItemType(droppedItem.GetComponent<DroppedItemType>().droppedItemData.DroppedItemType);
+            GamePlayController.Instance.GetDroppedItemController().ReturnDroppedItemToPool(droppedItem);
         }
     }
 
@@ -152,8 +152,13 @@ public class CharacterController : MonoBehaviour
 
     public int Harvesting()
     {
-        CurrentGold = (int)CharacterModStats.Harvesting.Value * CurrentGold;
+        CurrentGold += (int)CharacterModStats.Harvesting.Value * CurrentGold;
         return CurrentGold;
+    }
+
+    public void ResetCurrentGold()
+    {
+        CurrentGold = 0;
     }
 
     public float DealWithArmor()
@@ -178,4 +183,32 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    public void AddCurrentHealth(int value)
+    {
+        CurrentHealth += value;
+    }
+
+    public void HarvestDroppedItemType(DROPPED_ITEM_TYPE type)
+    {
+        switch (type)
+        {
+            case DROPPED_ITEM_TYPE.GOLD:
+                HarvestGold();
+                break;
+            case DROPPED_ITEM_TYPE.FRUIT:
+                HarvestFruit();
+                break;
+        }
+    }
+
+    private void HarvestFruit()
+    {
+        GamePlayController.Instance.GetCharacterController().AddCurrentHealth(3);
+    }
+
+    private void HarvestGold()
+    {
+        _uiPlayerController.AddCurrentGoldValue(1);
+        CurrentGold += 1;
+    }
 }
