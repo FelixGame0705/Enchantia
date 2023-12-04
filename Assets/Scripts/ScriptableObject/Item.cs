@@ -16,6 +16,7 @@ public class Item
     [SerializeField] private float _rangeStat;
     [SerializeField] private float _luck;
     [SerializeField] private float _heal;
+    [SerializeField] private float _harvestRange;
     [SerializeField] private ITEM_TYPE TYPE = ITEM_TYPE.ITEM;
     [Header("Stats of weapon")]
     [SerializeField] private float _attackSpeed;
@@ -40,13 +41,14 @@ public class Item
     public int MaxHP { get => _maxHP; set => _maxHP = value; }
     public float HpRegeneration { get => _hpRegeneration; set => _hpRegeneration = value; }
     public float LifeSteal { get => _lifeSteal; set => _lifeSteal = value; }
+    public float HarvestRange { get => _harvestRange; set => _harvestRange = value; }
 
     StatModifier mod_MeleeDamage, mod_RangedDamage,
         mod_ElementalDamage, mod_Armor,
         mod_EngineeringStat, mod_RangeStat,
         mod_Luck, mod_Heal,
         mod_MaxHP, mod_HpRegeneration,
-        mod_LifeSteal;
+        mod_LifeSteal, mod_HarvestRange;
     public void Equip(Character_Mod c)
     {
         //Store modifier before add to stat
@@ -61,6 +63,7 @@ public class Item
         mod_RangeStat = new StatModifier(RangeStat, StatModType.PercentAdd);
         mod_Luck = new StatModifier(Luck, StatModType.PercentAdd);
         mod_Heal = new StatModifier(Luck, StatModType.PercentAdd);
+        mod_HarvestRange = new StatModifier(HarvestRange, StatModType.Flat);
 
         c.MaxHP.AddModifier(mod_MaxHP);
         c.HPRegeneration.AddModifier(mod_HpRegeneration);
@@ -72,7 +75,7 @@ public class Item
         c.Engineering.AddModifier(mod_EngineeringStat);
         c.Range.AddModifier(mod_RangeStat);
         c.Luck.AddModifier(mod_Luck);
-        c.Luck.AddModifier(mod_Heal);
+        c.HarvestRange.AddModifier(mod_HarvestRange);
         //c.Strength.AddModifier(mod2);
     }
 
@@ -100,5 +103,6 @@ public class Character_Mod
     public CharacterStat Dodge;
     public CharacterStat Speed;
     public CharacterStat Luck;
-    public CharacterStat Havesting;
+    public CharacterStat Harvesting;
+    public CharacterStat HarvestRange;
 }

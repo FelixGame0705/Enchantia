@@ -17,6 +17,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private CharacterController _characterController;
 
     private int _indexWeaponSelected;
+    private Character_Mod _characterMod;
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
     
@@ -36,10 +37,14 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void OnEnable()
     {
+        
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             _characterController = GamePlayController.Instance.GetCharacterController();
-            _statsPanel.SetStats(_characterController.stats.MaxHP, _characterController.stats.MeleeDamage, _characterController.stats.LifeSteal
+            _characterMod = _characterController.CharacterModStats;
+            _statsPanel.SetStats(_characterMod.MaxHP,_characterMod.HPRegeneration, _characterMod.LifeSteal, 
+                _characterMod.Damage, _characterMod.MeleeDamage, _characterMod.RangedDamage,
+                _characterMod.ElementalDamage
                ) ;
             _statsPanel.UpdateStatValues();
         }
@@ -48,8 +53,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         UpdateMoney();
         if(weaponInventoryController.GetCountWeapon() == 0)
         {
-            for (int i = 0; i < _characterController.GetCharacterData().CharacterStats.FirstItems.Count; i ++)
-                EquipItemWeapon(_characterController.GetCharacterData().CharacterStats.FirstItems[i], _characterController.GetCharacterData().CharacterStats.FirstItems[i].ItemStats.WeaponBaseModel);
+            for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
+                EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
     }
 
@@ -79,7 +84,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
             {
                 inventoryController.AddCardToInventory(itemCard.CardItemInfo);
-                itemCard.CardItemInfo.ItemStats.Equip(_characterController.stats);
+                itemCard.CardItemInfo.ItemStats.Equip(_characterController.CharacterModStats);
                 _statsPanel.UpdateStatValues();
             }
             else if (weaponInventoryController.GetCountWeapon() < 6)
