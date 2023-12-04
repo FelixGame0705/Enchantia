@@ -25,6 +25,7 @@ MonoBehaviour:
     _rangeStat: 0
     _luck: 0
     _heal: 0
+    _harvestRange: 0
     TYPE: 1
     _attackSpeed: 0
     _level: 0
@@ -34,6 +35,6 @@ MonoBehaviour:
   rarityColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   itemName: Thief Gloves
   itemDescription: +30% pickup range
-  itemPrice: 25
+  itemPrice: 18
   nextItemWeapon: {fileID: 11400000, guid: 195d88a0e7ef00045b296c3ef55bf1fa, type: 2}
   id: 3

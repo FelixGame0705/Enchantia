@@ -25,15 +25,16 @@ MonoBehaviour:
     _rangeStat: 0
     _luck: 0
     _heal: 0
+    _harvestRange: 0
     TYPE: 1
     _attackSpeed: 0
     _level: 0
     _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
   itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
   itemBG: {fileID: -5691007311618604778, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
-  rarityColor: {r: 0, g: 0.019360065, b: 1, a: 1}
+  rarityColor: {r: 0.022249907, g: 0.7868307, b: 0.9433962, a: 1}
   itemName: Thief Gloves
   itemDescription: +30% pickup range
-  itemPrice: 25
+  itemPrice: 36
   nextItemWeapon: {fileID: 0}
   id: 2
