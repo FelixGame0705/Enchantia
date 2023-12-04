@@ -485,33 +485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797494db8bec1d4f85008b937f2fbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterData: {fileID: 11400000, guid: 4756dfa9f5a0f9046b0da06085932972, type: 2}
-  Character:
-    _maxHP: 0
-    _hpRegeneration: 0
-    _lifeSteal: 0
-    _damage: 0
-    _meleeDamage: 0
-    _rangedDamage: 0
-    _elementalDamage: 0
-    _attackSpeed: 0
-    _critChance: 0
-    _engineering: 0
-    _range: 0
-    _armor: 0
-    _dodge: 0
-    _speed: 0
-    _luck: 0
-    havesting: 0
-    _havestRange: 0
-    firstItems: []
+  CharacterDataConfig: {fileID: 11400000, guid: 4756dfa9f5a0f9046b0da06085932972, type: 2}
   WeaponSystemInCharacter: {fileID: 8281208823052059889}
   Target: {fileID: 0}
   CurrentHealth: 10
   _uiPlayerController: {fileID: 3374760933928676703}
   Model: {fileID: 5569247176494871072}
   AnimatorPlayer: {fileID: 6923671712007570716}
-  stats:
+  CurrentGold: 0
+  CharacterModStats:
     MaxHP:
       BaseValue: 0
     HPRegeneration:
@@ -542,7 +524,9 @@ MonoBehaviour:
       BaseValue: 0
     Luck:
       BaseValue: 0
-    Havesting:
+    Harvesting:
+      BaseValue: 0
+    HarvestRange:
       BaseValue: 0
 --- !u!1001 &5866593966837822956
 PrefabInstance:
@@ -558,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 2928310052673538594, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419171614638513625, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+      propertyPath: m_Value
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8419171614896682884, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
       propertyPath: m_Name
@@ -653,6 +641,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8419171615424944984, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419171615424944984, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8419171615452888705, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}

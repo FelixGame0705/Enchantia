@@ -59,6 +59,7 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
                 _waveTimeController.SetCoundownTime(60);
+                _currencyController.AddGold(GetCharacterController().Harvesting());
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:

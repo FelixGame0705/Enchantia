@@ -6,21 +6,21 @@ public class CharacterController : MonoBehaviour
 {
     protected float MoveX;
     protected float MoveY;
-    [SerializeField] protected CharacterData CharacterData;
-    [SerializeField] protected Character Character;
+    [SerializeField] protected CharacterData CharacterDataConfig;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] private UIPlayerController _uiPlayerController;
     [SerializeField] protected Transform Model;
     [SerializeField] protected Animator AnimatorPlayer;
-    public Character_Mod stats;
+    [SerializeField] protected int CurrentGold;// this is number of gold that character harvesting in game
+    public Character_Mod CharacterModStats;
     private Vector3 initModelScale;
 
     protected void Start()
     {
-        Character = CharacterData.CharacterStats;
-        CurrentHealth = CharacterData.CharacterStats.MaxHP;
+        CharacterModStats = CharacterDataConfig.Character_Mod;
+        CurrentHealth = CharacterModStats.MaxHP.Value;
         _uiPlayerController.SetMaxHealthValue(CurrentHealth);
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
         initModelScale = Model.transform.localScale;
@@ -34,6 +34,7 @@ public class CharacterController : MonoBehaviour
     {
         HarvestGold();
         CheckInput();
+        RegenerateHealth();
         if (Target == null) return;
         WeaponSystemInCharacter.ExcuteAttack(Target.transform, gameObject.transform, true);
         
@@ -89,7 +90,11 @@ public class CharacterController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage;
+        if (Random.value < CharacterModStats.Dodge.Value)//dodge
+        {
+            return;
+        }
+        CurrentHealth -= (damage - damage*DealWithArmor());
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
         if(CurrentHealth <= 0) MenuController.Instance.ReturnToMenu();
     }
@@ -100,7 +105,7 @@ public class CharacterController : MonoBehaviour
         if (golds != null)
             foreach (GameObject gold in golds)
             {
-                if (DistanceGold(gold.transform.position) <= CharacterData.CharacterStats.HavestRange && gold.activeSelf == true)
+                if (DistanceGold(gold.transform.position) <= CharacterModStats.HarvestRange.Value && gold.activeSelf == true)
                 {
                     MoveGoldToPlayer(gold);
                 }
@@ -114,7 +119,8 @@ public class CharacterController : MonoBehaviour
         if (gold.transform.position == Model.position)
         {
             GamePlayController.Instance.GetCurrencyController().ReturnGoldToPool(gold);
-            GamePlayController.Instance.GetCurrencyController().AddGold(1);
+            _uiPlayerController.AddCurrentGoldValue(1);
+            //GamePlayController.Instance.GetCurrencyController().AddGold(1);
         }
     }
 
@@ -127,20 +133,49 @@ public class CharacterController : MonoBehaviour
 
     public CharacterData GetCharacterData()
     {
-        return this.CharacterData;
+        return this.CharacterDataConfig;
     }
 
     private float DeathWithSpeed()
     {
-        return CharacterData.CharacterStats.Speed;
+        return CharacterModStats.Speed.Value;
     }
 
     public void LifeSteal()
     {
-        if(Random.value < CharacterData.CharacterStats.LifeSteal)
+        if(Random.value < CharacterModStats.LifeSteal.Value)
         {
             CurrentHealth += 1;
             _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
         }
     }
+
+    public int Harvesting()
+    {
+        CurrentGold = (int)CharacterModStats.Harvesting.Value * CurrentGold;
+        return CurrentGold;
+    }
+
+    public float DealWithArmor()
+    {
+        float damageTakenAfterArmor = 1 / (1 + (CharacterModStats.Armor.Value/15));
+        float damageReduction = (1 - (damageTakenAfterArmor));
+        return damageReduction;
+    }
+
+    private float _regerationHP = 0f;
+    public void RegenerateHealth()
+    {
+        float HPEveryXSeconds = 5.0f / (1.0f + ((CharacterModStats.HPRegeneration.Value-1) / 2.25f));
+        if (CurrentHealth < CharacterModStats.MaxHP.Value)
+        {
+            _regerationHP += HPEveryXSeconds;
+            if (_regerationHP >= 1)
+            {
+                CurrentHealth += 1;
+                _regerationHP = 0f;
+            }
+        }
+    }
+
 }
