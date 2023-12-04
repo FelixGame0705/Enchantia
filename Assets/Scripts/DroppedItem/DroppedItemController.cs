@@ -8,15 +8,12 @@ public class DroppedItemController : MonoBehaviour
     [SerializeField] private HashSet<GameObject> _droppedItems = new HashSet<GameObject>();
     [SerializeField] private int _gold;
 
-    public void SetPrefabToPool(DROPPED_ITEM_TYPE index)
-    {
-        _droppedPool.objectPrefab = _droppedItemDataList[(int)index].modelPrefab;
-    }
-
     public void SpawnDroppedItem(DROPPED_ITEM_TYPE indexPrefabSpawn,Vector2 position)
     {
-        SetPrefabToPool(indexPrefabSpawn);
+        Debug.Log("Object fruit " + indexPrefabSpawn);
         GameObject droppedItem = _droppedPool.GetObjectFromPool();
+        droppedItem.GetComponent<DroppedItemType>().DroppedItemData = _droppedItemDataList[(int)indexPrefabSpawn];
+        droppedItem.GetComponent<DroppedItemType>().Init();
         droppedItem.transform.position = position;
         AddUniqueDroppedItem(droppedItem);
     }

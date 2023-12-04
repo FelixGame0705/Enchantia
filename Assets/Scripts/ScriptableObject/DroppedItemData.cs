@@ -7,6 +7,7 @@ public class DroppedItemData : ScriptableObject
 {
     public DROPPED_ITEM_TYPE DroppedItemType;
     public GameObject modelPrefab;
+    public Sprite sprite;
 
     [SerializeField] private int hpValue;
     [SerializeField] private int goldValue;

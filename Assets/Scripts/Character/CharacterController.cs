@@ -119,7 +119,7 @@ public class CharacterController : MonoBehaviour
         droppedItem.transform.position = Vector2.MoveTowards(droppedItem.transform.position, Model.position, 15 * Time.deltaTime);
         if (droppedItem.transform.position == Model.position)
         {
-            HarvestDroppedItemType(droppedItem.GetComponent<DroppedItemType>().droppedItemData.DroppedItemType);
+            HarvestDroppedItemType(droppedItem.GetComponent<DroppedItemType>().DroppedItemData.DroppedItemType);
             GamePlayController.Instance.GetDroppedItemController().ReturnDroppedItemToPool(droppedItem);
         }
     }

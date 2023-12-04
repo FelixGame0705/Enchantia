@@ -812,12 +812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2625ba51572b7164ab5ad835f36abfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPattern: {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
+  EnemyPattern: {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
   TargetForEnemy: {fileID: 0}
   _enemyPatternList:
-  - {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
-  - {fileID: 8845373745087624746, guid: 202805a8b0181734b9a6a0f1ebd6d6d9, type: 3}
-  - {fileID: 8845373745087624746, guid: 6d8de5c8893b23c499281158645fcc44, type: 3}
+  - {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
   _enemyPool: {fileID: 1793774059}
   _signalPool: {fileID: 395281587}
   currentTimeSignal: 2

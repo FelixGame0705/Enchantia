@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class TreeController : EnemyBase
 {
-    [SerializeField] private List<GameObject> awardObject;
     public override void TakeDamage(float health)
     {
+        CurrentHealth -= health;
+        Debug.Log("Current health: " + CurrentHealth);
+
         if (CurrentHealth <= 0)
         {
-
-        }
-    }
-
-    private void SpawnAwardObject()
-    {
-        for(int i = 0; i < awardObject.Count; i++)
-        {
-            
+            GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.FRUIT, new Vector2(transform.position.x, transform.position.y));
+            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
         }
     }
 
@@ -31,17 +26,5 @@ public class TreeController : EnemyBase
 
     protected override void Rotate()
     {
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

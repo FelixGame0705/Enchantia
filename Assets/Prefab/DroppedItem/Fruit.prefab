@@ -95,4 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93889f5e2ed89e84db745815260f01b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droppedItemData: {fileID: 11400000, guid: f4ce662615d15464682103c3d6a096a6, type: 2}
+  DroppedItemData: {fileID: 11400000, guid: f4ce662615d15464682103c3d6a096a6, type: 2}
+  spriteRenderer: {fileID: 0}

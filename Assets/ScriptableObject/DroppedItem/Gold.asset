@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroppedItemType: 0
   modelPrefab: {fileID: 7544174329852747185, guid: b92df9f6390b7fe41b458b138f36bf3c, type: 3}
+  sprite: {fileID: 21300000, guid: 20e8dd9012151f84eb41a844f8288f56, type: 3}
   hpValue: 0
   goldValue: 1

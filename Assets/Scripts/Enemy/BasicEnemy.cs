@@ -32,9 +32,7 @@ public class BasicEnemy : EnemyBase
         if(Vector3.Distance(gameObject.transform.position, Target.transform.position) <= EnemyDataConfig.EnemyStats.RangeAttack)
         {
             AttackMechanism();
-        }
-        if (CurrentHealth <= 0) GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
-    }
+        }    }
 
     public override void TakeDamage(float health)
     {
@@ -45,7 +43,7 @@ public class BasicEnemy : EnemyBase
         {
             //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.GOLD, new Vector2(transform.position.x, transform.position.y));
-            
+            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
         }
     }
 

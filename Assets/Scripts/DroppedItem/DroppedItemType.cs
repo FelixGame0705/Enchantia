@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class DroppedItemType : MonoBehaviour
 {
-    public DroppedItemData droppedItemData; 
+    public DroppedItemData DroppedItemData;
+    public SpriteRenderer spriteRenderer;
+
+    private void OnEnable()
+    {
+        //spriteRenderer.sprite = DroppedItemData.sprite;
+    }
+
+    public void Init() {
+        spriteRenderer.sprite = DroppedItemData.sprite;
+    }
 }
