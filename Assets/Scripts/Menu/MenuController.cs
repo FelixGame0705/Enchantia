@@ -23,7 +23,7 @@ public class MenuController : Singleton<MenuController>
     {
         SceneManager.LoadScene("GamePlay");
         Debug.Log("Start");
-       // AudioManager.Instance.PlayMusic("ThemeGamePlay");
+        // AudioManager.Instance.PlayMusic("ThemeGamePlay");
     }
 
     public void ReturnToMenu()
@@ -51,5 +51,19 @@ public class MenuController : Singleton<MenuController>
     public void SFXVolume()
     {
         AudioManager.Instance.SFXVolume(_sfxSlider.value);
+    }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
+    }
+    public void OnClickScore()
+    {
+
+    }
+
+    public void OnClickSetting()
+    {
+        Debug.Log("Setting Btn Clicked");
     }
 }
