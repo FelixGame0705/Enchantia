@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Worm
   m_EditorClassIdentifier: 
   ItemStats:
-    _name: 
-    _maxHP: 10
-    _hpRegeneration: 0
+    _name: Worm
+    _maxHP: 3
+    _hpRegeneration: 2
     _lifeSteal: 0
     _rangedDamage: 0
-    _meleeDamage: 10
+    _meleeDamage: 0
     _elementalDamage: 0
     _armor: 0
     _engineeringStat: 0
     _rangeStat: 0
     _luck: 0
     _heal: 0
+    _harvestRange: 0
     TYPE: 0
     _attackSpeed: 0
     _level: 0
@@ -33,7 +34,7 @@ MonoBehaviour:
   itemBG: {fileID: 0}
   rarityColor: {r: 0.6, g: 0.6, b: 0.6, a: 0}
   itemName: Worm
-  itemDescription: +2 HP Regeneration -1 HP recovered from consumables +3 Max HP
-  itemPrice: 55
+  itemDescription: +2 HP Regeneration  -1 HP recovered from consumables +3 Max HP
+  itemPrice: 15
   nextItemWeapon: {fileID: 0}
   id: 1
