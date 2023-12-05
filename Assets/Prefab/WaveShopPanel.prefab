@@ -103,13 +103,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0742c5f405ca08d4a8d8a7047d2564f9, type: 2}
   - {fileID: 11400000, guid: 90cf6721416b1cb4287eec11ca6dc992, type: 2}
   - {fileID: 11400000, guid: 51dee994c51502547997ef66eb93a1dd, type: 2}
-  _currentMoney: 2000
+  _currentMoney: 0
   _currentWave: 1
   _viewListController: {fileID: 737416141599715362}
   inventoryController: {fileID: 4862572913559794415}
   weaponInventoryController: {fileID: 8162617298447916406}
   _moneyText: {fileID: 9057797475681281108}
-  _currentController: {fileID: 0}
+  _droppedItemController: {fileID: 0}
   _detailWeapon: {fileID: 6747478972117614927}
   _statsPanel: {fileID: 3822279255811833394}
   _characterController: {fileID: 0}

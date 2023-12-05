@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
     [SerializeField] private List<ItemData> _itemDataList;
-    [SerializeField] private int _currentMoney = 100;
+    [SerializeField] private int _currentMoney = 0;
     [SerializeField] private int _currentWave = 1;
     [SerializeField] private ItemViewListController _viewListController;
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
-    [SerializeField] private CurrencyController _currentController;
+    [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameObject _detailWeapon;
     [SerializeField] private StatsPanelController _statsPanel;
     [SerializeField] private CharacterController _characterController;
@@ -48,7 +48,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                ) ;
             _statsPanel.UpdateStatValues();
         }
-        CurrentMoney = _currentController.GetGold();
         Reroll();
         UpdateMoney();
         if(weaponInventoryController.GetCountWeapon() == 0)
@@ -96,14 +95,14 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         UpdateMoney();
     }
 
-    private void UpdateMoney()
+    public void UpdateMoney()
     {
         _moneyText.text = CurrentMoney.ToString();
     }
 
     public void AddGoldValue(int amount)
     {
-        CurrentMoney += amount;
+        _currentMoney += amount;
     }
 
     public void EquipItemWeapon(ItemData itemInfo, GameObject weaponModel)
@@ -120,7 +119,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public void SetDetailWeapon(Transform anchorTransform, bool isActive)
     {
         _detailWeapon.SetActive(isActive);
-        //_detailWeapon.transform.position = anchorTransform.position + new Vector3(130, 0, 0);
         _indexWeaponSelected = anchorTransform.gameObject.GetComponent<ItemImageController>().GetID();
     }
 

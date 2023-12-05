@@ -15,7 +15,8 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private int _currentWave;
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
-    [SerializeField] private CurrencyController _currencyController;
+    [SerializeField] private DroppedItemController _droppedItemController;
+    //[SerializeField] private Con
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +28,6 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void OnEnable()
     {
-        //SetState();
-        //UpdateState(GAME_STATES.WAVE_SHOP);
         UpdateState(GAME_STATES.START);
        
         
@@ -38,7 +37,6 @@ public class GamePlayController : Singleton<GamePlayController>
     void Update()
     {
         FindNearestTarget();
-        //_character.GetComponent<CharacterController>().SetTarget(TargetCharacter);
     }
 
     //public void Spawning
@@ -59,7 +57,9 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
                 _waveTimeController.SetCoundownTime(60);
-                _currencyController.AddGold(GetCharacterController().Harvesting());
+                WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
+                WaveShopMainController.Instance.UpdateMoney();
+                GetCharacterController().ResetCurrentGold();
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
@@ -117,9 +117,9 @@ public class GamePlayController : Singleton<GamePlayController>
         _currentWave += 1;
     }
 
-    public CurrencyController GetCurrencyController()
+    public DroppedItemController GetDroppedItemController()
     {
-        return _currencyController;
+        return _droppedItemController;
     }
 
     public WeaponSystem GetWeaponSystem()

@@ -223,7 +223,11 @@ PrefabInstance:
     - target: {fileID: 737416141282247406, guid: c7651ea94712efd4d9012f63d9ad1dc7, type: 3}
       propertyPath: _currentController
       value: 
-      objectReference: {fileID: 1005996903}
+      objectReference: {fileID: 0}
+    - target: {fileID: 737416141282247406, guid: c7651ea94712efd4d9012f63d9ad1dc7, type: 3}
+      propertyPath: _droppedItemController
+      value: 
+      objectReference: {fileID: 1713295193}
     - target: {fileID: 737416141282247410, guid: c7651ea94712efd4d9012f63d9ad1dc7, type: 3}
       propertyPath: m_Name
       value: WaveShopPanel
@@ -634,97 +638,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1005996902
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1005996904}
-  - component: {fileID: 1005996903}
-  m_Layer: 0
-  m_Name: CurrencyController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1005996903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005996902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5ed4486f478204a85ad611879e7cc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _goldModel: {fileID: 0}
-  _goldPool: {fileID: 1024305826}
-  _gold: 0
---- !u!4 &1005996904
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1005996902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4581933, y: -1.4260948, z: -0.79438215}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1024305825
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1024305827}
-  - component: {fileID: 1024305826}
-  m_Layer: 0
-  m_Name: GoldPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1024305826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024305825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7192b9de4323d8418df3fe193148a9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 7544174329852747185, guid: b92df9f6390b7fe41b458b138f36bf3c, type: 3}
-  initialPoolSize: 10
---- !u!4 &1024305827
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024305825}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4581933, y: -1.4260948, z: -0.79438215}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1231683019
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,7 +799,7 @@ MonoBehaviour:
   _currentWave: 0
   _waveShop: {fileID: 1319826115}
   _waveTimeController: {fileID: 1890284869}
-  _currencyController: {fileID: 1005996903}
+  _droppedItemController: {fileID: 1713295193}
 --- !u!114 &1359198611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,12 +812,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2625ba51572b7164ab5ad835f36abfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPattern: {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
+  EnemyPattern: {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
   TargetForEnemy: {fileID: 0}
   _enemyPatternList:
-  - {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
-  - {fileID: 8845373745087624746, guid: 202805a8b0181734b9a6a0f1ebd6d6d9, type: 3}
-  - {fileID: 8845373745087624746, guid: 6d8de5c8893b23c499281158645fcc44, type: 3}
+  - {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
   _enemyPool: {fileID: 1793774059}
   _signalPool: {fileID: 395281587}
   currentTimeSignal: 2
@@ -924,6 +835,69 @@ MonoBehaviour:
   BulletMeleePattern: {fileID: 7803629493765453988, guid: caded9dc0f30d40498a27c2866cbe98b, type: 3}
   _bulletPool: {fileID: 288192914}
   _bulletMeleePool: {fileID: 989470338}
+--- !u!1 &1713295190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1713295191}
+  - component: {fileID: 1713295193}
+  - component: {fileID: 1713295192}
+  m_Layer: 0
+  m_Name: DroppedItemController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1713295191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713295190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.345456, y: -3.934407, z: -0.76402926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713295192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713295190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7192b9de4323d8418df3fe193148a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 7544174329852747185, guid: b92df9f6390b7fe41b458b138f36bf3c, type: 3}
+  initialPoolSize: 10
+--- !u!114 &1713295193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713295190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac068f6906cd733428147157fbf6f6c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _droppedItemDataList:
+  - {fileID: 11400000, guid: 502f465b005dc8d41b1b9a15054f5d01, type: 2}
+  - {fileID: 11400000, guid: f4ce662615d15464682103c3d6a096a6, type: 2}
+  _droppedPool: {fileID: 1713295192}
+  _gold: 0
 --- !u!1 &1734551387
 GameObject:
   m_ObjectHideFlags: 0
@@ -14918,7 +14892,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1883782277
 MonoBehaviour:
