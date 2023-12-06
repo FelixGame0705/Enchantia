@@ -16,6 +16,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
+    [SerializeField] private GameOverController _gameOverController;
     //[SerializeField] private Con
 
     // Start is called before the first frame update
@@ -70,7 +71,9 @@ public class GamePlayController : Singleton<GamePlayController>
                 _enemyFactory.SetTarget(_character);
                 break;
             case GAME_STATES.GAME_OVER:
-                UpdateState(GAME_STATES.WAVE_SHOP);
+                _gameOverController.RenderUI();
+                _enemyFactory.SetIsSpawned(false);
+                Time.timeScale = 0;
                 break;
         }
     }

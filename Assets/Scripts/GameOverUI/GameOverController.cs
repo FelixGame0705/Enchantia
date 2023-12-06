@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] private ResultItemListController _resultController;
-    [SerializeField] private bool _isOver = false;
     private void Update()
     {
-        if (_isOver) RenderUI();
     }
     public void RestartGame()
     {
@@ -17,11 +15,19 @@ public class GameOverController : MonoBehaviour
     }
     public void OnClickedBackToMenu()
     {
+        MenuController.Instance.ReturnToMenu();
+    }
+    public void OnClickedReplay(){
+        SceneManager.LoadScene("GamePlay");
+    }
 
+    public void OnClickedNewRun(){
+        SceneManager.LoadScene("GamePlay");
     }
     public void RenderUI()
     {
         _resultController.Render();
         this.gameObject.SetActive(true);
     }
+    
 }
