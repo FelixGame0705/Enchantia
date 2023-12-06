@@ -30,7 +30,7 @@ public class WaveTimeController : MonoBehaviour
 
         // Timer has reached zero; you can perform some actions here
         countdownTxt.text = "Time's up!";
-        GamePlayController.Instance.UpdateState(GAME_STATES.WAVE_SHOP);
+        GamePlayController.Instance.UpdateState(GAME_STATES.GAME_OVER);
     }
 
     private void UpdateTimerText()
@@ -45,8 +45,8 @@ public class WaveTimeController : MonoBehaviour
         currentTime = seconds;
     }
 
-    public void SetWave(string wave)
+    public void SetWave(int wave)
     {
-        waveTxt.text = wave;
+        waveTxt.text = "Wave " + wave.ToString();
     }
 }

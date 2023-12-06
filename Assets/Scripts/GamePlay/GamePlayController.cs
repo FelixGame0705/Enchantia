@@ -53,7 +53,6 @@ public class GamePlayController : Singleton<GamePlayController>
         {
             case GAME_STATES.START:
                 StartCoroutine(WaitSpawnPlayer());
-                
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
@@ -61,8 +60,9 @@ public class GamePlayController : Singleton<GamePlayController>
                 WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
+                _waveTimeController.SetWave(_currentWave);
+                _enemyFactory.SetEnemyModelPool();
                 SetTimeForEnemyFactory();
-                _enemyFactory.SetEnemyModel();
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
@@ -74,8 +74,8 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.GAME_OVER:
                 ResetEnemiesInWave();
-                UpdateState(GAME_STATES.WAVE_SHOP);
                 UpWave();
+                UpdateState(GAME_STATES.WAVE_SHOP);
                 break;
         }
     }

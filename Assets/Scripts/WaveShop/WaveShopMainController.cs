@@ -77,7 +77,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public void BuyItem(int cardIndex)
     {
         ItemCardController itemCard = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
-        if(CurrentMoney> itemCard.CardItemInfo.ItemPrice)
+        if(CurrentMoney >= itemCard.CardItemInfo.ItemPrice)
         {
             CurrentMoney -= itemCard.CardItemInfo.ItemPrice;
             if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
