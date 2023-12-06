@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class BasicEnemyFactory : EnemyFactory
 {
+    [SerializeField] private List<WaveGameData> _waveGameDatas;
     [SerializeField] private List<GameObject> _enemyPatternList;
+    [SerializeField] private List<GameObject> _enemyPools;
+    [SerializeField] private GameObject _poolModel;
     [SerializeField] private ObjectPool _enemyPool;
     [SerializeField] private ObjectPool _signalPool;
     [SerializeField] private float currentTimeSignal = 2f;
+
+    private float _timeAppear = 0f;
+    private int _currentWave = 0;
     //[SerializeField] private HashSet<GameObject> _enemies;
     int MIN_LEVEL_ENEMY = 0;
     int MAX_LEVEL_ENEMY = 0;
@@ -25,6 +32,24 @@ public class BasicEnemyFactory : EnemyFactory
         return enemy;
     }
 
+    public override GameObject CreateEnemyBaseOnPool(GameObject target, Vector2 position)
+    {
+        return CreateEnemyBaseOnPool(GetRandomEnemyType(), target, position);
+    }
+
+    public GameObject CreateEnemyBaseOnPool(int enemyModel, GameObject target, Vector2 position)
+    {
+        Debug.Log("Index enemy" + enemyModel);
+        _enemyPools[enemyModel].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab;
+        GameObject enemy = _enemyPools[(int)enemyModel].GetComponent<ObjectPool>().GetObjectFromPool();
+        enemy.transform.position = position;
+        Debug.Log("Target la " + enemy);
+        if (enemy.GetComponent<BasicEnemy>() != null)
+            enemy.GetComponent<BasicEnemy>().SetTarget(target);
+        return enemy;
+    }
+
+    //sua ham nay
     public override List<GameObject> SpawnRandomEnemy(GameObject target)
     {
         List<GameObject> enemyList = new List<GameObject>();
@@ -37,33 +62,40 @@ public class BasicEnemyFactory : EnemyFactory
         return enemyList;
     }
 
-    //Tam thoi dung hardcode
-    public void SetPrefabSpawn(int wave)
+    public int GetRandomEnemyType()
     {
-        if (wave <= 1)
+
+        float randomRate = Random.Range(0, _waveGameDatas[_currentWave].SumRateAppear); 
+
+        for(int i = 0; i < _waveGameDatas[_currentWave].EnemiesConfig.Count; i++)
         {
-            MAX_LEVEL_ENEMY = 1;
+            if(randomRate <= _waveGameDatas[_currentWave].EnemiesConfig[i].RateAppear)
+            {
+                return i;
+            }
         }
-        else if (wave <= 2)
+        return 0;
+    }
+
+    public void SpawnGameObjectPool()
+    {
+        GameObject pool = Instantiate(_poolModel);
+        pool.AddComponent<ObjectPool>();
+        _enemyPools.Add(pool);
+    }
+
+    public override void SetEnemyModel()
+    {
+        for(int i = 0; i < _waveGameDatas[_currentWave].EnemiesConfig.Count; i++)
         {
-            MAX_LEVEL_ENEMY = 2;
+            SpawnGameObjectPool();
+            _enemyPools[i].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[i].EnemyPrefab;
         }
-        else if (wave <= 3)
-        {
-            MAX_LEVEL_ENEMY = 3;
-        }
-        else if (wave <= 8)
-        {
-            MAX_LEVEL_ENEMY = 4;
-        }
-        else if (wave <= 11)
-        {
-            MAX_LEVEL_ENEMY = 5;
-        }
-        else
-        {
-            MAX_LEVEL_ENEMY = 6;
-        }
+    }
+
+    public override void ResetEnemiesPool()
+    {
+        _enemyPools.Clear();
     }
 
     private Vector2 RandomPositionSpawn()
@@ -71,6 +103,7 @@ public class BasicEnemyFactory : EnemyFactory
         Vector2 spawnPoint = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10));
         return spawnPoint;
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -87,7 +120,7 @@ public class BasicEnemyFactory : EnemyFactory
             Debug.Log("Target " + TargetForEnemy);
             if(currentTime <= 0)
             {
-                RandomSpawnEnemy(TargetForEnemy);
+                RandomSpawnEnemy();
             }
         }
     }
@@ -98,23 +131,15 @@ public class BasicEnemyFactory : EnemyFactory
         Debug.Log("Object queue ");
     }
 
-    private float currentTime = 5f;
-    private void RandomSpawnEnemy(GameObject target)
+    private float currentTime = 0;
+    private void RandomSpawnEnemy()
     {
-        int random = Random.Range(5, 10);
+        int random = Random.Range(_waveGameDatas[_currentWave].MinEnemies, _waveGameDatas[_currentWave].MaxEnemies);
         for (int i = 0; i < random; i++)
         {
             CreateSignal(RandomPositionSpawn());
         }
-        currentTime = 5f;
-    }
-
-    public IEnumerator Countdown()
-    {
-        yield return new WaitForSeconds(1f);
-        currentTime--;
-        RandomSpawnEnemy(TargetForEnemy);
-        StartCoroutine(Countdown());
+        currentTime = _timeAppear;
     }
     public void CreateSignal(Vector2 signalPosition)
     {
@@ -129,14 +154,18 @@ public class BasicEnemyFactory : EnemyFactory
         _signalPool.ReturnObjectToPool(gameObject);
     }
 
-    private IEnumerator CountdownSignal(GameObject signal, Vector2 position)
+    public override void SetCurrentWave(int currentWave)
     {
-        while (currentTimeSignal > 0)
-        {
-            yield return new WaitForSeconds(1f);
-            currentTimeSignal--;
-        }
-        _signalPool.ReturnObjectToPool(signal);
-        //Enemies.Add(CreateEnemy(TargetForEnemy, position));
+        _currentWave = currentWave;
+    }
+
+    public override void SetTimeAppearEnemies()
+    {
+        _timeAppear = _waveGameDatas[_currentWave].TimeAppearEnemies;
+    }
+
+    public override WaveGameData GetWaveGameData()
+    {
+        return _waveGameDatas[_currentWave];
     }
 }

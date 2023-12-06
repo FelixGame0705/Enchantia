@@ -11,7 +11,9 @@ public abstract class EnemyFactory : MonoBehaviour
     protected bool isSpawned = false;
     public virtual GameObject CreateEnemy(GameObject target) { return null; }
     public virtual GameObject CreateEnemy(GameObject target, Vector2 position) { return null; }
+    public virtual GameObject CreateEnemyBaseOnPool(GameObject target, Vector2 position) { return null; }
     public virtual void ReturnSignalToPool(GameObject gameObject) { }
+    public virtual void SetEnemyModel() { }
     public abstract void ReturnEnemToPool(GameObject gameObject);
     public abstract List<GameObject> SpawnRandomEnemy(GameObject target);
     public virtual void SetTarget(GameObject target)
@@ -33,4 +35,15 @@ public abstract class EnemyFactory : MonoBehaviour
     {
         return Enemies;
     }
+
+    public virtual void ResetEnemiesPool() { }
+    public virtual void SetCurrentWave(int currentWave)
+    {
+    }
+
+    public virtual void SetTimeAppearEnemies()
+    {
+    }
+
+    public virtual WaveGameData GetWaveGameData() { return null; }
 }

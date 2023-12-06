@@ -17,10 +17,10 @@ public class SignalController : MonoBehaviour
         duration -= Time.deltaTime;
         if(duration <= 0)
         {
-            GameObject ob = GamePlayController.Instance.GetEnemyFactory().CreateEnemy(GamePlayController.Instance.GetEnemyFactory().GetTarget(), transform.position);
+            //GameObject ob = GamePlayController.Instance.GetEnemyFactory().CreateEnemy(GamePlayController.Instance.GetEnemyFactory().GetTarget(), transform.position);
+            GameObject ob = GamePlayController.Instance.GetEnemyFactory().CreateEnemyBaseOnPool(GamePlayController.Instance.GetEnemyFactory().GetTarget(), transform.position);
             GamePlayController.Instance.GetEnemyFactory().GetEnemies().Add(ob);
-            duration = 2;
-            Debug.Log("Check" + ob);
+            duration = 1.5f;
             GamePlayController.Instance.GetEnemyFactory().ReturnSignalToPool(gameObject);
             //Destroy(gameObject);
         }

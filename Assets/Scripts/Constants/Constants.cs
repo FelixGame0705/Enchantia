@@ -54,3 +54,10 @@ public enum DROPPED_ITEM_TYPE
     CRATE,
     LENGENDARY_CRATE
 }
+
+public enum ENEMY_TYPE
+{
+    MONSTER,
+    RAT,
+    BAT
+}
