@@ -60,6 +60,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
+                ResetEnemiesInWave();
                 _waveTimeController.SetWave(_currentWave);
                 _enemyFactory.SetEnemyModelPool();
                 SetTimeForEnemyFactory();
@@ -73,7 +74,6 @@ public class GamePlayController : Singleton<GamePlayController>
                 _enemyFactory.SetTarget(_character);
                 break;
             case GAME_STATES.GAME_OVER:
-                ResetEnemiesInWave();
                 UpWave();
                 UpdateState(GAME_STATES.WAVE_SHOP);
                 break;
@@ -150,16 +150,16 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void RemoveEnemies()
     {
-        for(int i = 0; i < _enemies.Count; i++)
+        for(int i = 0; i < GetEnemyFactory().GetEnemies().ToArray().Length; i++)
         {
-            Destroy(_enemies[i]);
-            _enemies.RemoveAt(i);
+            Destroy(GetEnemyFactory().GetEnemies().ToArray()[i]);
         }
+        GetEnemyFactory().GetEnemies().Clear();
     }
 
     public void ResetEnemiesInWave()
     {
-        _enemyFactory.ResetEnemiesPool();
         RemoveEnemies();
+        _enemyFactory.ResetEnemiesPool();
     }
 }

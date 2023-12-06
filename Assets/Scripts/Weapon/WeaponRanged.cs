@@ -76,7 +76,7 @@ public class WeaponRanged : WeaponBase
     {
         SetStateAttacking(ATTACK_STAGE.DURATION, false);
         yield return new WaitForSecondsRealtime(WeaponDataConfig.WeaponConfig.AttackSpeed);
-        GameObject bullet = GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
+        if (target != null) GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
         //SetStateAttacking(ATTACK_STAGE.DURATION, true);
         PlayerAttackStage = ATTACK_STAGE.FINISHED;
         SetStateAttacking(PlayerAttackStage, true);
