@@ -169,12 +169,14 @@ public class CharacterController : MonoBehaviour
     }
 
     private float _regerationHP = 0f;
+    private float _hpRegenerationEvery1s = 1f;
     public void RegenerateHealth()
     {
         float HPEveryXSeconds = 5.0f / (1.0f + ((CharacterModStats.HPRegeneration.Value-1) / 2.25f));
         if (CurrentHealth < CharacterModStats.MaxHP.Value)
         {
-            _regerationHP += HPEveryXSeconds;
+            _hpRegenerationEvery1s /= HPEveryXSeconds;
+            _regerationHP += _hpRegenerationEvery1s*Time.deltaTime;
             if (_regerationHP >= 1)
             {
                 CurrentHealth += 1;

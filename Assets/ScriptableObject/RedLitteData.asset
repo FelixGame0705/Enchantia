@@ -16,7 +16,7 @@ MonoBehaviour:
     MaxHP:
       BaseValue: 20
     HPRegeneration:
-      BaseValue: 5
+      BaseValue: 1
     LifeSteal:
       BaseValue: 0
     Damage:

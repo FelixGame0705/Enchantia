@@ -53,13 +53,16 @@ public class GamePlayController : Singleton<GamePlayController>
         {
             case GAME_STATES.START:
                 StartCoroutine(WaitSpawnPlayer());
+                
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
-                _waveTimeController.SetCoundownTime(60);
+                _waveTimeController.SetCoundownTime(_enemyFactory.GetWaveGameData().TimeWave);
                 WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
+                SetTimeForEnemyFactory();
+                _enemyFactory.SetEnemyModel();
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
@@ -70,9 +73,17 @@ public class GamePlayController : Singleton<GamePlayController>
                 _enemyFactory.SetTarget(_character);
                 break;
             case GAME_STATES.GAME_OVER:
+                ResetEnemiesInWave();
                 UpdateState(GAME_STATES.WAVE_SHOP);
+                UpWave();
                 break;
         }
+    }
+
+    private void SetTimeForEnemyFactory()
+    {
+        _enemyFactory.SetCurrentWave(_currentWave);
+        _enemyFactory.SetTimeAppearEnemies();
     }
 
     private IEnumerator WaitSpawnPlayer()
@@ -112,9 +123,14 @@ public class GamePlayController : Singleton<GamePlayController>
         else _character.GetComponent<CharacterController>().SetTarget(null);
     }
 
-    public void LevelWave()
+    public void UpWave()
     {
         _currentWave += 1;
+    }
+
+    public int GetCurrentWave()
+    {
+        return _currentWave;
     }
 
     public DroppedItemController GetDroppedItemController()
@@ -130,5 +146,20 @@ public class GamePlayController : Singleton<GamePlayController>
     public CharacterController GetCharacterController()
     {
         return _character.GetComponent<CharacterController>();
+    }
+
+    public void RemoveEnemies()
+    {
+        for(int i = 0; i < _enemies.Count; i++)
+        {
+            Destroy(_enemies[i]);
+            _enemies.RemoveAt(i);
+        }
+    }
+
+    public void ResetEnemiesInWave()
+    {
+        _enemyFactory.ResetEnemiesPool();
+        RemoveEnemies();
     }
 }

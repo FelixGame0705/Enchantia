@@ -10,6 +10,7 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        if (objectPrefab == null) return;
         for (int i = 0; i < initialPoolSize; i++)
         {
             GameObject obj = Instantiate(objectPrefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
