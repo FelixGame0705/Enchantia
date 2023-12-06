@@ -47,4 +47,9 @@ public class UIPlayerController : MonoBehaviour
         _currentGold += gold;
         _currentGoldTxt.text = _currentGold.ToString();
     }
+
+    public void ResetCurrentGold()
+    {
+        _currentGold = 0;
+    }
 }

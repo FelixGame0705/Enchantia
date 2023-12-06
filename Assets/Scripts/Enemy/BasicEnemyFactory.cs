@@ -73,6 +73,7 @@ public class BasicEnemyFactory : EnemyFactory
             {
                 return i;
             }
+            randomRate -= _waveGameDatas[_currentWave].EnemiesConfig[i].RateAppear;
         }
         return 0;
     }
@@ -80,11 +81,10 @@ public class BasicEnemyFactory : EnemyFactory
     public void SpawnGameObjectPool()
     {
         GameObject pool = Instantiate(_poolModel);
-        pool.AddComponent<ObjectPool>();
         _enemyPools.Add(pool);
     }
 
-    public override void SetEnemyModel()
+    public override void SetEnemyModelPool()
     {
         for(int i = 0; i < _waveGameDatas[_currentWave].EnemiesConfig.Count; i++)
         {
@@ -95,6 +95,10 @@ public class BasicEnemyFactory : EnemyFactory
 
     public override void ResetEnemiesPool()
     {
+        for(int i = 0; i < _enemyPools.Count; i++)
+        {
+            Destroy(_enemyPools[i]);
+        }
         _enemyPools.Clear();
     }
 

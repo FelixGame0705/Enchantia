@@ -159,6 +159,7 @@ public class CharacterController : MonoBehaviour
     public void ResetCurrentGold()
     {
         CurrentGold = 0;
+        _uiPlayerController.ResetCurrentGold();
     }
 
     public float DealWithArmor()

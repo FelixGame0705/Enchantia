@@ -13,7 +13,7 @@ public abstract class EnemyFactory : MonoBehaviour
     public virtual GameObject CreateEnemy(GameObject target, Vector2 position) { return null; }
     public virtual GameObject CreateEnemyBaseOnPool(GameObject target, Vector2 position) { return null; }
     public virtual void ReturnSignalToPool(GameObject gameObject) { }
-    public virtual void SetEnemyModel() { }
+    public virtual void SetEnemyModelPool() { }
     public abstract void ReturnEnemToPool(GameObject gameObject);
     public abstract List<GameObject> SpawnRandomEnemy(GameObject target);
     public virtual void SetTarget(GameObject target)
