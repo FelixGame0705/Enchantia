@@ -20,6 +20,7 @@ public class BasicEnemyFactory : EnemyFactory
         GameObject enemy = _enemyPool.GetObjectFromPool();
         enemy.transform.position = position;
         Debug.Log("Target la " + enemy);
+        if (enemy.GetComponent<BasicEnemy>() != null)
         enemy.GetComponent<BasicEnemy>().SetTarget(target);
         return enemy;
     }
