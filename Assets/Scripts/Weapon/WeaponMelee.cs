@@ -9,6 +9,8 @@ public class WeaponMelee : WeaponBase
     [SerializeField] private Animator _weaponAnimator;
 
     private GameObject _player;
+    private Vector3 initWeaponPosition;
+
     protected override void Attack()
     {
 
@@ -29,12 +31,13 @@ public class WeaponMelee : WeaponBase
     void Start()
     {
         SetStateAttacking(ATTACK_STAGE.START, true);
+        initWeaponPosition = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Rotate();
+        //Rotate();
         if(CanPerformAttack())
         AttackMechanism();
     }
@@ -53,6 +56,7 @@ public class WeaponMelee : WeaponBase
                 
                 PlayerAttackStage = ATTACK_STAGE.DURATION;
                 SetStateAttacking(ATTACK_STAGE.DURATION, true);
+                transform.position = Target.transform.position;
                 break;
             case ATTACK_STAGE.DURATION:
                 if (CheckIsAttack(PlayerAttackStage))
@@ -63,11 +67,13 @@ public class WeaponMelee : WeaponBase
             case ATTACK_STAGE.FINISHED:
                 PlayerAttackStage = ATTACK_STAGE.END;
                 SetStateAttacking(ATTACK_STAGE.END, true);
+                transform.position = initWeaponPosition;
                 break;
             case ATTACK_STAGE.END:
                 if (Target == null) transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 PlayerAttackStage = ATTACK_STAGE.START;
                 SetStateAttacking(ATTACK_STAGE.START, true);
+                transform.position = initWeaponPosition;
                 break;
         }
     }

@@ -7,8 +7,10 @@ public class BulletFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject BulletPattern;
     [SerializeField] protected GameObject BulletMeleePattern;
+    [SerializeField] protected GameObject HitEffectPattern;
     [SerializeField] private ObjectPool _bulletPool = new ObjectPool();
     [SerializeField] private ObjectPool _bulletMeleePool = new ObjectPool();
+    [SerializeField] private ObjectPool _hitEffectPool = new ObjectPool();
     private BulletController bulletController;
     public virtual GameObject CreateBullet(Vector3 target)
     {
@@ -38,14 +40,53 @@ public class BulletFactory : MonoBehaviour
         GameObject bullet = _bulletMeleePool.GetObjectFromPool();
         bullet.transform.position = positionBullet;
         bulletController = bullet.GetComponent<BulletController>();
+        bulletController.IsMeleeWeapon = true;
         bulletController.SetDistance(distance);
         bulletController.SetDirection(direction);
         bulletController.SetDamage(damage);
         return bullet;
     }
+    
+    public virtual GameObject CreateHitEffect(Vector3 initPosition)
+    {
+        _hitEffectPool.objectPrefab = HitEffectPattern;
+        GameObject hitEffect = _hitEffectPool.GetObjectFromPool();
+        hitEffect.transform.position = initPosition;
+        var par = hitEffect.GetComponentInChildren<ParticleSystem>();
+        if (par != null)
+        {
+            par.Play();
+            StartCoroutine(DelayHitEffectReturnPool(hitEffect, par.main.startLifetime.constant));
+        }
+        return hitEffect;
+    }
 
     public virtual void ReturnObjectToPool(GameObject gameObject)
     {
-        _bulletPool.ReturnObjectToPool(gameObject);
+        if (gameObject.TryGetComponent(out BulletController bulletController))
+        {
+            if (bulletController.IsMeleeWeapon)
+            {
+                bulletController.IsMeleeWeapon = false;
+                _bulletMeleePool.ReturnObjectToPool(gameObject);
+            }
+            else
+            {
+                _bulletPool.ReturnObjectToPool(gameObject);
+            }
+        }
     }
+    
+    private IEnumerator DelayHitEffectReturnPool(GameObject hitEff, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ReturnHitEffToPool(hitEff);
+    }
+
+    public virtual void ReturnHitEffToPool(GameObject gameObject)
+    {
+        _hitEffectPool.ReturnObjectToPool(gameObject);
+    }
+    
 }

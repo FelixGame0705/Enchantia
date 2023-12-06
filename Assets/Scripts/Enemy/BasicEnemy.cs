@@ -39,6 +39,8 @@ public class BasicEnemy : EnemyBase
         CurrentHealth -= health;
         Debug.Log("Current health: " + CurrentHealth);
 
+        GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position);
+
         if(CurrentHealth <= 0)
         {
             //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));

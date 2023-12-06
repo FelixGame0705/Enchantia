@@ -17,7 +17,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 1, a: 1}
   sizes:
   - 2
-  font: {fileID: 0}
+  font: {fileID: 11400000, guid: 8b94c5c8eb4ab7e4ebc96270cc364405, type: 2}
   bold: 0
   italic: 0
   underline: 0
@@ -35,4 +35,4 @@ MonoBehaviour:
   colourAlternationMode: 0
   sizeAlternationMode: 0
   enterType: 04000000
-  exitType: 1
+  exitType: 0
