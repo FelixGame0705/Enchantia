@@ -39,7 +39,7 @@ public class BasicEnemyFactory : EnemyFactory
 
     public GameObject CreateEnemyBaseOnPool(int enemyModel, GameObject target, Vector2 position)
     {
-        Debug.Log("Index enemy" + enemyModel);
+        Debug.Log(enemyModel + "Index enemy" + _currentWave);
         _enemyPools[enemyModel].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab;
         GameObject enemy = _enemyPools[(int)enemyModel].GetComponent<ObjectPool>().GetObjectFromPool();
         enemy.transform.position = position;
@@ -98,8 +98,8 @@ public class BasicEnemyFactory : EnemyFactory
         for(int i = 0; i < _enemyPools.Count; i++)
         {
             Destroy(_enemyPools[i]);
+            _enemyPools.RemoveAt(i);
         }
-        _enemyPools.Clear();
     }
 
     private Vector2 RandomPositionSpawn()
