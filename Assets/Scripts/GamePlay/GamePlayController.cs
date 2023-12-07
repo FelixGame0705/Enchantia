@@ -16,6 +16,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
+    [SerializeField] private GameOverController _gameOverController;
     //[SerializeField] private Con
 
     // Start is called before the first frame update

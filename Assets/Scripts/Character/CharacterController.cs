@@ -96,7 +96,9 @@ public class CharacterController : MonoBehaviour
         }
         CurrentHealth -= (damage - damage*DealWithArmor());
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
-        if(CurrentHealth <= 0) MenuController.Instance.ReturnToMenu();
+        if(CurrentHealth <= 0) 
+        // MenuController.Instance.ReturnToMenu();
+        GamePlayController.Instance.UpdateState(GAME_STATES.GAME_OVER);
     }
 
     private void HarvestDroppedItem()
