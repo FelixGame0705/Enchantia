@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class RerollPlayController : MonoBehaviour
 {
-    private Button _rerollBtn;
+    [SerializeField] private Button _rerollBtn;
     public void Play()
     {
         GamePlayController.Instance.UpdateState(GAME_STATES.PLAYING);
@@ -14,8 +14,9 @@ public class RerollPlayController : MonoBehaviour
     {
         WaveShopMainController.Instance.Reroll();
     }
-    public void DisableRerollBtn()
+    public void ChangeRerollBtnState(bool state)
     {
-        _rerollBtn.enabled = false;
+        _rerollBtn.interactable = state;
     }
+
 }

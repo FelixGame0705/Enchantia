@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class ItemCardController : MonoBehaviour
     [SerializeField] private Text _itemPriceBtn;
     [SerializeField] private bool _isLocked;
     [SerializeField] private int _cardIndex;
+    [SerializeField] private Text _lockBtn;
 
     public ItemData CardItemInfo { get { return _cardItemInfo; } set { _cardItemInfo = value; } }
     public bool IsLock { get { return _isLocked; } set { _isLocked = value; } }
@@ -33,10 +35,14 @@ public class ItemCardController : MonoBehaviour
 
     public void Lock()
     {
+        if(_isLocked == true) _lockBtn.text = "Lock";
+        else _lockBtn.text = "Unlock";
         _isLocked = !_isLocked;
+        WaveShopMainController.Instance.UpdateFullLockItemStatus();
     }
     public void Buy()
     {
+        _isLocked = false;
         WaveShopMainController.Instance.BuyItem(_cardIndex);
     }
 
