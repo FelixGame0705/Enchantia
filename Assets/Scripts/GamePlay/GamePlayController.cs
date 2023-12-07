@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,6 +78,11 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.GAME_OVER:
                 UpWave();
                 UpdateState(GAME_STATES.WAVE_SHOP);
+                break;
+            case GAME_STATES.END_GAME:
+                Time.timeScale = 0;
+                _enemyFactory.SetIsSpawned(false);
+                _gameOverController.RenderUI();
                 break;
         }
     }

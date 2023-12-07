@@ -98,7 +98,7 @@ public class CharacterController : MonoBehaviour
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
         if(CurrentHealth <= 0) 
         // MenuController.Instance.ReturnToMenu();
-        GamePlayController.Instance.UpdateState(GAME_STATES.GAME_OVER);
+        GamePlayController.Instance.UpdateState(GAME_STATES.END_GAME);
     }
 
     private void HarvestDroppedItem()

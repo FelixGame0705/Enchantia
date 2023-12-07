@@ -22,7 +22,8 @@ public enum GAME_STATES
     START,
     WAVE_SHOP,
     PLAYING,
-    GAME_OVER
+    GAME_OVER,
+    END_GAME
 }
 
 public enum ATTACK_STAGE
