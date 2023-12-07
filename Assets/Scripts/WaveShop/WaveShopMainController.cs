@@ -138,4 +138,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         isPanel = !isPanel;
         _statsPanel.gameObject.SetActive(isPanel);
     }
+
+    public void UpdateFullLockItemStatus(){
+        _viewListController.CheckAllLocked();
+    }
 }

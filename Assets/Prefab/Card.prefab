@@ -254,6 +254,7 @@ MonoBehaviour:
   _itemPriceBtn: {fileID: 4001022940906646851}
   _isLocked: 0
   _cardIndex: 0
+  _lockBtn: {fileID: 6001683327287487869}
 --- !u!1 &2362308644021320174
 GameObject:
   m_ObjectHideFlags: 0
