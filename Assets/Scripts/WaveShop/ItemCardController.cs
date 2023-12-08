@@ -63,7 +63,7 @@ public class ItemCardController : MonoBehaviour
         //_itemName.text = _cardItemInfo.ItemName;
         _itemPrice = _cardItemInfo.ItemPrice;
         _itemDescription.text = _cardItemInfo.ItemDescription;
-        _itemPriceBtn.text = _itemPrice.ToString();
+        _itemPriceBtn.text = Utils.Instance.GetFinalPrice(_itemPrice, WaveShopMainController.Instance.CurrentWave).ToString();
         EnableItem();
     }
 }

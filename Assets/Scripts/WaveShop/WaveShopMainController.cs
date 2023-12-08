@@ -7,7 +7,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 {
     [SerializeField] private List<ItemData> _itemDataList;
     [SerializeField] private int _currentMoney = 0;
-    [SerializeField] private int _currentWave = 1;
+    [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
     [SerializeField] private ItemViewListController _viewListController;
     [SerializeField] private InventoryController inventoryController;
@@ -17,19 +17,16 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private GameObject _detailWeapon;
     [SerializeField] private StatsPanelController _statsPanel;
     [SerializeField] private CharacterController _characterController;
+    bool isPanel = false;
 
     private int _indexWeaponSelected;
     private Character_Mod _characterMod;
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
     
-    private void Awake()
-    {
-           
-    }
     private void Update()
     {
-        if(CurrentMoney - GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) _viewListController.RerollController.ChangeRerollBtnState(false);
+        if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) _viewListController.RerollController.ChangeRerollBtnState(false);
     }
 
     private void FixedUpdate()
@@ -39,16 +36,10 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void OnEnable()
     {
-        
+        CurrentWave = GamePlayController.Instance.CurrentWave  - 1;
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
-            _characterController = GamePlayController.Instance.GetCharacterController();
-            _characterMod = _characterController.CharacterModStats;
-            _statsPanel.SetStats(_characterMod.MaxHP,_characterMod.HPRegeneration, _characterMod.LifeSteal, 
-                _characterMod.Damage, _characterMod.MeleeDamage, _characterMod.RangedDamage,
-                _characterMod.ElementalDamage
-               ) ;
-            _statsPanel.UpdateStatValues();
+            UpdateStatsPanel();
         }
          _viewListController.ReRoll(Random(4));
         UpdateMoney();
@@ -57,17 +48,27 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
-        _viewListController.RerollController.ChangeRerollPriceUI(GetWaveShopRerollPrice(_currentWave, _rerollTime));
+        _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+    }
+
+    public void UpdateStatsPanel(){
+        _characterController = GamePlayController.Instance.GetCharacterController();
+        _characterMod = _characterController.CharacterModStats;
+            _statsPanel.SetStats(_characterMod.MaxHP,_characterMod.HPRegeneration, _characterMod.LifeSteal, 
+                _characterMod.Damage, _characterMod.MeleeDamage, _characterMod.RangedDamage,
+                _characterMod.ElementalDamage
+               ) ;
+            _statsPanel.UpdateStatValues();
     }
 
     public void Reroll()
     {
-        var moneyPayNeed = GetWaveShopRerollPrice(_currentWave, _rerollTime);
+        var moneyPayNeed = Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime);
         if(CurrentMoney - moneyPayNeed >= 0){
             _viewListController.ReRoll(Random(4));
             _rerollTime ++;
             _currentMoney -= moneyPayNeed;
-            _viewListController.RerollController.ChangeRerollPriceUI(GetWaveShopRerollPrice(_currentWave, _rerollTime));
+            _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
             UpdateMoney();
         }
         
@@ -87,14 +88,14 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public void BuyItem(int cardIndex)
     {
         ItemCardController itemCard = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
-        if(CurrentMoney >= itemCard.CardItemInfo.ItemPrice)
+        var finalPrice = Utils.Instance.GetFinalPrice(itemCard.CardItemInfo.ItemPrice,CurrentWave);
+        if(CurrentMoney >= finalPrice)
         {
-            CurrentMoney -= itemCard.CardItemInfo.ItemPrice;
+            CurrentMoney -= finalPrice;
             if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
             {
                 inventoryController.AddCardToInventory(itemCard.CardItemInfo);
                 itemCard.CardItemInfo.ItemStats.Equip(_characterController.CharacterModStats);
-                _statsPanel.UpdateStatValues();
             }
             else if (weaponInventoryController.GetCountWeapon() < 6)
             {
@@ -103,6 +104,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             itemCard.DisableItem();
         }
         UpdateMoney();
+        UpdateStatsPanel();
     }
 
     public void UpdateMoney()
@@ -142,7 +144,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         return _detailWeapon.GetComponent<DetailWeapon>();
     }
 
-    bool isPanel = false;
+    
     public void WatchStats()
     {
         isPanel = !isPanel;
@@ -151,13 +153,5 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void UpdateFullLockItemStatus(){
         _viewListController.CheckAllLocked();
-    }
-
-    // Min reroll is 0, Min currentWave = 1
-    private int GetWaveShopRerollPrice(int currentWave, int rerollTime){
-        //Reroll Increase = Rounddown(max(0.5 * wave,1))
-        //First Reroll Price = Wave + Reroll Increase
-        var increasement = (int)Math.Floor(Math.Max(0.5 * currentWave, 1));
-        return currentWave + increasement + increasement * rerollTime;
     }
 }
