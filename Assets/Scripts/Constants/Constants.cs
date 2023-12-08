@@ -62,3 +62,9 @@ public enum ENEMY_TYPE
     RAT,
     BAT
 }
+
+public enum HIT_EFFECT_TYPE
+{
+    DAMAGE_EFFECT,
+    BLOOD_EFFECT
+}
