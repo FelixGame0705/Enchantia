@@ -39,7 +39,7 @@ public class BasicEnemy : EnemyBase
         CurrentHealth -= health;
         Debug.Log("Current health: " + CurrentHealth);
 
-        GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position);
+        GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.BLOOD_EFFECT);
 
         if(CurrentHealth <= 0)
         {

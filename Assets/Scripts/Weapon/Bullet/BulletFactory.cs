@@ -7,11 +7,29 @@ public class BulletFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject BulletPattern;
     [SerializeField] protected GameObject BulletMeleePattern;
+    [SerializeField] protected List<GameObject> HitEffectPatterns;
+    [SerializeField] protected GameObject BloodEffectPattern;
     [SerializeField] protected GameObject HitEffectPattern;
     [SerializeField] private ObjectPool _bulletPool = new ObjectPool();
     [SerializeField] private ObjectPool _bulletMeleePool = new ObjectPool();
-    [SerializeField] private ObjectPool _hitEffectPool = new ObjectPool();
+    [SerializeField] private List<GameObject> HitEffectPools;
+    [SerializeField] protected GameObject PoolHitEffectModel;
     private BulletController bulletController;
+
+    private void Start()
+    {
+        SpawnGameObjectPool();
+    }
+
+    public void SpawnGameObjectPool()
+    {
+        for (int i = 0; i < HitEffectPatterns.Count; i++)
+        {
+            GameObject pool = Instantiate(PoolHitEffectModel);
+            HitEffectPools.Add(pool);
+        }
+    }
+
     public virtual GameObject CreateBullet(Vector3 target)
     {
         _bulletPool.objectPrefab = BulletPattern;
@@ -47,16 +65,18 @@ public class BulletFactory : MonoBehaviour
         return bullet;
     }
     
-    public virtual GameObject CreateHitEffect(Vector3 initPosition)
+    public virtual GameObject CreateHitEffect(Vector3 initPosition, HIT_EFFECT_TYPE type)
     {
-        _hitEffectPool.objectPrefab = HitEffectPattern;
-        GameObject hitEffect = _hitEffectPool.GetObjectFromPool();
+        if ((int)type >= HitEffectPatterns.Count) return null;
+
+        HitEffectPools[(int)type].GetComponent<ObjectPool>().objectPrefab = HitEffectPatterns[(int)type];
+        GameObject hitEffect = HitEffectPools[(int)type].GetComponent<ObjectPool>().GetObjectFromPool();
         hitEffect.transform.position = initPosition;
         var par = hitEffect.GetComponentInChildren<ParticleSystem>();
         if (par != null)
         {
             par.Play();
-            StartCoroutine(DelayHitEffectReturnPool(hitEffect, par.main.startLifetime.constant));
+            StartCoroutine(DelayHitEffectReturnPool(hitEffect, par.main.startLifetime.constant, type));
         }
         return hitEffect;
     }
@@ -77,16 +97,16 @@ public class BulletFactory : MonoBehaviour
         }
     }
     
-    private IEnumerator DelayHitEffectReturnPool(GameObject hitEff, float delay)
+    private IEnumerator DelayHitEffectReturnPool(GameObject hitEff, float delay, HIT_EFFECT_TYPE type)
     {
         yield return new WaitForSeconds(delay);
 
-        ReturnHitEffToPool(hitEff);
+        ReturnHitEffToPool(hitEff, type);
     }
 
-    public virtual void ReturnHitEffToPool(GameObject gameObject)
+    public virtual void ReturnHitEffToPool(GameObject gameObject, HIT_EFFECT_TYPE type)
     {
-        _hitEffectPool.ReturnObjectToPool(gameObject);
+        HitEffectPools[(int)type].GetComponent<ObjectPool>().ReturnObjectToPool(gameObject);
     }
     
 }
