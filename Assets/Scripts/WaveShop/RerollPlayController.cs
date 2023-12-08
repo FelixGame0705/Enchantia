@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class RerollPlayController : MonoBehaviour
 {
     [SerializeField] private Button _rerollBtn;
+    [SerializeField] private Text _rerollPriceText;
+
+    [SerializeField] private bool _rerollValid = true;
+    
     public void Play()
     {
         GamePlayController.Instance.UpdateState(GAME_STATES.PLAYING);
@@ -16,7 +20,14 @@ public class RerollPlayController : MonoBehaviour
     }
     public void ChangeRerollBtnState(bool state)
     {
-        _rerollBtn.interactable = state;
+        if(state != _rerollValid){
+            _rerollValid = state;
+            _rerollBtn.interactable = state;
+        }
+    }
+
+    public void ChangeRerollPriceUI(int price){
+        _rerollPriceText.text = price.ToString();
     }
 
 }
