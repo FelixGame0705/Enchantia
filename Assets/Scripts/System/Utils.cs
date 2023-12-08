@@ -18,4 +18,12 @@ public class Utils : Singleton<Utils>
         var increasement = (int)Math.Floor(Math.Max(0.5 * currentWave, 1));
         return currentWave + increasement + increasement * rerollTime;
     }
+
+    public int GetFinalPrice(int basePrice, int currentWave, int shopPrice = 1){
+        return (int) (basePrice + currentWave + (basePrice * 0.1 * currentWave)) * shopPrice;
+    }
+
+    public float GetChanceRateTierPerWave(float chanceWave, int currentWave, int minWave, float luck, float baseChance){
+        return ((chanceWave * (currentWave - minWave)) + baseChance) * (1 + luck);
+    }
 }
