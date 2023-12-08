@@ -25,7 +25,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     
     private void Awake()
     {
-           
+        CurrentWave = GamePlayController.Instance.CurrentWave;
     }
     private void Update()
     {
