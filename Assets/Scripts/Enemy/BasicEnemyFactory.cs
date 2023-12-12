@@ -12,13 +12,9 @@ public class BasicEnemyFactory : EnemyFactory
     [SerializeField] private GameObject _poolModel;
     [SerializeField] private ObjectPool _enemyPool;
     [SerializeField] private ObjectPool _signalPool;
-    [SerializeField] private float currentTimeSignal = 2f;
 
     private float _timeAppear = 0f;
     private int _currentWave = 0;
-    //[SerializeField] private HashSet<GameObject> _enemies;
-    int MIN_LEVEL_ENEMY = 0;
-    int MAX_LEVEL_ENEMY = 0;
     public override GameObject CreateEnemy(GameObject target, Vector2 position)
     {
         //_enemyPool.objectPrefab = _enemyPatternList[Random.Range(MIN_LEVEL_ENEMY, MAX_LEVEL_ENEMY)];
@@ -121,7 +117,7 @@ public class BasicEnemyFactory : EnemyFactory
         if (isSpawned)
         {
             currentTime-=Time.deltaTime;
-            Debug.Log("Target " + TargetForEnemy);
+            //Debug.Log("Target " + TargetForEnemy);
             if(currentTime <= 0)
             {
                 RandomSpawnEnemy();
@@ -149,7 +145,6 @@ public class BasicEnemyFactory : EnemyFactory
     {
         GameObject signal = _signalPool.GetObjectFromPool();
         signal.transform.position = signalPosition;
-        currentTimeSignal = 2f;
         //StartCoroutine(CountdownSignal(signal, signalPosition));
     }
 
