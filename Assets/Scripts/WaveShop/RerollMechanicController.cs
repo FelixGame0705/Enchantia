@@ -13,7 +13,6 @@ public class RerollMechanicController : MonoBehaviour
     [SerializeField] private List<ItemTierData> _currentTierData;
     [SerializeField] private WaveRatio _currentWaveRatio;
     [SerializeField] private WaveRatio _defaultWaveRatio;
-    [SerializeField] private List<ItemData> aList;
 
     private void Awake()
     {
@@ -66,7 +65,6 @@ public class RerollMechanicController : MonoBehaviour
             int tier = i[1];
             do{
                 var tierList = _currentWaveDataList.ContainsKey(i[1]) ? _currentWaveDataList[i[1]] : null;
-                Debug.LogError(tier);
                 if(tierList.Count == 0) tier --;
                 else{
                     var type  = i[0] == 0 ?  ITEM_TYPE.ITEM : ITEM_TYPE.WEAPON;

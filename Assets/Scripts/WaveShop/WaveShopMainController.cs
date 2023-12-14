@@ -41,7 +41,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void OnEnable()
     {
-        CurrentWave = GamePlayController.Instance.CurrentWave  - 1;
+        CurrentWave = GamePlayController.Instance.CurrentWave - 1;
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             UpdateStatsPanel();
@@ -51,7 +51,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                 _rerollMechanicController.UpdateRerollWaveInfo(CurrentWave);
                 _viewListController.ReRoll(Random(4));
             }catch(Exception ex){
-                Debug.LogError("Bug");
             }
             
         }
