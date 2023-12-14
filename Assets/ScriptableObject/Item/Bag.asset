@@ -32,7 +32,8 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: 7c73cd4e7edf49b4faae6f37d13a20b1, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0, g: 0, b: 0, a: 0}
+  rarityColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 0}
+  tier: 1
   itemName: Bag
   itemDescription: +15 materials when you pickup a crate -1% Speed
   itemPrice: 15

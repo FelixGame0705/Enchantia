@@ -33,6 +33,7 @@ MonoBehaviour:
   itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
   itemBG: {fileID: -5691007311618604778, guid: 0c1e734fa85636743af3bc22c6d99ba8, type: 3}
   rarityColor: {r: 0.022249907, g: 0.7868307, b: 0.9433962, a: 1}
+  tier: 2
   itemName: Thief Gloves
   itemDescription: +30% pickup range
   itemPrice: 36
