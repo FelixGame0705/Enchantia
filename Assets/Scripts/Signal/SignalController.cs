@@ -20,6 +20,7 @@ public class SignalController : MonoBehaviour
             //GameObject ob = GamePlayController.Instance.GetEnemyFactory().CreateEnemy(GamePlayController.Instance.GetEnemyFactory().GetTarget(), transform.position);
             GameObject ob = GamePlayController.Instance.GetEnemyFactory().CreateEnemyBaseOnPool(GamePlayController.Instance.GetEnemyFactory().GetTarget(), transform.position);
             GamePlayController.Instance.GetEnemyFactory().GetEnemies().Add(ob);
+            //GamePlayController.Instance.GetEnemyFactory().CreateBoss(GamePlayController.Instance.GetEnemyFactory().GetTarget().transform);
             duration = 1.5f;
             GamePlayController.Instance.GetEnemyFactory().ReturnSignalToPool(gameObject);
             //Destroy(gameObject);

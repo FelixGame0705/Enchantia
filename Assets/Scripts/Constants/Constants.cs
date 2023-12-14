@@ -29,9 +29,9 @@ public enum GAME_STATES
 public enum ATTACK_STAGE
 {
     START,
+    DELAY,
     DURATION,
-    FINISHED,
-    END
+    FINISHED
 }
 
 public enum RARITY

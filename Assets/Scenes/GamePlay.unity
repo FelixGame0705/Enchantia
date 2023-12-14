@@ -849,12 +849,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 485ee1a41119efd4d9c0281575ae32de, type: 2}
   _enemyPatternList:
   - {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
-  - {fileID: 8845373745087624746, guid: 202805a8b0181734b9a6a0f1ebd6d6d9, type: 3}
-  - {fileID: 8845373745087624746, guid: 8380884e642db8443af87c7857bf7829, type: 3}
+  - {fileID: 8845373745087624746, guid: 6955baa72dc66dc4abfcd180561e552a, type: 3}
   - {fileID: 8845373745087624746, guid: 6d8de5c8893b23c499281158645fcc44, type: 3}
   _enemyPools: []
   _poolModel: {fileID: 1476139923173598827, guid: 88e2ee81b37b6fd4ab986b93a0e1df76, type: 3}
-  _enemyPool: {fileID: 1793774059}
+  _bossPrefab: {fileID: 7232690823073104611, guid: 892fa7121c478af4cab376161227b7e9, type: 3}
   _signalPool: {fileID: 395281587}
 --- !u!114 &1359198612
 MonoBehaviour:

@@ -10,24 +10,11 @@ public class BasicEnemyFactory : EnemyFactory
     [SerializeField] private List<GameObject> _enemyPatternList;
     [SerializeField] private List<GameObject> _enemyPools;
     [SerializeField] private GameObject _poolModel;
-    [SerializeField] private ObjectPool _enemyPool;
+    [SerializeField] private GameObject _bossPrefab;
     [SerializeField] private ObjectPool _signalPool;
 
     private float _timeAppear = 0f;
     private int _currentWave = 0;
-    public override GameObject CreateEnemy(GameObject target, Vector2 position)
-    {
-        //_enemyPool.objectPrefab = _enemyPatternList[Random.Range(MIN_LEVEL_ENEMY, MAX_LEVEL_ENEMY)];
-        _enemyPool.objectPrefab = _enemyPatternList[Random.Range(0, _enemyPatternList.Count)];
-        //_enemyPool.objectPrefab = _enemyPatternList[1].gameObject;
-        GameObject enemy = _enemyPool.GetObjectFromPool();
-        enemy.transform.position = position;
-        Debug.Log("Target la " + enemy);
-        if (enemy.GetComponent<BasicEnemy>() != null)
-        enemy.GetComponent<BasicEnemy>().SetTarget(target);
-        return enemy;
-    }
-
     public override GameObject CreateEnemyBaseOnPool(GameObject target, Vector2 position)
     {
         return CreateEnemyBaseOnPool(GetRandomEnemyType(), target, position);
@@ -40,24 +27,17 @@ public class BasicEnemyFactory : EnemyFactory
         GameObject enemy = _enemyPools[(int)enemyModel].GetComponent<ObjectPool>().GetObjectFromPool();
         enemy.transform.position = position;
         Debug.Log("Target la " + enemy);
-        if (enemy.GetComponent<BasicEnemy>() != null)
-            enemy.GetComponent<BasicEnemy>().SetTarget(target);
+        if (enemy.GetComponent<EnemyBase>() != null)
+            enemy.GetComponent<EnemyBase>().SetTarget(target);
         return enemy;
     }
 
-    //sua ham nay
-    public override List<GameObject> SpawnRandomEnemy(GameObject target)
+    public override GameObject CreateBoss(Transform target)
     {
-        List<GameObject> enemyList = new List<GameObject>();
-        for (int i = 0; i < 10; i++)
-        {
-            //enemyList.Add(CreateEnemy(target));
-            Enemies.Add(CreateEnemy(target));
-            Debug.Log("Spawn enemy");
-        }
-        return enemyList;
+        GameObject boss = Instantiate(_bossPrefab);
+        boss.GetComponent<EnemyBase>().SetTarget(target.gameObject);
+        return boss;
     }
-
     public int GetRandomEnemyType()
     {
 
@@ -93,6 +73,7 @@ public class BasicEnemyFactory : EnemyFactory
     {
         for(int i = 0; i < _enemyPools.Count; i++)
         {
+            _enemyPools[i].GetComponent<ObjectPool>().ResetQueue();
             Destroy(_enemyPools[i]);
             _enemyPools.RemoveAt(i);
         }
@@ -127,7 +108,8 @@ public class BasicEnemyFactory : EnemyFactory
 
     public override void ReturnEnemToPool(GameObject gameObject)
     {
-        _enemyPool.ReturnObjectToPool(gameObject);
+        ObjectPool objectPool = gameObject.GetComponentInParent<ObjectPool>();
+        objectPool.ReturnObjectToPool(gameObject);
         Debug.Log("Object queue ");
     }
 

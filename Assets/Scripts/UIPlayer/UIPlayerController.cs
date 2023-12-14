@@ -8,6 +8,7 @@ public class UIPlayerController : MonoBehaviour
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Slider _expBar;
     [SerializeField] private Text _currentGoldTxt;
+    [SerializeField] private Text _currentHealthTxt;
 
     private float _currentHealth;
     private int _currentGold;
@@ -29,12 +30,14 @@ public class UIPlayerController : MonoBehaviour
     {
         _maxHealth = health;
         _healthBar.maxValue = health;
+        _currentHealthTxt.text = health.ToString();
     }
 
     public void SetCurrentHealthValue(float health)
     {
         _currentHealth = health;
         _healthBar.value = _currentHealth;
+        _currentHealthTxt.text = _currentHealth.ToString();
     }
 
     public void SetCurrentExpValue(int exp)
