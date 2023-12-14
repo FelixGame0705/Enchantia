@@ -580,6 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccafb6b6dae1b74cb20b7ba091a87c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rerollBtn: {fileID: 8554887822504765160}
 --- !u!1 &9156232222204705359
 GameObject:
   m_ObjectHideFlags: 0

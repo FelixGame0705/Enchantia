@@ -172,9 +172,9 @@ GameObject:
   - component: {fileID: 8845373745087624747}
   - component: {fileID: 8869915825252293014}
   - component: {fileID: 340673803960578152}
-  - component: {fileID: 1115850692598147861}
+  - component: {fileID: 8092672517814770725}
   m_Layer: 6
-  m_Name: BatEnemy
+  m_Name: BatEnemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3889854, y: 1.1990347}
   m_EdgeRadius: 0
---- !u!114 &1115850692598147861
+--- !u!114 &8092672517814770725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8845373745087624746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46de09c4b3100334a91bd82b3b2eddac, type: 3}
+  m_Script: {fileID: 11500000, guid: 34102a94926aed047b6e877d57bf4607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyDataConfig: {fileID: 11400000, guid: 5c32405de16d2bd46bdaa028cdae09fa, type: 2}
@@ -262,4 +262,7 @@ MonoBehaviour:
   AnimatorEnemy: {fileID: 8671462296784360131}
   EnemyType: 0
   _attackStage: 0
-  _attackCollider: {fileID: 9221446037141476021}
+  _attackPlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  col: {fileID: 340673803960578152}

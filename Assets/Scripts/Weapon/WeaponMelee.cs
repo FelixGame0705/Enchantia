@@ -54,22 +54,22 @@ public class WeaponMelee : WeaponBase
         {
             case ATTACK_STAGE.START:
                 
-                PlayerAttackStage = ATTACK_STAGE.DURATION;
-                SetStateAttacking(ATTACK_STAGE.DURATION, true);
+                PlayerAttackStage = ATTACK_STAGE.DELAY;
+                SetStateAttacking(ATTACK_STAGE.DELAY, true);
                 transform.position = Target.transform.position;
                 break;
-            case ATTACK_STAGE.DURATION:
+            case ATTACK_STAGE.DELAY:
                 if (CheckIsAttack(PlayerAttackStage))
                 {
                     StartCoroutine(DelayAttack(Target.transform));
                 }
                 break;
-            case ATTACK_STAGE.FINISHED:
-                PlayerAttackStage = ATTACK_STAGE.END;
-                SetStateAttacking(ATTACK_STAGE.END, true);
+            case ATTACK_STAGE.DURATION:
+                PlayerAttackStage = ATTACK_STAGE.FINISHED;
+                SetStateAttacking(ATTACK_STAGE.FINISHED, true);
                 transform.position = initWeaponPosition;
                 break;
-            case ATTACK_STAGE.END:
+            case ATTACK_STAGE.FINISHED:
                 if (Target == null) transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 PlayerAttackStage = ATTACK_STAGE.START;
                 SetStateAttacking(ATTACK_STAGE.START, true);
@@ -80,13 +80,13 @@ public class WeaponMelee : WeaponBase
 
     private IEnumerator DelayAttack(Transform target)
     {
-        SetStateAttacking(ATTACK_STAGE.DURATION, false);
+        SetStateAttacking(ATTACK_STAGE.DELAY, false);
         _weaponAnimator.SetTrigger("attack");
 
         yield return new WaitForSecondsRealtime(WeaponDataConfig.WeaponConfig.AttackSpeed);
         GameObject bullet = GamePlayController.Instance.GetBulletFactory().CreateBulletMelee(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, WeaponDataConfig.WeaponConfig.Damage);
         //SetStateAttacking(ATTACK_STAGE.DURATION, true);
-        PlayerAttackStage = ATTACK_STAGE.FINISHED;
+        PlayerAttackStage = ATTACK_STAGE.DURATION;
         SetStateAttacking(PlayerAttackStage, true);
         Debug.Log("Nooooo");
     }
