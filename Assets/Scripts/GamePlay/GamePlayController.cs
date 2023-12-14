@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private int _currentWave;
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
+    [SerializeField] private DroppedItemController _droppedItemController;
+    [SerializeField] private GameOverController _gameOverController;
+    //[SerializeField] private Con
 
     // Start is called before the first frame update
     void Start()
@@ -26,8 +30,8 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void OnEnable()
     {
-        //SetState();
         UpdateState(GAME_STATES.START);
+       
         
     }
 
@@ -35,7 +39,6 @@ public class GamePlayController : Singleton<GamePlayController>
     void Update()
     {
         FindNearestTarget();
-        //_character.GetComponent<CharacterController>().SetTarget(TargetCharacter);
     }
 
     //public void Spawning
@@ -55,23 +58,46 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
+                _waveTimeController.SetCoundownTime(_enemyFactory.GetWaveGameData().TimeWave);
+                WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
+                WaveShopMainController.Instance.UpdateMoney();
+                GetCharacterController().ResetCurrentGold();
+                ResetEnemiesInWave();
+                _waveTimeController.SetWave(_currentWave);
+                _enemyFactory.SetEnemyModelPool();
+                SetTimeForEnemyFactory();
+                Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
-                //GamePlayController
-                
-                _enemies.AddRange(_enemyFactory.SpawnRandomEnemy(_character));
-                
+                Time.timeScale = 1;
+                StartCoroutine(_waveTimeController.Countdown());
+                _waveShop.SetActive(false);
+                _enemyFactory.SetIsSpawned(true);
+                _enemyFactory.SetTarget(_character);
                 break;
             case GAME_STATES.GAME_OVER:
+                UpWave();
                 UpdateState(GAME_STATES.WAVE_SHOP);
                 break;
+            case GAME_STATES.END_GAME:
+                Time.timeScale = 0;
+                _enemyFactory.SetIsSpawned(false);
+                _gameOverController.RenderUI();
+                break;
         }
+    }
+
+    private void SetTimeForEnemyFactory()
+    {
+        _enemyFactory.SetCurrentWave(_currentWave);
+        _enemyFactory.SetTimeAppearEnemies();
     }
 
     private IEnumerator WaitSpawnPlayer()
     {
         yield return new WaitUntil(() => _character != null);
         CameraFollow.Instance.target = _character.transform;
+        UpdateState(GAME_STATES.WAVE_SHOP);
         UpdateState(GAME_STATES.PLAYING);
         //_enemies.Add(_enemyFactory.CreateEnemy(_character));
         Debug.Log("Play");
@@ -89,13 +115,14 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void FindNearestTarget()
     {
-        if (_enemies.Count == 0) return;
-        TargetCharacter = _enemies[0];
-        for (int i = 0; i < _enemies.Count; i++)
+        if (_enemyFactory.GetEnemies().Count == 0) return;
+        if(TargetCharacter==null)
+            TargetCharacter = _enemyFactory.GetEnemies().ToArray()[0];
+        for (int i = 0; i < _enemyFactory.GetEnemies().Count; i++)
         {
-            if (Vector2.Distance(_enemies[i].transform.position, _character.transform.position) >= Vector2.Distance(_enemies.ToArray()[i].transform.position, _character.transform.position) && _enemies[i].activeSelf)
+            if (Vector2.Distance(_enemyFactory.GetEnemies().ToArray()[i].transform.position, _character.transform.position) <= Vector2.Distance(TargetCharacter.transform.position, _character.transform.position) && _enemyFactory.GetEnemies().ToArray()[i].activeSelf)
             {
-                TargetCharacter = _enemies.ToArray()[i];
+                TargetCharacter = _enemyFactory.GetEnemies().ToArray()[i];
             }
         }
         if (TargetCharacter.activeSelf)
@@ -103,8 +130,43 @@ public class GamePlayController : Singleton<GamePlayController>
         else _character.GetComponent<CharacterController>().SetTarget(null);
     }
 
-    public void LevelWave()
+    public void UpWave()
     {
         _currentWave += 1;
+    }
+
+    public int GetCurrentWave()
+    {
+        return _currentWave;
+    }
+
+    public DroppedItemController GetDroppedItemController()
+    {
+        return _droppedItemController;
+    }
+
+    public WeaponSystem GetWeaponSystem()
+    {
+        return _character.GetComponent<CharacterController>().GetWeaponSystem();
+    }
+
+    public CharacterController GetCharacterController()
+    {
+        return _character.GetComponent<CharacterController>();
+    }
+
+    public void RemoveEnemies()
+    {
+        for(int i = 0; i < GetEnemyFactory().GetEnemies().ToArray().Length; i++)
+        {
+            Destroy(GetEnemyFactory().GetEnemies().ToArray()[i]);
+        }
+        GetEnemyFactory().GetEnemies().Clear();
+    }
+
+    public void ResetEnemiesInWave()
+    {
+        RemoveEnemies();
+        _enemyFactory.ResetEnemiesPool();
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +20,8 @@ public class Character
     [SerializeField] private int _speed;
     [SerializeField] private float _luck;
     [SerializeField] private float havesting;
+    [SerializeField] private float _havestRange;
+    [SerializeField] private List<ItemData> firstItems;
     public int MaxHP { get => _maxHP; set => SetHp(value); }
     public float HpRegeneration { get => _hpRegeneration; set => _hpRegeneration = value; }
     public float LifeSteal { get => _lifeSteal; set => _lifeSteal = value; }
@@ -38,6 +38,8 @@ public class Character
     public int Speed { get => _speed; set => _speed = value; }
     public float Luck { get => _luck; set => _luck = value; }
     public float Havesting { get => havesting; set => havesting = value; }
+    public float HavestRange { get => _havestRange; set => _havestRange = value; }
+    public List<ItemData> FirstItems { get => firstItems; set => firstItems = value; }
 
     private void SetHp(int hp)
     {

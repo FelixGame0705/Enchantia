@@ -9,6 +9,9 @@ public class BulletController : MonoBehaviour
     private float _distance;
     private Vector3 _direction;
     private float _damage;
+    private bool isMeleeWeapon;
+
+    public bool IsMeleeWeapon { get => isMeleeWeapon; set => isMeleeWeapon = value; }
 
     private void Update()
     {
@@ -45,13 +48,16 @@ public class BulletController : MonoBehaviour
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Damage" + collision.gameObject.layer);
+        Debug.Log("Damage " + collision.gameObject.layer);
         if (collision.gameObject.layer == 6)
         {
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             enemy.TakeDamage(_damage);
-            Debug.Log("Damage" + _damage);
-            GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
+            Debug.Log("Damage " + _damage);
+            GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
+            GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
+
+            DynamicTextManager.CreateText2D(collision.transform.position, _damage.ToString(), DynamicTextManager.defaultData);
         }
     }
 }

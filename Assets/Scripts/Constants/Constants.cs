@@ -22,15 +22,16 @@ public enum GAME_STATES
     START,
     WAVE_SHOP,
     PLAYING,
-    GAME_OVER
+    GAME_OVER,
+    END_GAME
 }
 
 public enum ATTACK_STAGE
 {
     START,
+    DELAY,
     DURATION,
-    FINISHED,
-    END
+    FINISHED
 }
 
 public enum RARITY
@@ -45,4 +46,25 @@ public enum ITEM_TYPE
 {
     ITEM,
     WEAPON
+}
+
+public enum DROPPED_ITEM_TYPE
+{
+    GOLD,
+    FRUIT,
+    CRATE,
+    LENGENDARY_CRATE
+}
+
+public enum ENEMY_TYPE
+{
+    MONSTER,
+    RAT,
+    BAT
+}
+
+public enum HIT_EFFECT_TYPE
+{
+    DAMAGE_EFFECT,
+    BLOOD_EFFECT
 }

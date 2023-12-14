@@ -10,9 +10,10 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        if (objectPrefab == null) return;
         for (int i = 0; i < initialPoolSize; i++)
         {
-            GameObject obj = Instantiate(objectPrefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity);
+            GameObject obj = Instantiate(objectPrefab, new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.identity, transform);
             obj.SetActive(false);
             objectPool.Enqueue(obj);
         }
@@ -28,7 +29,7 @@ public class ObjectPool : MonoBehaviour
         }
         else
         {
-            GameObject newObj = Instantiate(objectPrefab);
+            GameObject newObj = Instantiate(objectPrefab,transform);
             newObj.SetActive(true);
             return newObj;
         }
@@ -38,5 +39,11 @@ public class ObjectPool : MonoBehaviour
     {
         obj.SetActive(false);
         objectPool.Enqueue(obj);
+        
+    }
+
+    public void ResetQueue()
+    {
+        objectPool.Clear();
     }
 }
