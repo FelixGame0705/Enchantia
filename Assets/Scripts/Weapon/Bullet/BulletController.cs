@@ -54,6 +54,7 @@ public class BulletController : MonoBehaviour
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
             enemy.TakeDamage(_damage);
             Debug.Log("Damage " + _damage);
+            GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
             GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
 
             DynamicTextManager.CreateText2D(collision.transform.position, _damage.ToString(), DynamicTextManager.defaultData);

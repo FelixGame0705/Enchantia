@@ -29,9 +29,9 @@ public enum GAME_STATES
 public enum ATTACK_STAGE
 {
     START,
+    DELAY,
     DURATION,
-    FINISHED,
-    END
+    FINISHED
 }
 
 public enum RARITY
@@ -61,4 +61,10 @@ public enum ENEMY_TYPE
     MONSTER,
     RAT,
     BAT
+}
+
+public enum HIT_EFFECT_TYPE
+{
+    DAMAGE_EFFECT,
+    BLOOD_EFFECT
 }

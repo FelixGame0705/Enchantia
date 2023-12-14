@@ -9,13 +9,13 @@ public abstract class EnemyFactory : MonoBehaviour
     public HashSet<GameObject> Enemies = new HashSet<GameObject>();
     [SerializeField] protected GameObject TargetForEnemy;
     protected bool isSpawned = false;
+    virtual public GameObject CreateBoss(Transform target) { return null; }
     public virtual GameObject CreateEnemy(GameObject target) { return null; }
     public virtual GameObject CreateEnemy(GameObject target, Vector2 position) { return null; }
     public virtual GameObject CreateEnemyBaseOnPool(GameObject target, Vector2 position) { return null; }
     public virtual void ReturnSignalToPool(GameObject gameObject) { }
     public virtual void SetEnemyModelPool() { }
-    public abstract void ReturnEnemToPool(GameObject gameObject);
-    public abstract List<GameObject> SpawnRandomEnemy(GameObject target);
+    public virtual void ReturnEnemToPool(GameObject gameObject) { }
     public virtual void SetTarget(GameObject target)
     {
         TargetForEnemy = target;

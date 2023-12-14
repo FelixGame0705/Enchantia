@@ -260,5 +260,6 @@ MonoBehaviour:
   CurrentHealth: 0
   CurrentSpeed: 0
   AnimatorEnemy: {fileID: 8671462296784360131}
+  EnemyType: 0
   _attackStage: 0
   _attackCollider: {fileID: 9221446037141476021}
