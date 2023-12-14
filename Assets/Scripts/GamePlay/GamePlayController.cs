@@ -18,14 +18,15 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameOverController _gameOverController;
+
+    public int CurrentWave{get => _currentWave;}
     //[SerializeField] private Con
 
     // Start is called before the first frame update
     void Start()
     {
         _character = Instantiate(_characterPattern);
-        _currentWave = 0;
-        
+        _currentWave = 1;
     }
 
     private void OnEnable()
@@ -89,7 +90,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void SetTimeForEnemyFactory()
     {
-        _enemyFactory.SetCurrentWave(_currentWave);
+        _enemyFactory.SetCurrentWave(_currentWave-1);
         _enemyFactory.SetTimeAppearEnemies();
     }
 

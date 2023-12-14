@@ -7,7 +7,7 @@ public class ItemViewListController : MonoBehaviour
 {
     [SerializeField] private List<ItemCardController> _cardControllerList;
     [SerializeField] private RerollPlayController _rerollPlayController;
-    
+    public RerollPlayController RerollController{get => _rerollPlayController;}
     public bool _isFullLocked = false;
     private void Awake()
     {
@@ -63,5 +63,5 @@ public class ItemViewListController : MonoBehaviour
         if(count == 4) _isFullLocked = true;
         else _isFullLocked = false;
     }
-    
+
 }
