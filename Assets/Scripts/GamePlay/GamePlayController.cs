@@ -32,8 +32,6 @@ public class GamePlayController : Singleton<GamePlayController>
     private void OnEnable()
     {
         UpdateState(GAME_STATES.START);
-       
-        
     }
 
     // Update is called once per frame

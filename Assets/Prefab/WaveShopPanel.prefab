@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 737416141282247405}
   - component: {fileID: 737416141282247404}
   - component: {fileID: 737416141282247406}
+  - component: {fileID: 3454377189469515471}
   m_Layer: 5
   m_Name: WaveShopPanel
   m_TagString: Untagged
@@ -114,6 +115,34 @@ MonoBehaviour:
   _detailWeapon: {fileID: 6747478972117614927}
   _statsPanel: {fileID: 3822279255811833394}
   _characterController: {fileID: 0}
+  _rerollMechanicController: {fileID: 3454377189469515471}
+--- !u!114 &3454377189469515471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737416141282247410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7428454db22ae95b7bd1138cbae8edb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveRatioList:
+  - {fileID: 11400000, guid: 1f8b06fdaa4f8e1ff9a55059d6fcb3d6, type: 2}
+  - {fileID: 11400000, guid: b0de47410b07bd5cba40459898d8c1b6, type: 2}
+  - {fileID: 11400000, guid: 9aec7ffd92bc126569703185edb6f252, type: 2}
+  _itemAllDataList: []
+  tierInfo:
+  - {fileID: 11400000, guid: 1efd3bec1ca2e088b9e12972dfab359b, type: 2}
+  - {fileID: 11400000, guid: c9876f2387099f729acdaab5facd83a0, type: 2}
+  - {fileID: 11400000, guid: cf081aeab5597fdaa93f834250bb6929, type: 2}
+  - {fileID: 11400000, guid: 9448df5e54d7c592aa49a08621472735, type: 2}
+  _currentWave: 1
+  _currentTierData: []
+  _currentWaveRatio: {fileID: 0}
+  _defaultWaveRatio: {fileID: 11400000, guid: ecb288dec883a84daa0335535859ccdf, type: 2}
+  aList: []
 --- !u!1 &737416141599715365
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,11 +1058,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 3172036396739954345, guid: eebe7000387734449bfd398618a23fbe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eebe7000387734449bfd398618a23fbe, type: 3}
---- !u!224 &1430358375134348644 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1865179981702253649, guid: eebe7000387734449bfd398618a23fbe, type: 3}
-  m_PrefabInstance: {fileID: 737416140076812597}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8971950237243224029 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8554887822504765160, guid: eebe7000387734449bfd398618a23fbe, type: 3}
@@ -1045,9 +1069,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &5249725717980209159 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4819152504088062258, guid: eebe7000387734449bfd398618a23fbe, type: 3}
+--- !u!224 &1430358375134348644 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1865179981702253649, guid: eebe7000387734449bfd398618a23fbe, type: 3}
   m_PrefabInstance: {fileID: 737416140076812597}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &796235280370973677 stripped
@@ -1064,6 +1088,11 @@ MonoBehaviour:
 --- !u!224 &6329024817224059303 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6768596447172395154, guid: eebe7000387734449bfd398618a23fbe, type: 3}
+  m_PrefabInstance: {fileID: 737416140076812597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5249725717980209159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4819152504088062258, guid: eebe7000387734449bfd398618a23fbe, type: 3}
   m_PrefabInstance: {fileID: 737416140076812597}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1095084823810246088
@@ -1572,6 +1601,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb79731c0d95d01448b63d346a5d4833, type: 3}
+--- !u!224 &8041960981779896751 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7323166309057524540, guid: bb79731c0d95d01448b63d346a5d4833, type: 3}
+  m_PrefabInstance: {fileID: 737416141855632019}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &282939388680806867 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 709008859174832960, guid: bb79731c0d95d01448b63d346a5d4833, type: 3}
@@ -1583,11 +1617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e77c4ed09de46740a9cfc53482058e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8041960981779896751 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7323166309057524540, guid: bb79731c0d95d01448b63d346a5d4833, type: 3}
-  m_PrefabInstance: {fileID: 737416141855632019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &737416142043970588
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.ComponentModel.Design;
+using System.Data.Common;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
@@ -17,12 +19,15 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private GameObject _detailWeapon;
     [SerializeField] private StatsPanelController _statsPanel;
     [SerializeField] private CharacterController _characterController;
+    [SerializeField] private RerollMechanicController _rerollMechanicController;
     bool isPanel = false;
 
     private int _indexWeaponSelected;
     private Character_Mod _characterMod;
     public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
+
+    public List<ItemData> ItemDataList {get => _itemDataList;}
     
     private void Update()
     {
@@ -36,12 +41,19 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void OnEnable()
     {
-        CurrentWave = GamePlayController.Instance.CurrentWave  - 1;
+        CurrentWave = GamePlayController.Instance.CurrentWave - 1;
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             UpdateStatsPanel();
         }
-         _viewListController.ReRoll(Random(4));
+        if(GamePlayController.Instance.GameState == GAME_STATES.WAVE_SHOP){
+            try{
+                _rerollMechanicController.UpdateRerollWaveInfo(CurrentWave);
+                _viewListController.ReRoll(Random(4));
+            }catch(Exception ex){
+            }
+            
+        }
         UpdateMoney();
         if(weaponInventoryController.GetCountWeapon() == 0)
         {
@@ -75,15 +87,16 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
     private Stack<ItemData> Random(int amount)
     { 
-        Stack<ItemData> stack = new Stack<ItemData>();
-        for(int i = 0; i < amount; i++)
-        {
-            Debug.Log("Index card " + _itemDataList.Count);
-            int index = UnityEngine.Random.Range(0, _itemDataList.Count);
-            Debug.Log("Index card " +index);
-            stack.Push(_itemDataList[index]);
-        }
-        return stack;
+        // Stack<ItemData> stack = new Stack<ItemData>();
+        // for(int i = 0; i < amount; i++)
+        // {
+        //     Debug.Log("Index card " + _itemDataList.Count);
+        //     int index = UnityEngine.Random.Range(0, _itemDataList.Count);
+        //     Debug.Log("Index card " +index);
+        //     stack.Push(_itemDataList[index]);
+        // }
+        // return stack;
+        return _rerollMechanicController.GetRerollData();
     }
     public void BuyItem(int cardIndex)
     {
