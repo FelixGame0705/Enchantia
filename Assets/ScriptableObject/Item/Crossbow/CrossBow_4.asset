@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b89274630ab003741b6afaf9285c538e, type: 3}
+  m_Name: CrossBow_4
+  m_EditorClassIdentifier: 
+  ItemStats:
+    _name: Crossbow
+    _maxHP: 0
+    _hpRegeneration: 0
+    _lifeSteal: 0
+    _rangedDamage: 20
+    _meleeDamage: 0
+    _elementalDamage: 0
+    _armor: 0
+    _engineeringStat: 0
+    _rangeStat: 350
+    _luck: 0
+    _heal: 0
+    _harvestRange: 0
+    TYPE: 1
+    _attackSpeed: 1.13
+    _level: 0
+    _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
+  itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
+  itemBG: {fileID: 0}
+  rarityColor: {r: 0.8, g: 0.25490198, b: 0.17254902, a: 0}
+  tier: 4
+  itemName: Crossbow
+  itemDescription: Pierces up to 4 times on critical hit
+  itemPrice: 140
+  nextItemWeapon: {fileID: 0}
+  id: 8

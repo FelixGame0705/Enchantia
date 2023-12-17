@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 
 public class RerollMechanicController : MonoBehaviour
@@ -65,11 +66,11 @@ public class RerollMechanicController : MonoBehaviour
             int tier = i[1];
             do{
                 var tierList = _currentWaveDataList.ContainsKey(i[1]) ? _currentWaveDataList[i[1]] : null;
-                if(tierList.Count == 0) tier --;
+                var type  = i[0] == 0 ?  ITEM_TYPE.ITEM : ITEM_TYPE.WEAPON;
+                var suitableData = tierList.Where(data => data.ItemStats.TYPE1 == type).ToList();
+                if(suitableData.Count == 0 && tier != 1) tier --;
                 else{
-                    var type  = i[0] == 0 ?  ITEM_TYPE.ITEM : ITEM_TYPE.WEAPON;
-                    var suitableData = tierList.Where(data => data.ItemStats.TYPE1 == type).ToList();
-                    var random = Random.Range(0,suitableData.Count - 1);
+                    var random = Math.Abs(UnityEngine.Random.Range(0,suitableData.Count - 1));
                     randomSlotData.Add(suitableData[random]);
                     break;
                 }
@@ -103,7 +104,7 @@ public class RerollMechanicController : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                float random = Random.Range(0f, 100f);
+                float random = UnityEngine.Random.Range(0f, 100f);
                 if (random <= ratio.MinWeapon) slot.Add(1);
                 else slot.Add(0);
             }
@@ -124,7 +125,7 @@ public class RerollMechanicController : MonoBehaviour
                         slot.Add(0);
                         itemCount++;
                     }else if(slot.Count < 4){
-                        float random = Random.Range(0f, 100f);
+                        float random = UnityEngine.Random.Range(0f, 100f);
                         if (random <= _defaultWaveRatio.MinWeapon) slot.Add(1);
                         else slot.Add(0);
                     }else break;
@@ -139,7 +140,7 @@ public class RerollMechanicController : MonoBehaviour
         var ratio = _currentWaveRatio;
         if(ratio.Wave[0] < 0){
             for(int i = 0; i < 4; i++){
-                float random = Random.Range(0f, 100f);
+                float random = UnityEngine.Random.Range(0f, 100f);
                 var temp = new List<int>();
                 if (random <= ratio.MinWeapon) temp.Add(1);
                 else temp.Add(0);
@@ -162,7 +163,7 @@ public class RerollMechanicController : MonoBehaviour
                         temp.Add(0);
                         itemCount++;
                     }else if(slot.Count < 4){
-                        float random = Random.Range(0f, 100f);
+                        float random = UnityEngine.Random.Range(0f, 100f);
                         if (random <= _defaultWaveRatio.MinWeapon) temp.Add(1);
                         else temp.Add(0);
                     }else break;
@@ -177,7 +178,7 @@ public class RerollMechanicController : MonoBehaviour
         for(int i = _currentTierData.Count - 1; i >= 0; i--){
             var data = _currentTierData[i];
             var rate = Utils.Instance.GetChanceRateTierPerWave(data.ChancePerWave, _currentWave, data.MinWave, 0, data.BaseChance) * 100;
-            float random = Random.Range(0f,100f);
+            float random = UnityEngine.Random.Range(0f,100f);
             if(random <= rate) return data.Tier;
         }
         return 1;

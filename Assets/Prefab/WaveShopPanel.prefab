@@ -99,11 +99,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroy: 0
   _itemDataList:
-  - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
   - {fileID: 11400000, guid: 25845711fbd85dd468b2eb99f537db39, type: 2}
   - {fileID: 11400000, guid: 0742c5f405ca08d4a8d8a7047d2564f9, type: 2}
   - {fileID: 11400000, guid: 90cf6721416b1cb4287eec11ca6dc992, type: 2}
   - {fileID: 11400000, guid: 51dee994c51502547997ef66eb93a1dd, type: 2}
+  - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
+  - {fileID: 11400000, guid: 195d88a0e7ef00045b296c3ef55bf1fa, type: 2}
+  - {fileID: 11400000, guid: 5b79ada146238ace980c3fd1fb186502, type: 2}
+  - {fileID: 11400000, guid: a99a0ae5040608ebca6582ac057b60e7, type: 2}
+  - {fileID: 11400000, guid: 98bf6b3af428d233db40237067199f39, type: 2}
+  - {fileID: 11400000, guid: 4c16e05ec8d70d7dd948ce914299086d, type: 2}
+  - {fileID: 11400000, guid: fc8872ae4203be83cbf2d9d27d557980, type: 2}
+  - {fileID: 11400000, guid: c5321541393af3b5a93db2ada51a8404, type: 2}
+  - {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
+  - {fileID: 11400000, guid: f2c9833ed41fd1a85943d436b382c264, type: 2}
+  - {fileID: 11400000, guid: b3a2588dd23517fd6a30466bd4af2a59, type: 2}
+  - {fileID: 11400000, guid: 6fce07639661bd949a1781b79dbb1d44, type: 2}
+  - {fileID: 11400000, guid: 1c83b33f6f9a1dedb921ecee3a82af15, type: 2}
+  - {fileID: 11400000, guid: 8277fddf276cbeeb38cd0ef63cdbfff0, type: 2}
+  - {fileID: 11400000, guid: f999e8ba2e8c80bd0950b2501856bf77, type: 2}
+  - {fileID: 11400000, guid: fae1b1239cfe7bcd68545a9e79707878, type: 2}
   _currentMoney: 0
   _currentWave: 1
   _rerollTime: 0
@@ -142,7 +157,6 @@ MonoBehaviour:
   _currentTierData: []
   _currentWaveRatio: {fileID: 0}
   _defaultWaveRatio: {fileID: 11400000, guid: ecb288dec883a84daa0335535859ccdf, type: 2}
-  aList: []
 --- !u!1 &737416141599715365
 GameObject:
   m_ObjectHideFlags: 0
