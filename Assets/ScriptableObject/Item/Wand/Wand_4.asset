@@ -26,7 +26,7 @@ MonoBehaviour:
     _luck: 0
     _heal: 0
     _harvestRange: 0
-    TYPE: 0
+    TYPE: 1
     _attackSpeed: 0.53
     _level: 0
     _weaponBaseModel: {fileID: 8474969733171250484, guid: d9535043106a3c84b905d70ab6c6d5ad, type: 3}

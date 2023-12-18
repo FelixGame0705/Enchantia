@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Pole_3
   m_EditorClassIdentifier: 
   ItemStats:
-    _name: 
+    _name: Pole
     _maxHP: 0
     _hpRegeneration: 0
     _lifeSteal: 0
     _rangedDamage: 0
-    _meleeDamage: 0
+    _meleeDamage: 80
     _elementalDamage: 0
     _armor: 0
     _engineeringStat: 0
@@ -26,16 +26,16 @@ MonoBehaviour:
     _luck: 0
     _heal: 0
     _harvestRange: 0
-    TYPE: 0
-    _attackSpeed: 0
+    TYPE: 1
+    _attackSpeed: 0.69
     _level: 0
-    _weaponBaseModel: {fileID: 0}
+    _weaponBaseModel: {fileID: 3563874935191199179, guid: ec870758c97437c4cb9417ad658349bd, type: 3}
   itemImg: {fileID: 0}
   itemBG: {fileID: 0}
   rarityColor: {r: 0, g: 0, b: 0, a: 0}
-  tier: 0
-  itemName: 
+  tier: 3
+  itemName: Pole
   itemDescription: 
-  itemPrice: 0
+  itemPrice: 45
   nextItemWeapon: {fileID: 11400000, guid: 18f7c979fa7a6ea278d9d95f500f18ea, type: 2}
   id: 0

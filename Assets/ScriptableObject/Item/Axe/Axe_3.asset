@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b89274630ab003741b6afaf9285c538e, type: 3}
-  m_Name: Wand_3
+  m_Name: Axe_3
   m_EditorClassIdentifier: 
   ItemStats:
-    _name: Wand
+    _name: Axe
     _maxHP: 0
     _hpRegeneration: 0
     _lifeSteal: 0
     _rangedDamage: 0
-    _meleeDamage: 0
-    _elementalDamage: 85
+    _meleeDamage: 100
+    _elementalDamage: 0
     _armor: 0
     _engineeringStat: 0
     _rangeStat: 0
@@ -27,15 +27,15 @@ MonoBehaviour:
     _heal: 0
     _harvestRange: 0
     TYPE: 1
-    _attackSpeed: 0.7
+    _attackSpeed: 1.58
     _level: 0
-    _weaponBaseModel: {fileID: 8474969733171250484, guid: d9535043106a3c84b905d70ab6c6d5ad, type: 3}
-  itemImg: {fileID: 302641331129538988, guid: d56501fcde7c6b3428fa4d2e761b5d12, type: 3}
+    _weaponBaseModel: {fileID: 1119858269834850766, guid: 2758e2bccf420c0719bc37b4f6cfd324, type: 3}
+  itemImg: {fileID: -7008412969330441016, guid: 588ee5af7e3b24249933302b8e930ee3, type: 3}
   itemBG: {fileID: 0}
   rarityColor: {r: 0, g: 0, b: 0, a: 0}
   tier: 3
-  itemName: Wand
-  itemDescription: Deals 3x3/5x4/8x5/12x6(100%Elemental Damage.png) burning damage
-  itemPrice: 61
-  nextItemWeapon: {fileID: 11400000, guid: fae1b1239cfe7bcd68545a9e79707878, type: 2}
+  itemName: Axe
+  itemDescription: 
+  itemPrice: 74
+  nextItemWeapon: {fileID: 11400000, guid: 3d08f4ab8c5639d95976aadb293d3163, type: 2}
   id: 0
