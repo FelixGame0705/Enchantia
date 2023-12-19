@@ -191,6 +191,7 @@ public class CharacterController : MonoBehaviour
     public void AddCurrentHealth(int value)
     {
         CurrentHealth += value;
+        _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
     }
 
     public void HarvestDroppedItemType(DROPPED_ITEM_TYPE type)
