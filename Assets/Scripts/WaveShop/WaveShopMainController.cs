@@ -15,6 +15,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
+    [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameObject _detailWeapon;
     [SerializeField] private StatsPanelController _statsPanel;
@@ -42,6 +43,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     private void OnEnable()
     {
         CurrentWave = GamePlayController.Instance.CurrentWave - 1;
+        UpdateWaveDisplay();
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             UpdateStatsPanel();
@@ -166,5 +168,9 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void UpdateFullLockItemStatus(){
         _viewListController.CheckAllLocked();
+    }
+
+    public void UpdateWaveDisplay(){
+        _waveText.text = string.Concat("Wave ", _currentWave.ToString());
     }
 }
