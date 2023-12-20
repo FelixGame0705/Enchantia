@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eabf118af047ff24c81895eda3035bc7, type: 3}
-  m_Name: NewSkill 1
+  m_Name: Heal
   m_EditorClassIdentifier: 
   name: 
   description: 
@@ -20,3 +20,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   hpHealPerSecond: 0
   timeDuration: 5
+  timeEffectSkill: 3
+  _healEffect: {fileID: 1028078754399211225, guid: e8d591e7fc1c19744ba9c82c103a5149, type: 3}
+  _characterController: {fileID: 0}

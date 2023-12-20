@@ -37,7 +37,8 @@ public class WeaponMelee : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        //Rotate();
+        Flip();
+        Rotate();
         if(CanPerformAttack())
         AttackMechanism();
     }
@@ -91,8 +92,9 @@ public class WeaponMelee : WeaponBase
         Debug.Log("Nooooo");
     }
 
-    public void SpawnBullet()
+    public void Flip()
     {
-        //GameObject bullet = 
+        if(Target!=null)
+        transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
     }
 }

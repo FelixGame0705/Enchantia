@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     protected float MoveX;
     protected float MoveY;
-    [SerializeField] protected CharacterData CharacterDataConfig;
+    [SerializeField] public CharacterData CharacterDataConfig;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
@@ -114,6 +114,11 @@ public class CharacterController : MonoBehaviour
                 }
             }
 
+    }
+
+    public float GetCurrentHealth()
+    {
+        return CurrentHealth;
     }
 
     private void MoveDroppedItemToPlayer(GameObject droppedItem)
