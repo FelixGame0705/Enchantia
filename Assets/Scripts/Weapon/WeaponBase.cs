@@ -52,4 +52,14 @@ public abstract class WeaponBase : MonoBehaviour
     {
         WeaponDataConfig = config;
     }
+
+    public virtual float DealWithCritChance()
+    {
+        return WeaponDataConfig.WeaponConfig.CritChance;
+    }
+
+    public virtual float DealWitnCritDamage()
+    {
+        return WeaponDataConfig.WeaponConfig.Damage + WeaponDataConfig.WeaponConfig.CritDamage*WeaponDataConfig.WeaponConfig.Damage;
+    }
 }

@@ -90,6 +90,7 @@ public class CharacterController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Dodge value: " + CharacterModStats.Dodge.Value);
         if (Random.value < CharacterModStats.Dodge.Value)//dodge
         {
             return;
