@@ -6,9 +6,14 @@ using UnityEngine;
 public class HealHP : Skill
 {
     [SerializeField] private float hpHealPerSecond;
-    [SerializeField] private float timeDuration = 5f;
+    [SerializeField] private float cooldownTime = 5f;
+    [SerializeField] private float timeEffectSkill = 3f;
+    [SerializeField] private GameObject _healEffect;
+    [SerializeField] CharacterController _characterController;
     float timeDurationCoolDown = 0f;
     float timeUsingSkill = 0f;
+    float timeCountdownHealEachSecond = 0f;
+    GameObject _vfxInstance;
 
     public override void Execute(GameObject player, ref bool isUsing, ref ATTACK_STAGE stage)
     {
@@ -16,31 +21,63 @@ public class HealHP : Skill
         switch (stage)
         {
             case ATTACK_STAGE.START:
-                timeDurationCoolDown = timeDuration;
+                _characterController = player.GetComponent<CharacterController>();
+                if (CheckFullHp() == true)
+                {
+                    isUsing = false;
+                    return;
+                }
+                timeDurationCoolDown = cooldownTime;
+                _vfxInstance = Instantiate(_healEffect, player.transform, false);
                 stage = ATTACK_STAGE.DELAY;
                 break;
             case ATTACK_STAGE.DELAY:
                 stage = ATTACK_STAGE.DURATION;
                 break;
             case ATTACK_STAGE.DURATION:
-                timeDurationCoolDown += Time.deltaTime;
+                
                 timeUsingSkill += Time.deltaTime;
-                if(timeDurationCoolDown >= 1f)
+                timeCountdownHealEachSecond -= Time.deltaTime;
+                if(IsInTimeUsing() && CheckFullHp() == false && timeCountdownHealEachSecond <= 0f)
                 {
-                    player.GetComponent<CharacterController>().AddCurrentHealth(1);
+                    _characterController.AddCurrentHealth(1);
+                    timeCountdownHealEachSecond = 1f;
                     Debug.Log("Heal + 1");
                     timeDurationCoolDown = 0;
                 }
-                if (timeUsingSkill >= timeDuration)
+                if (timeUsingSkill >= timeEffectSkill)
                 {
-                    stage = ATTACK_STAGE.FINISHED;
-                    timeUsingSkill = 0f;
+                    timeDurationCoolDown += Time.deltaTime;
+                    if (timeDurationCoolDown >= 5f)
+                    {
+                        timeUsingSkill = 0;
+                        stage = ATTACK_STAGE.FINISHED;
+                    }
                 }
                 break;
             case ATTACK_STAGE.FINISHED:
                 isUsing = false;
+                Destroy(_vfxInstance);
                 stage = ATTACK_STAGE.START;
                 break;
         }
+    }
+
+    private bool CheckFullHp()
+    {
+        if(_characterController.GetCurrentHealth() >= _characterController.CharacterModStats.MaxHP.Value)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool IsInTimeUsing()
+    {
+        if(timeUsingSkill < timeEffectSkill)
+        {
+            return true;
+        }
+        return false;
     }
 }

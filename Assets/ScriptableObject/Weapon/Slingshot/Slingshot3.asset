@@ -17,7 +17,7 @@ MonoBehaviour:
     _attackSpeed: 1.13
     _DPS: 0
     _critDamage: 2
-    _range: 300
+    _range: 3
     _knockBack: 5
     _lifeSteal: 0
     _specialEffects: 0
