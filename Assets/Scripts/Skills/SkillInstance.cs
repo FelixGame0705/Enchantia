@@ -32,6 +32,7 @@ public class SkillInstance
         if (CanUse())
         {
             isUsing = true;
+            cooldownTimer = skill.cooldown;
         }
         else
         {
@@ -41,7 +42,7 @@ public class SkillInstance
     public virtual void Use(GameObject target)
     {
             skill.Execute(target, ref isUsing, ref stage);
-            cooldownTimer = skill.cooldown;
+            //cooldownTimer = skill.cooldown;
         
     }
 

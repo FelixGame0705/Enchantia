@@ -10,6 +10,7 @@ public class Weapon
     [SerializeField]private float _attackSpeed;
     [SerializeField]private float _DPS;//Damage per second
     [SerializeField]private float _critDamage;
+    [SerializeField]private float _critChance;
     [SerializeField]private float _range;
     [SerializeField]private float _knockBack;
     [SerializeField]private float _lifeSteal;
@@ -29,4 +30,5 @@ public class Weapon
     public float BasePrice { get => _basePrice; set => _basePrice = value; }
     public float UnlockedBy { get => _unlockedBy; set => _unlockedBy = value; }
     public String ID { get => _id; set => _id = value; }
+    public float CritChance { get => _critChance; set => _critChance = value; }
 }

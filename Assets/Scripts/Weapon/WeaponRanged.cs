@@ -85,6 +85,10 @@ public class WeaponRanged : WeaponBase
 
     private float DealWithDamage()
     {
+        if(Random.value <= DealWithCritChance())
+        {
+            return DealWitnCritDamage();
+        }
         return WeaponDataConfig.WeaponConfig.Damage + GamePlayController.Instance.GetCharacterController().CharacterModStats.RangedDamage.Value;
     }
 
