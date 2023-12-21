@@ -46,6 +46,7 @@ public class InventoryController : MonoBehaviour
         GameObject card = Instantiate(_cardModel, gameObject.transform);
         card.GetComponent<ItemImageController>().SetCardData(item);
         card.GetComponent<ItemImageController>().SetID(_cardControllerList.Count);
+        card.GetComponent<ItemImageController>().CombineRecycleInfo.BuyWave = WaveShopMainController.Instance.CurrentWave;
         _cardControllerList.Add(card.GetComponent<ItemImageController>());
     }
 
@@ -56,13 +57,22 @@ public class InventoryController : MonoBehaviour
 
     public void UpgradeCard(int id)
     {
+        var card = _cardControllerList[id];
+        var nextWeapon = card.GetCardData().NextItemWeapon;
+        if(nextWeapon != null){
+            card.SetCardData(nextWeapon);
+            card.CombineRecycleInfo.CombineWave = WaveShopMainController.Instance.CurrentWave;
+            card.CombineRecycleInfo.BuyWave = -1;
+        }
         _cardControllerList[id].SetCardData(_cardControllerList[id].GetCardData().NextItemWeapon);
     }
 
     public void RemoveCard(int id)
     {
-        Destroy(_cardControllerList.Find(x => x.GetComponent<ItemImageController>().GetID() == id).gameObject);
-        _cardControllerList.Remove(_cardControllerList.Find(x => x.GetComponent<ItemImageController>().GetID() == id));
+        var card = _cardControllerList.Find(x => x.GetComponent<ItemImageController>().GetID() == id);
+        HandleGoldReturn(card);
+        Destroy(card.gameObject);
+        _cardControllerList.Remove(card);
         InitSetIDWeaponDefault();
     }
 
@@ -72,6 +82,14 @@ public class InventoryController : MonoBehaviour
         {
             _cardControllerList[i].SetID(i);
         }
+    }
+
+    private void HandleGoldReturn(ItemImageController itemData){
+        var waveLast = itemData.CombineRecycleInfo.BuyWave == -1 ? itemData.CombineRecycleInfo.CombineWave: itemData.CombineRecycleInfo.BuyWave;
+        var finalPrice = Utils.Instance.GetFinalPrice(itemData.GetCardData().ItemPrice,waveLast);
+        int priceReturn = (int)((int) finalPrice * 0.25);
+        WaveShopMainController.Instance.CurrentMoney += priceReturn;
+        WaveShopMainController.Instance.UpdateMoney();
     }
 
 }

@@ -68,3 +68,11 @@ public enum HIT_EFFECT_TYPE
     DAMAGE_EFFECT,
     BLOOD_EFFECT
 }
+
+public enum ITEM_TIER
+{
+    TIER_1,
+    TIER_2,
+    TIER_3,
+    TIER_4
+}
