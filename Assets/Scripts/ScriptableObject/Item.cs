@@ -54,15 +54,15 @@ public class Item
         //Store modifier before add to stat
         mod_MaxHP = new StatModifier(MaxHP, StatModType.Flat);
         mod_HpRegeneration = new StatModifier(HpRegeneration, StatModType.Flat);
-        mod_LifeSteal = new StatModifier(LifeSteal, StatModType.PercentAdd);
+        mod_LifeSteal = new StatModifier(LifeSteal, StatModType.Flat);
         mod_MeleeDamage = new StatModifier(MeleeDamage, StatModType.Flat);
         mod_RangedDamage = new StatModifier(RangedDamage, StatModType.Flat);
         mod_ElementalDamage = new StatModifier(ElementalDamage, StatModType.Flat);
         mod_Armor = new StatModifier(Armor, StatModType.Flat);
-        mod_EngineeringStat = new StatModifier(EngineeringStat, StatModType.PercentAdd);
-        mod_RangeStat = new StatModifier(RangeStat, StatModType.PercentAdd);
-        mod_Luck = new StatModifier(Luck, StatModType.PercentAdd);
-        mod_Heal = new StatModifier(Luck, StatModType.PercentAdd);
+        mod_EngineeringStat = new StatModifier(EngineeringStat, StatModType.Flat);
+        mod_RangeStat = new StatModifier(RangeStat, StatModType.Flat);
+        mod_Luck = new StatModifier(Luck, StatModType.Flat);
+        mod_Heal = new StatModifier(Luck, StatModType.Flat);
         mod_HarvestRange = new StatModifier(HarvestRange, StatModType.Flat);
 
         c.MaxHP.AddModifier(mod_MaxHP);
@@ -88,21 +88,38 @@ public class Item
 [Serializable]
 public class Character_Mod
 {
+    [Tooltip("Flat")]
     public CharacterStat MaxHP;
+    [Tooltip("Flat")]
     public CharacterStat HPRegeneration;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat LifeSteal;
+    [Tooltip("Flat")]
     public CharacterStat Damage;
+    [Tooltip("Flat")]
     public CharacterStat MeleeDamage;
+    [Tooltip("Flat")]
     public CharacterStat RangedDamage;
+    [Tooltip("Flat")]
     public CharacterStat ElementalDamage;
+    [Tooltip("Flat")]
     public CharacterStat AttackSpeed;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat CritChance;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat Engineering;
+    [Tooltip("Flat")]
     public CharacterStat Range;
+    [Tooltip("Flat")]
     public CharacterStat Armor;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat Dodge;
+    [Tooltip("Flat")]
     public CharacterStat Speed;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat Luck;
+    [Tooltip("Percent 0.01 = 1% follow 0.01")]
     public CharacterStat Harvesting;
+    [Tooltip("Flat")]
     public CharacterStat HarvestRange;
 }

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 4723107735738678597, guid: 34d3a74baae0aff418c4268a6ef64e62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 1431972376905153042}
   - component: {fileID: 5725596987798714065}
   - component: {fileID: 4688868123283955516}
+  - component: {fileID: 3447583999580142104}
   m_Layer: 0
   m_Name: RedLittle
   m_TagString: Untagged
@@ -577,6 +578,22 @@ MonoBehaviour:
       BaseValue: 0
     HarvestRange:
       BaseValue: 0
+--- !u!114 &3447583999580142104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870543177323705044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f2eec5c11f6a049bb1aa5565d6a78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillsWithKeys:
+  - skill: {fileID: 11400000, guid: 15f395612af3eb94da74f8adab2ec630, type: 2}
+    activationKey: 32
+  activeSkillInstances: []
 --- !u!1001 &5866593966837822956
 PrefabInstance:
   m_ObjectHideFlags: 0

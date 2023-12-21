@@ -6,7 +6,7 @@ public class CharacterController : MonoBehaviour
 {
     protected float MoveX;
     protected float MoveY;
-    [SerializeField] protected CharacterData CharacterDataConfig;
+    [SerializeField] public CharacterData CharacterDataConfig;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
@@ -90,6 +90,7 @@ public class CharacterController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        Debug.Log("Dodge value: " + CharacterModStats.Dodge.Value);
         if (Random.value < CharacterModStats.Dodge.Value)//dodge
         {
             return;
@@ -114,6 +115,11 @@ public class CharacterController : MonoBehaviour
                 }
             }
 
+    }
+
+    public float GetCurrentHealth()
+    {
+        return CurrentHealth;
     }
 
     private void MoveDroppedItemToPlayer(GameObject droppedItem)
@@ -191,6 +197,7 @@ public class CharacterController : MonoBehaviour
     public void AddCurrentHealth(int value)
     {
         CurrentHealth += value;
+        _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
     }
 
     public void HarvestDroppedItemType(DROPPED_ITEM_TYPE type)
