@@ -7,6 +7,7 @@ public class SkillInstance
     public float cooldownTimer;
     public float timeInUsing;
     public KeyCode activationKey;
+    public ButtonSkillController buttonSkillController;
 
     public ATTACK_STAGE stage;
 
@@ -33,6 +34,7 @@ public class SkillInstance
         {
             isUsing = true;
             cooldownTimer = skill.cooldown;
+            buttonSkillController.SetTimeCooldown(cooldownTimer);
         }
         else
         {
@@ -51,6 +53,7 @@ public class SkillInstance
         if (cooldownTimer > 0f)
         {
             cooldownTimer -= Time.deltaTime;
+            buttonSkillController.UpdateCooldownTime();
         }
     }
 

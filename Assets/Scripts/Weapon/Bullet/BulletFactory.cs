@@ -64,7 +64,23 @@ public class BulletFactory : MonoBehaviour
         bulletController.SetDamage(damage);
         return bullet;
     }
-    
+
+    public virtual GameObject CreateHitEffect(Transform target, HIT_EFFECT_TYPE type)
+    {
+        if ((int)type >= HitEffectPatterns.Count) return null;
+
+        HitEffectPools[(int)type].GetComponent<ObjectPool>().objectPrefab = HitEffectPatterns[(int)type];
+        GameObject hitEffect = HitEffectPools[(int)type].GetComponent<ObjectPool>().GetObjectFromPool();
+        hitEffect.transform.position = target.position;
+        var par = hitEffect.GetComponentInChildren<ParticleSystem>();
+        if (par != null)
+        {
+            par.Play();
+            StartCoroutine(DelayHitEffectReturnPool(hitEffect, par.main.startLifetime.constant, type));
+        }
+        return hitEffect;
+    }
+
     public virtual GameObject CreateHitEffect(Vector3 initPosition, HIT_EFFECT_TYPE type)
     {
         if ((int)type >= HitEffectPatterns.Count) return null;

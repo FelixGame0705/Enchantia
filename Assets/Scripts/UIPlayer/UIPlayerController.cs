@@ -9,6 +9,7 @@ public class UIPlayerController : MonoBehaviour
     [SerializeField] private Slider _expBar;
     [SerializeField] private Text _currentGoldTxt;
     [SerializeField] private Text _currentHealthTxt;
+    [SerializeField] private ButtonSkillController _buttonSkillController;
 
     private float _currentHealth;
     private int _currentGold;
@@ -54,5 +55,10 @@ public class UIPlayerController : MonoBehaviour
     public void ResetCurrentGold()
     {
         _currentGold = 0;
+    }
+
+    public ButtonSkillController GetButtonSkillController()
+    {
+        return _buttonSkillController;
     }
 }
