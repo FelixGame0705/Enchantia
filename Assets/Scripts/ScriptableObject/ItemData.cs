@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     [SerializeField] private Sprite itemImg;
     [SerializeField] private Sprite itemBG;
     [SerializeField] private Color rarityColor;
+    [SerializeField] private int tier;
     [SerializeField] private string itemName;
     [SerializeField] private string itemDescription;
     [SerializeField] private int itemPrice;
@@ -26,4 +27,5 @@ public class ItemData : ScriptableObject
     public int ItemPrice { get => itemPrice; set => itemPrice = value;}
     public ItemData NextItemWeapon { get => nextItemWeapon; set => nextItemWeapon = value; }
     public int Id { get => id; set => id = value; }
+    public int Tier {get => tier;}
 }

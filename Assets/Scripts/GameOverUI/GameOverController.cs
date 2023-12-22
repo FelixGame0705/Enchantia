@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] private ResultItemListController _resultController;
+    [SerializeField] private TMP_Text _waveText;
+
+    private void OnEnable()
+    {
+        UpdateWaveDisplay();
+    }
     private void Update()
     {
     }
@@ -28,6 +34,10 @@ public class GameOverController : MonoBehaviour
     {
         _resultController.Render();
         this.gameObject.SetActive(true);
+    }
+
+    private void UpdateWaveDisplay(){
+        _waveText.text = string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString());
     }
     
 }

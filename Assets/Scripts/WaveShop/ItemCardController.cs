@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.PlasticSCM.Editor.WebApi;
 
 public class ItemCardController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ItemCardController : MonoBehaviour
     [SerializeField] private bool _isLocked;
     [SerializeField] private int _cardIndex;
     [SerializeField] private Text _lockBtn;
+    [SerializeField] private Button _buyBtn;
 
     public ItemData CardItemInfo { get { return _cardItemInfo; } set { _cardItemInfo = value; } }
     public bool IsLock { get { return _isLocked; } set { _isLocked = value; } }
@@ -31,6 +33,13 @@ public class ItemCardController : MonoBehaviour
             _itemPriceBtn.text = _itemPrice.ToString();
             this.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        _buyBtn.enabled = true;
+        _lockBtn.text = "Lock";
+        _isLocked = false;
     }
 
     public void Lock()
@@ -63,7 +72,25 @@ public class ItemCardController : MonoBehaviour
         //_itemName.text = _cardItemInfo.ItemName;
         _itemPrice = _cardItemInfo.ItemPrice;
         _itemDescription.text = _cardItemInfo.ItemDescription;
-        _itemPriceBtn.text = _itemPrice.ToString();
+        _itemPriceBtn.text = Utils.Instance.GetFinalPrice(_itemPrice, WaveShopMainController.Instance.CurrentWave).ToString();
         EnableItem();
+    }
+
+    public int GetItemFinalPrice(){
+        return Utils.Instance.GetFinalPrice(_itemPrice,WaveShopMainController.Instance.CurrentWave);
+    }
+
+    public void ChangeBuyButtonState(bool state){
+        _buyBtn.interactable = state;
+    }
+
+    public void CanItemBuy(){
+        if(_cardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.WEAPON){
+            if(GetItemFinalPrice() > WaveShopMainController.Instance.CurrentMoney || WaveShopMainController.Instance.GetCountWeapon() >= 6) ChangeBuyButtonState(false);
+            else ChangeBuyButtonState(true);
+        }else{
+            if(GetItemFinalPrice() > WaveShopMainController.Instance.CurrentMoney ) ChangeBuyButtonState(false);
+            else ChangeBuyButtonState(true);
+        }
     }
 }

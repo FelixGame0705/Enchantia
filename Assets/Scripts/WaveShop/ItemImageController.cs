@@ -9,7 +9,12 @@ public class ItemImageController : MonoBehaviour
     [SerializeField] private Image _itemImg;
     [SerializeField] private Image _bg;
     [SerializeField] private int _id;
-    // Start is called before the first frame update
+    [SerializeField] private CombineRecycleInfo combineRecycleInfo;
+    
+    private void Awake()
+    {
+        combineRecycleInfo = gameObject.AddComponent<CombineRecycleInfo>();
+    }
 
     private string _content;
     public void EnableItem()
@@ -62,4 +67,6 @@ public class ItemImageController : MonoBehaviour
     {
         _id = id;
     }
+
+    public CombineRecycleInfo CombineRecycleInfo {get => combineRecycleInfo; set => combineRecycleInfo = value;}
 }
