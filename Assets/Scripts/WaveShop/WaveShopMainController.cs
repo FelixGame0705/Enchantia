@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.ComponentModel.Design;
 using System.Data.Common;
+using System.Runtime.CompilerServices;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
@@ -15,6 +16,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
+    [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameObject _detailWeapon;
     [SerializeField] private StatsPanelController _statsPanel;
@@ -42,25 +44,30 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     private void OnEnable()
     {
         CurrentWave = GamePlayController.Instance.CurrentWave - 1;
+        UpdateWaveDisplay();
         if (GamePlayController.Instance.GetCharacterController() != null)
         {
             UpdateStatsPanel();
         }
         if(GamePlayController.Instance.GameState == GAME_STATES.WAVE_SHOP){
             try{
-                _rerollMechanicController.UpdateRerollWaveInfo(CurrentWave);
-                _viewListController.ReRoll(Random(4));
+                if(CurrentWave != 0 && CurrentWave != -1){
+                    _rerollMechanicController.UpdateRerollWaveInfo(CurrentWave);
+                    _viewListController.ReRoll(Random(4));
+                    UpdateViewListInfo();
+                }
+                
             }catch(Exception ex){
             }
             
         }
-        UpdateMoney();
         if(weaponInventoryController.GetCountWeapon() == 0)
         {
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
         _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+        UpdateMoney();
     }
 
     public void UpdateStatsPanel(){
@@ -82,8 +89,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             _currentMoney -= moneyPayNeed;
             _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
             UpdateMoney();
+            UpdateViewListInfo();
         }
-        
     }
     private Stack<ItemData> Random(int amount)
     { 
@@ -104,20 +111,24 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         var finalPrice = Utils.Instance.GetFinalPrice(itemCard.CardItemInfo.ItemPrice,CurrentWave);
         if(CurrentMoney >= finalPrice)
         {
-            CurrentMoney -= finalPrice;
             if (itemCard.CardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.ITEM)
             {
                 inventoryController.AddCardToInventory(itemCard.CardItemInfo);
                 itemCard.CardItemInfo.ItemStats.Equip(_characterController.CharacterModStats);
+                CurrentMoney -= finalPrice;
+                itemCard.DisableItem();
             }
             else if (weaponInventoryController.GetCountWeapon() < 6)
             {
                 EquipItemWeapon(itemCard.CardItemInfo, itemCard.CardItemInfo.ItemStats.WeaponBaseModel);
+                CurrentMoney -= finalPrice;
+                itemCard.DisableItem();
             }
-            itemCard.DisableItem();
         }
+        
         UpdateMoney();
         UpdateStatsPanel();
+        UpdateViewListInfo();
     }
 
     public void UpdateMoney()
@@ -166,5 +177,17 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void UpdateFullLockItemStatus(){
         _viewListController.CheckAllLocked();
+    }
+
+    public void UpdateWaveDisplay(){
+        _waveText.text = string.Concat("Wave ", _currentWave.ToString());
+    }
+
+    public int GetCountWeapon(){
+        return weaponInventoryController.GetCountWeapon();
+    }
+
+    private void UpdateViewListInfo(){
+        _viewListController.CheckAllValid();
     }
 }

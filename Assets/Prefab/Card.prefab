@@ -255,6 +255,7 @@ MonoBehaviour:
   _isLocked: 0
   _cardIndex: 0
   _lockBtn: {fileID: 6001683327287487869}
+  _buyBtn: {fileID: 4207467300571095983}
 --- !u!1 &2362308644021320174
 GameObject:
   m_ObjectHideFlags: 0

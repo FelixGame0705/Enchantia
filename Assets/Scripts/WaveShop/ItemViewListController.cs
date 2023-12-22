@@ -64,4 +64,10 @@ public class ItemViewListController : MonoBehaviour
         else _isFullLocked = false;
     }
 
+    public void CheckAllValid(){
+        foreach(var item in _cardControllerList){
+            item.CanItemBuy();
+        }
+    }
+
 }

@@ -141,6 +141,7 @@ MonoBehaviour:
   inventoryController: {fileID: 4862572913559794415}
   weaponInventoryController: {fileID: 8162617298447916406}
   _moneyText: {fileID: 9057797475681281108}
+  _waveText: {fileID: 6852552544678483470}
   _droppedItemController: {fileID: 0}
   _detailWeapon: {fileID: 6747478972117614927}
   _statsPanel: {fileID: 3822279255811833394}

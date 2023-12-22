@@ -39,4 +39,8 @@ public class Utils : Singleton<Utils>
             list[n] = value;
         }
     }
+
+    public int GetGoldRecycle(int wave, int basePrice, int shopPrice, float percentReturn){
+        return (int)((int) GetFinalPrice(basePrice,wave) * percentReturn);
+    }
 }
