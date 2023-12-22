@@ -65,13 +65,23 @@ public class RerollMechanicController : MonoBehaviour
         foreach(var i in frameList){
             int tier = i[1];
             do{
-                var tierList = _currentWaveDataList.ContainsKey(i[1]) ? _currentWaveDataList[i[1]] : null;
+                var tierList = _currentWaveDataList.ContainsKey(tier) ? _currentWaveDataList[tier] : null;
                 var type  = i[0] == 0 ?  ITEM_TYPE.ITEM : ITEM_TYPE.WEAPON;
                 var suitableData = tierList.Where(data => data.ItemStats.TYPE1 == type).ToList();
                 if(suitableData.Count == 0 && tier != 1) tier --;
                 else{
-                    var random = Math.Abs(UnityEngine.Random.Range(0,suitableData.Count - 1));
-                    randomSlotData.Add(suitableData[random]);
+                    var random = Math.Abs(UnityEngine.Random.Range(0, suitableData.Count - 1));
+                    try
+                    {
+                        randomSlotData.Add(suitableData[random]);
+                    }
+                    catch(Exception e) {
+                        Debug.LogError("Error on Reroll Mechanic");
+                        Debug.LogError("Random Value: " + random.ToString());
+                        Debug.LogError("Array Size: " + suitableData.Count);
+                        Debug.LogError("Tier: " + tier);
+                        Debug.LogError("Type: " + type);
+                    }
                     break;
                 }
             }while(true);

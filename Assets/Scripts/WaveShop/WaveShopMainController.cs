@@ -44,6 +44,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     private void OnEnable()
     {
         CurrentWave = GamePlayController.Instance.CurrentWave - 1;
+        AddGoldValue(GamePlayController.Instance.GetCharacterController().Harvesting());
         UpdateWaveDisplay();
         if (GamePlayController.Instance.GetCharacterController() != null)
         {

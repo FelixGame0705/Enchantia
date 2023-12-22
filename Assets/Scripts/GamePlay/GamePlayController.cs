@@ -58,7 +58,7 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
                 _waveTimeController.SetCoundownTime(_enemyFactory.GetWaveGameData().TimeWave);
-                WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());
+/*                WaveShopMainController.Instance.AddGoldValue(GetCharacterController().Harvesting());*/
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
                 ResetEnemiesInWave();
