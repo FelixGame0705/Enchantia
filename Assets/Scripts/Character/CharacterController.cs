@@ -129,7 +129,7 @@ public class CharacterController : MonoBehaviour
     private void MoveDroppedItemToPlayer(GameObject droppedItem)
     {
         droppedItem.transform.position = Vector2.MoveTowards(droppedItem.transform.position, Model.position, 15 * Time.deltaTime);
-        if (droppedItem.transform.position == Model.position)
+        if (Vector2.Distance(droppedItem.transform.position, Model.position) < 0.01f)
         {
             HarvestDroppedItemType(droppedItem.GetComponent<DroppedItemType>().DroppedItemData.DroppedItemType);
             GamePlayController.Instance.GetDroppedItemController().ReturnDroppedItemToPool(droppedItem);
