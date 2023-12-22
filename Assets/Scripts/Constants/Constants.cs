@@ -66,5 +66,6 @@ public enum ENEMY_TYPE
 public enum HIT_EFFECT_TYPE
 {
     DAMAGE_EFFECT,
-    BLOOD_EFFECT
+    BLOOD_EFFECT,
+    FIRE_EFFECT
 }

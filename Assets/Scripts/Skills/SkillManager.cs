@@ -7,6 +7,7 @@ public class SkillWithKey
 {
     public Skill skill;
     public KeyCode activationKey;
+    public ButtonSkillController buttonSkillController;
 }
 public class SkillManager : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class SkillManager : MonoBehaviour
             activeSkillInstances.Add(instance);
             // Gán phím kích ho?t t? SkillWithKey
             instance.activationKey = skillWithKey.activationKey;
+            instance.buttonSkillController = skillWithKey.buttonSkillController;
+            instance.buttonSkillController.SetTimeCooldown(it.cooldown);
         }
     }
 

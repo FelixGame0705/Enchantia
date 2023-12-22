@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08e7554af0806e14b994b3f55ac241b4, type: 3}
-  m_Name: Data
+  m_Name: BallFire
   m_EditorClassIdentifier: 
   BulletConfig:
-    _damage: 10
-    _speed: 5
-  _spriteBullet: {fileID: 21300000, guid: c220d0a112588a54f84a26bd8e2e87ad, type: 3}
+    _damage: 0
+    _speed: 0
+  _spriteBullet: {fileID: 0}
