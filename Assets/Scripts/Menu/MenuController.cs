@@ -10,6 +10,7 @@ public class MenuController : Singleton<MenuController>
     [SerializeField] private AudioClip _musicMenuBG;
     [SerializeField] private AudioClip _musicGamePlayBG;
     [SerializeField] private Slider _musicSlider, _sfxSlider;
+    [SerializeField] private GameObject _characterSelected;
 
     public void OnClickSoundSetting()
     {
@@ -23,9 +24,10 @@ public class MenuController : Singleton<MenuController>
 
     public void OnClickStart()
     {
-        SceneManager.LoadScene("GamePlay");
+        /*SceneManager.LoadScene("GamePlay");*/
         MusicPlayer.instance.StopTrack();
-        MusicPlayer.instance.PlayTrack(_musicGamePlayBG);
+        /* MusicPlayer.instance.PlayTrack(_musicGamePlayBG);*/
+        _characterSelected.SetActive(true);
         Debug.Log("Start");
         // AudioManager.Instance.PlayMusic("ThemeGamePlay");
     }
