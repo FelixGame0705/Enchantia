@@ -88,6 +88,10 @@ public class CharacterController : MonoBehaviour
         Target = target;
     }
 
+    public GameObject GetTarget()
+    {
+        return Target;
+    }
     public void TakeDamage(float damage)
     {
         Debug.Log("Dodge value: " + CharacterModStats.Dodge.Value);
@@ -222,5 +226,10 @@ public class CharacterController : MonoBehaviour
     {
         _uiPlayerController.AddCurrentGoldValue(1);
         CurrentGold += 1;
+    }
+
+    public UIPlayerController GetUIPlayerController()
+    {
+        return _uiPlayerController;
     }
 }
