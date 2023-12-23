@@ -1,3 +1,4 @@
+using CarterGames.Assets.AudioManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -131,6 +132,7 @@ public class CharacterController : MonoBehaviour
         droppedItem.transform.position = Vector2.MoveTowards(droppedItem.transform.position, Model.position, 15 * Time.deltaTime);
         if (Vector2.Distance(droppedItem.transform.position, Model.position) < 0.01f)
         {
+            AudioManager.instance.Play("collectItem", null, GameData.Instance.GetVolumeAudioGame());
             HarvestDroppedItemType(droppedItem.GetComponent<DroppedItemType>().DroppedItemData.DroppedItemType);
             GamePlayController.Instance.GetDroppedItemController().ReturnDroppedItemToPool(droppedItem);
         }

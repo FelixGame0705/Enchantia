@@ -931,7 +931,7 @@ MonoBehaviour:
   dontDestroy: 0
   GameState: 0
   _character: {fileID: 0}
-  _characterPattern: {fileID: 5635785078056490776, guid: 7f3c43f151760844ba59e84205391f38, type: 3}
+  _characterPattern: {fileID: 5635785078056490776, guid: 1625693aaab287740a26443715a31cf3, type: 3}
   _enemyFactory: {fileID: 1359198611}
   _bulletFactory: {fileID: 1359198612}
   _enemies: []

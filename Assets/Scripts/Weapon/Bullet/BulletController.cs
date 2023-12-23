@@ -1,3 +1,4 @@
+using CarterGames.Assets.AudioManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,6 @@ public class BulletController : MonoBehaviour
     private bool isMeleeWeapon;
 
     public bool IsMeleeWeapon { get => isMeleeWeapon; set => isMeleeWeapon = value; }
-
-    private void Update()
-    {
-       
-    }
 
     private void FixedUpdate()
     {
@@ -56,6 +52,7 @@ public class BulletController : MonoBehaviour
             Debug.Log("Damage " + _damage);
             GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
             GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
+            AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
 
             DynamicTextManager.CreateText2D(collision.transform.position, _damage.ToString(), DynamicTextManager.defaultData);
         }
