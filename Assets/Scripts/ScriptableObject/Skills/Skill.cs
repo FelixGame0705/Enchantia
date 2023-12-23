@@ -2,6 +2,7 @@ using UnityEngine;
 public abstract class Skill : ScriptableObject
 {
     public new string name;
+    [TextAreaAttribute]
     public string description;
     public int damage;
     public float cooldown;

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//This class will controll the character list
 public class CharacterSelectionListController : MonoBehaviour
 {
     [SerializeField] private GameObject _baseCharacterImage;
@@ -16,15 +16,14 @@ public class CharacterSelectionListController : MonoBehaviour
     public Sprite BackgroundDefault { get => _backgroudDefault; }
     public Sprite BackgroundSelected { get => _backgroundSelected; }
     public List<GameObject> CharacterList { get => _characterList; set => _characterList = value; }
-    // Start is called before the first frame update
-    // Update is called once per frame
 
     void Update()
     {
         
     }
 
-
+    //This will take the data from the index given, index is store in each character image
+    //and set character select on main controller of this panel
     public void HandleCharacterClicked(int index)
     {
         _selectedImage = _characterImageList[index];
@@ -40,7 +39,10 @@ public class CharacterSelectionListController : MonoBehaviour
             var clone = Instantiate(_baseCharacterImage, _contentList.transform);
             var characterImageControl = clone.GetComponent<CharacterImageController>();
             _characterImageList.Add(characterImageControl);
-            characterImageControl.LoadData(count, item.GetComponent<CharacterController>().GetModel().gameObject.GetComponent<SpriteRenderer>().sprite);
+            var characterBaseInfo = item.GetComponent<CharacterBaseInfo>();
+            characterBaseInfo.Load();
+            characterImageControl.LoadData(count, characterBaseInfo.CharacterSprite);
+            count++;
         }
     }
     public void ResetBackgroundSelectedCharacterToDefault()

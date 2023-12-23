@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CharacterSelectionController : Singleton<CharacterSelectionController>
 {
-    
+    [Header("Controller Setting")]
     [SerializeField] private CharacterSelectionListController _characterListController;
     [SerializeField] private CharacterSelectDisplayController _characterSelectDisplayController;
-    [SerializeField] private GameObject _characterSelected;
+    [SerializeField] private WeaponSkillDisplayController weaponSkillDisplayController;
+    [Header ("Param")]
+    [SerializeField,Tooltip("The character selected will show here, only bring this to GamePlay")] private GameObject _characterSelected;
+    [Header ("Character Prefab Insert")]
     [SerializeField] private List<GameObject> _characterList;
 
     public CharacterSelectionListController CharacterSelectionListController { get => _characterListController; }
+    public GameObject CharacterSelected { get => _characterSelected; set => _characterSelected = value; }
 
     private void Awake()
     {
@@ -20,11 +24,24 @@ public class CharacterSelectionController : Singleton<CharacterSelectionControll
 
     public void SetSelectedCharacter(GameObject characterSelected)
     {
-        _characterSelected = characterSelected;
+        CharacterSelected = characterSelected;
+        var characterData = CharacterSelected.GetComponent<CharacterBaseInfo>();
+        _characterSelectDisplayController.LoadData(characterData);
+        weaponSkillDisplayController.LoadData(characterData);
     }
 
     public void OnBackBtnClicked()
     {
-        this.gameObject.SetActive(false);
+        MenuController.Instance.HandleSelectCharBack();
+    }
+
+    public void ChangeStateCharSelectUI(bool state)
+    {
+        this.gameObject.SetActive(state);
+    }
+
+    public void OnClickStart()
+    {
+        MenuController.Instance.HandleOnClickPlay();
     }
 }

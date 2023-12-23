@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4bd19e230df334690f9dcbae97dd89, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Fire Ball
+  description: "Fireball: Hurls a fireball at the target, dealing elemental damage
+    over an area of effect. \nCooldown: 8 seconds.\r\nDame : 70% (Elemental Damage
+    when hit target) and (50%) (Elemental Damage over an area of effect)"
   damage: 5
   cooldown: 10
   timeInUsing: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5e7b51d86cdf6ec4bb3d61a77214f6ca, type: 3}
   skillEffectDuration: 5
   attackSpeed: 0.5
   fireBallPrefab: {fileID: 167000821084740648, guid: e7c445fde8fe3b54d813127e839916a6, type: 3}
