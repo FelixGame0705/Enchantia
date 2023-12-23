@@ -773,6 +773,7 @@ PlayerSettings:
     32: UNITY_POST_PROCESSING_STACK_V2
     33: UNITY_POST_PROCESSING_STACK_V2
     7: UNITY_POST_PROCESSING_STACK_V2
+    Standalone: USE_CG_AM_STATIC
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

@@ -63,8 +63,9 @@ public class GamePlayController : Singleton<GamePlayController>
                 GetCharacterController().ResetCurrentGold();
                 ResetEnemiesInWave();
                 _waveTimeController.SetWave(_currentWave);
-                _enemyFactory.SetEnemyModelPool();
                 SetTimeForEnemyFactory();
+                _enemyFactory.SetEnemyModelPool();
+                
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:

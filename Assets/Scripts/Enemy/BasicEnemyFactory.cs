@@ -8,7 +8,7 @@ public class BasicEnemyFactory : EnemyFactory
 {
     [SerializeField] private List<WaveGameData> _waveGameDatas;
     [SerializeField] private List<GameObject> _enemyPatternList;
-    [SerializeField] private List<GameObject> _enemyPools;
+    [SerializeField] private List<GameObject> _enemyPools = new List<GameObject>();
     [SerializeField] private GameObject _poolModel;
     [SerializeField] private GameObject _bossPrefab;
     [SerializeField] private ObjectPool _signalPool;
@@ -23,7 +23,9 @@ public class BasicEnemyFactory : EnemyFactory
     public GameObject CreateEnemyBaseOnPool(int enemyModel, GameObject target, Vector2 position)
     {
         Debug.Log(enemyModel + "Index enemy" + _currentWave);
+        Debug.Log(enemyModel + "Index enemy prefab" + _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab.name);
         _enemyPools[enemyModel].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab;
+        
         GameObject enemy = _enemyPools[(int)enemyModel].GetComponent<ObjectPool>().GetObjectFromPool();
         enemy.transform.position = position;
         Debug.Log("Target la " + enemy);
@@ -71,12 +73,14 @@ public class BasicEnemyFactory : EnemyFactory
 
     public override void ResetEnemiesPool()
     {
-        for(int i = 0; i < _enemyPools.Count; i++)
+        for(int i = _enemyPools.Count-1; i >= 0; i--)
         {
             _enemyPools[i].GetComponent<ObjectPool>().ResetQueue();
             Destroy(_enemyPools[i]);
-            _enemyPools.RemoveAt(i);
+            
+
         }
+        _enemyPools.Clear();
     }
 
     private Vector2 RandomPositionSpawn()

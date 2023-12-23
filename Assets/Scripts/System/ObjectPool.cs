@@ -44,6 +44,8 @@ public class ObjectPool : MonoBehaviour
 
     public void ResetQueue()
     {
+        foreach(var obj in objectPool)
+        Destroy(obj);
         objectPool.Clear();
     }
 }
