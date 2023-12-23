@@ -19,8 +19,15 @@ MonoBehaviour:
   isPopulated: 1
   directory:
   - Assets/Audio
+  - Assets/Audio/AudioGame
   library:
   - key: Level 1
     value: {fileID: 8300000, guid: ccfae842619ba0840a38a6c5338f34a1, type: 3}
   - key: Level 2
     value: {fileID: 8300000, guid: 3220e59437da31e44b2d9b068913292a, type: 3}
+  - key: MusicGamePlay
+    value: {fileID: 8300000, guid: e2e9559d6596d3749a5d2012f66eebb1, type: 3}
+  - key: collectItem
+    value: {fileID: 8300000, guid: 2635ae25109730b44ac600eb1cba5aed, type: 3}
+  - key: Hit
+    value: {fileID: 8300000, guid: 99dc48b365b1d984583ca26ff1f29a24, type: 3}
