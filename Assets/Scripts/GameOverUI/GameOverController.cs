@@ -6,6 +6,7 @@ using TMPro;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] private ResultItemListController _resultController;
+    [SerializeField] private GameOverStatsDisplayController _gameOverStatsDisplayController;
     [SerializeField] private TMP_Text _waveText;
 
     private void OnEnable()
@@ -33,6 +34,7 @@ public class GameOverController : MonoBehaviour
     public void RenderUI()
     {
         _resultController.Render();
+        _gameOverStatsDisplayController.LoadData(GamePlayController.Instance.GetCharacterController().CharacterModStats);
         this.gameObject.SetActive(true);
     }
 
