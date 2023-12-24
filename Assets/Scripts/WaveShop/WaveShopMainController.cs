@@ -22,6 +22,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private StatsPanelController _statsPanel;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private RerollMechanicController _rerollMechanicController;
+
+    
     bool isPanel = false;
 
     private int _indexWeaponSelected;
@@ -30,10 +32,11 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
 
     public List<ItemData> ItemDataList {get => _itemDataList;}
-    
+    public ItemViewListController ViewListController { get => _viewListController; set => _viewListController = value; }
+
     private void Update()
     {
-        if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) _viewListController.RerollController.ChangeRerollBtnState(false);
+        if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) ViewListController.RerollController.ChangeRerollBtnState(false);
     }
 
     private void FixedUpdate()
@@ -54,7 +57,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             try{
                 if(CurrentWave != 0 && CurrentWave != -1){
                     _rerollMechanicController.UpdateRerollWaveInfo(CurrentWave);
-                    _viewListController.ReRoll(Random(4));
+                    ViewListController.ReRoll(Random(4));
                     UpdateViewListInfo();
                 }
                 
@@ -67,7 +70,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
-        _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+        ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
         UpdateMoney();
     }
 
@@ -85,10 +88,10 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     {
         var moneyPayNeed = Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime);
         if(CurrentMoney - moneyPayNeed >= 0){
-            _viewListController.ReRoll(Random(4));
+            ViewListController.ReRoll(Random(4));
             _rerollTime ++;
             _currentMoney -= moneyPayNeed;
-            _viewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+            ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
             UpdateMoney();
             UpdateViewListInfo();
         }
@@ -108,7 +111,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
     public void BuyItem(int cardIndex)
     {
-        ItemCardController itemCard = _viewListController.GetItemDataOfCardUsingPosition(cardIndex);
+        ItemCardController itemCard = ViewListController.GetItemDataOfCardUsingPosition(cardIndex);
         var finalPrice = Utils.Instance.GetFinalPrice(itemCard.CardItemInfo.ItemPrice,CurrentWave);
         if(CurrentMoney >= finalPrice)
         {
@@ -177,7 +180,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
 
     public void UpdateFullLockItemStatus(){
-        _viewListController.CheckAllLocked();
+        ViewListController.CheckAllLocked();
     }
 
     public void UpdateWaveDisplay(){
@@ -189,6 +192,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
 
     private void UpdateViewListInfo(){
-        _viewListController.CheckAllValid();
+        ViewListController.CheckAllValid();
     }
 }
