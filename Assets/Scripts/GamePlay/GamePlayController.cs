@@ -18,14 +18,18 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameOverController _gameOverController;
+    [SerializeField] private float _timePlay = 0;
 
     public int CurrentWave{get => _currentWave;}
+    public GameObject Character { get => _character; set => _character = value; }
+    public float TimePlay { get => _timePlay; set => _timePlay = value; }
+
     //[SerializeField] private Con
 
     // Start is called before the first frame update
     void Start()
     {
-        _character = Instantiate(_characterPattern);
+        Character = Instantiate(_characterPattern);
         _currentWave = 1;
     }
 
@@ -65,15 +69,15 @@ public class GamePlayController : Singleton<GamePlayController>
                 _waveTimeController.SetWave(_currentWave);
                 SetTimeForEnemyFactory();
                 _enemyFactory.SetEnemyModelPool();
-                
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:
                 Time.timeScale = 1;
                 StartCoroutine(_waveTimeController.Countdown());
+                StartCoroutine(TimePlayCounting());
                 _waveShop.SetActive(false);
                 _enemyFactory.SetIsSpawned(true);
-                _enemyFactory.SetTarget(_character);
+                _enemyFactory.SetTarget(Character);
                 break;
             case GAME_STATES.GAME_OVER:
                 UpWave();
@@ -95,13 +99,22 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private IEnumerator WaitSpawnPlayer()
     {
-        yield return new WaitUntil(() => _character != null);
-        CameraFollow.Instance.target = _character.transform;
+        yield return new WaitUntil(() => Character != null);
+        CameraFollow.Instance.target = Character.transform;
         UpdateState(GAME_STATES.WAVE_SHOP);
         UpdateState(GAME_STATES.PLAYING);
         //_enemies.Add(_enemyFactory.CreateEnemy(_character));
         Debug.Log("Play");
     }
+    private IEnumerator TimePlayCounting()
+    {
+        while (GAME_STATES.PLAYING == GameState) // Stop after 10 seconds (you can change this condition)
+        {
+            yield return new WaitForSeconds(1.0f);
+            TimePlay++;
+        }
+    }
+
 
     public BulletFactory GetBulletFactory()
     {
@@ -120,14 +133,14 @@ public class GamePlayController : Singleton<GamePlayController>
             TargetCharacter = _enemyFactory.GetEnemies().ToArray()[0];
         for (int i = 0; i < _enemyFactory.GetEnemies().Count; i++)
         {
-            if (Vector2.Distance(_enemyFactory.GetEnemies().ToArray()[i].transform.position, _character.transform.position) <= Vector2.Distance(TargetCharacter.transform.position, _character.transform.position) && _enemyFactory.GetEnemies().ToArray()[i].activeSelf)
+            if (Vector2.Distance(_enemyFactory.GetEnemies().ToArray()[i].transform.position, Character.transform.position) <= Vector2.Distance(TargetCharacter.transform.position, Character.transform.position) && _enemyFactory.GetEnemies().ToArray()[i].activeSelf)
             {
                 TargetCharacter = _enemyFactory.GetEnemies().ToArray()[i];
             }
         }
         if (TargetCharacter.activeSelf)
-            _character.GetComponent<CharacterController>().SetTarget(TargetCharacter);
-        else _character.GetComponent<CharacterController>().SetTarget(null);
+            Character.GetComponent<CharacterController>().SetTarget(TargetCharacter);
+        else Character.GetComponent<CharacterController>().SetTarget(null);
     }
 
     public void UpWave()
@@ -147,12 +160,12 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public WeaponSystem GetWeaponSystem()
     {
-        return _character.GetComponent<CharacterController>().GetWeaponSystem();
+        return Character.GetComponent<CharacterController>().GetWeaponSystem();
     }
 
     public CharacterController GetCharacterController()
     {
-        return _character.GetComponent<CharacterController>();
+        return Character.GetComponent<CharacterController>();
     }
 
     public void RemoveEnemies()

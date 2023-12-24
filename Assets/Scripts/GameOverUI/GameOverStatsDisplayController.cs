@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameOverStatsDisplayController : MonoBehaviour
 {
-    [SerializeField] private List<CharacterBaseStatsDisplay> characterBaseStatsDisplays;
+    [SerializeField] private List<GameOverStatsDisplay> characterBaseStatsDisplays;
 
     [SerializeField] private Character_Mod characterStats;
     [SerializeField] private List<float> valueList;
