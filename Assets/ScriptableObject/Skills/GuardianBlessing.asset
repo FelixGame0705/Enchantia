@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GuardianBlessing
   m_EditorClassIdentifier: 
   name: 
-  description: 
+  description: "Guardian's Blessing:Grants a protective blessing to the Paladin,
+    reducing the damage they take for a moderate duration (+25% arrmor). \nCooldown:
+    15 seconds."
   damage: 0
   cooldown: 0
   timeInUsing: 0

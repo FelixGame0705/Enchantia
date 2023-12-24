@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5635785078056490779}
   - component: {fileID: 5635785078056490778}
   - component: {fileID: 5635785078056490777}
+  - component: {fileID: 1885865985180205500}
   m_Layer: 0
   m_Name: Paladin
   m_TagString: Untagged
@@ -123,6 +124,57 @@ MonoBehaviour:
     activationKey: 32
     buttonSkillController: {fileID: 113693419595918239}
   activeSkillInstances: []
+--- !u!114 &1885865985180205500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635785078056490776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10b956d4bd47ff4a852a1d29de35304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStats:
+    MaxHP:
+      BaseValue: 0
+    HPRegeneration:
+      BaseValue: 0
+    LifeSteal:
+      BaseValue: 0
+    Damage:
+      BaseValue: 0
+    MeleeDamage:
+      BaseValue: 0
+    RangedDamage:
+      BaseValue: 0
+    ElementalDamage:
+      BaseValue: 0
+    AttackSpeed:
+      BaseValue: 0
+    CritChance:
+      BaseValue: 0
+    Engineering:
+      BaseValue: 0
+    Range:
+      BaseValue: 0
+    Armor:
+      BaseValue: 0
+    Dodge:
+      BaseValue: 0
+    Speed:
+      BaseValue: 0
+    Luck:
+      BaseValue: 0
+    Harvesting:
+      BaseValue: 0
+    HarvestRange:
+      BaseValue: 0
+  mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
+  characterSprite: {fileID: 8200483186229724281, guid: cfb50b88437dcf446842ef31602ab914, type: 3}
+  characterBodySprite: {fileID: 8200483186229724281, guid: cfb50b88437dcf446842ef31602ab914, type: 3}
+  baseWeapon: {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
 --- !u!1001 &2892923335280083910
 PrefabInstance:
   m_ObjectHideFlags: 0

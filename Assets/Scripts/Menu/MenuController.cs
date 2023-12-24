@@ -10,6 +10,8 @@ public class MenuController : Singleton<MenuController>
     [SerializeField] private AudioClip _musicMenuBG;
     [SerializeField] private AudioClip _musicGamePlayBG;
     [SerializeField] private Slider _musicSlider, _sfxSlider;
+    [SerializeField] private GameObject _characterSelectUI;
+    [SerializeField] private GameObject _menuUI;
 
     public void OnClickSoundSetting()
     {
@@ -23,11 +25,15 @@ public class MenuController : Singleton<MenuController>
 
     public void OnClickStart()
     {
-        SceneManager.LoadScene("GamePlay");
-        MusicPlayer.instance.StopTrack();
-        MusicPlayer.instance.PlayTrack(_musicGamePlayBG);
-        Debug.Log("Start");
+        /*SceneManager.LoadScene("GamePlay");*/
         // AudioManager.Instance.PlayMusic("ThemeGamePlay");
+        /* MusicPlayer.instance.PlayTrack(_musicGamePlayBG);*/
+        /*_characterSelected.SetActive(true);*/
+        MusicPlayer.instance.StopTrack();
+        Debug.Log("Start");
+        
+        _characterSelectUI.SetActive(true);
+        _menuUI.SetActive(false);
     }
 
     public void ReturnToMenu()
@@ -74,5 +80,18 @@ public class MenuController : Singleton<MenuController>
     private void OnEnable()
     {
         _musicPlayer.PlayTrack(_musicMenuBG);
+    }
+
+    public void HandleSelectCharBack()
+    {
+        CharacterSelectionController.Instance.ChangeStateCharSelectUI(false);
+        _menuUI.SetActive(true);
+        MusicPlayer.instance.PlayTrack();
+    }
+
+    public void HandleOnClickPlay()
+    {
+        GameData.Instance.SelectedCharacter = CharacterSelectionController.Instance.CharacterSelected;
+        SceneManager.LoadScene("GamePlay");
     }
 }

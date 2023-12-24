@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Evasive
   m_EditorClassIdentifier: 
   name: Evasive
-  description: 
+  description: 'Evasive Maneuvers: Grants a temporary burst of increased dodge (+20%)
+    chance and movement speed (+20%). Cooldown: 10 seconds.'
   damage: 0
   cooldown: 10
   timeInUsing: 0

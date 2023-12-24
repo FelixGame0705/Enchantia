@@ -2718,6 +2718,7 @@ MonoBehaviour:
   _musicGamePlayBG: {fileID: 8300000, guid: e2e9559d6596d3749a5d2012f66eebb1, type: 3}
   _musicSlider: {fileID: 0}
   _sfxSlider: {fileID: 0}
+  _characterSelected: {fileID: 0}
 --- !u!4 &939722149
 Transform:
   m_ObjectHideFlags: 0

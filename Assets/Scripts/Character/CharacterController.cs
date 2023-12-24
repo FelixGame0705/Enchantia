@@ -93,6 +93,11 @@ public class CharacterController : MonoBehaviour
     {
         return Target;
     }
+
+    public Transform GetModel()
+    {
+        return Model;
+    }
     public void TakeDamage(float damage)
     {
         Debug.Log("Dodge value: " + CharacterModStats.Dodge.Value);
