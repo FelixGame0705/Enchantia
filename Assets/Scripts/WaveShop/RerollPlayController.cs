@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RerollPlayController : MonoBehaviour
 {
     [SerializeField] private Button _rerollBtn;
-    [SerializeField] private Text _rerollPriceText;
+    [SerializeField] private TMP_Text _rerollPriceText;
 
     [SerializeField] private bool _rerollValid = true;
     
@@ -27,7 +28,7 @@ public class RerollPlayController : MonoBehaviour
     }
 
     public void ChangeRerollPriceUI(int price){
-        _rerollPriceText.text = price.ToString();
+        _rerollPriceText.text = string.Format("REROLL ({0})",price.ToString());
     }
 
 }
