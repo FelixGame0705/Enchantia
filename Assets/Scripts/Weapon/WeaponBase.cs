@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class WeaponBase : MonoBehaviour
 {
     [SerializeField] public WeaponData WeaponDataConfig;
-
+    [SerializeField] protected Animator WeaponAnimator;
     [SerializeField] protected GameObject Target;
     protected bool [] IsStates = new bool[4];
     protected ATTACK_STAGE currentState;

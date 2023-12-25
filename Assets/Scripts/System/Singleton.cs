@@ -23,4 +23,18 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             return m_instance;
         }
     }
+
+    public virtual void Awake()
+    {
+        if (Application.isPlaying)
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        //check if instance already exists when reloading original scene
+        if (m_instance != null)
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
 }

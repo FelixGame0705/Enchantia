@@ -10,10 +10,11 @@ public class AudioMenuController : MonoBehaviour
     [SerializeField] private MusicPlayer _musicPlayer;
     [SerializeField] private AudioPlayer _audioPlayer;
 
-    private void Start()
+    public void Init()
     {
         BGMSlider.value = GameData.Instance.GetVolumeAudioBG();
-        GameData.Instance.SetVolumeAudioBG(GameData.Instance.GetVolumeAudioBG()); 
+        GameData.Instance.SetVolumeAudioBG(GameData.Instance.GetVolumeAudioBG());
+        _musicPlayer.SetVolume(GameData.Instance.GetVolumeAudioBG());
         SFXSlider.value = GameData.Instance.GetVolumeAudioGame();
         GameData.Instance.SetVolumeAudioGame(GameData.Instance.GetVolumeAudioGame());
     }

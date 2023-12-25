@@ -48,4 +48,4 @@ MonoBehaviour:
     HarvestRange:
       BaseValue: 3
   firstItems:
-  - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
+  - {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}

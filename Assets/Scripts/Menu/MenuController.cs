@@ -9,10 +9,14 @@ public class MenuController : Singleton<MenuController>
     [SerializeField] private MusicPlayer _musicPlayer;
     [SerializeField] private AudioClip _musicMenuBG;
     [SerializeField] private AudioClip _musicGamePlayBG;
-    [SerializeField] private Slider _musicSlider, _sfxSlider;
     [SerializeField] private GameObject _characterSelectUI;
     [SerializeField] private GameObject _menuUI;
+    [SerializeField] private AudioMenuController _audioMenuController;
 
+    private void Awake()
+    {
+        _audioMenuController.Init();
+    }
     public void OnClickSoundSetting()
     {
         //_soundSetting.SetActive(true);
@@ -29,7 +33,6 @@ public class MenuController : Singleton<MenuController>
         // AudioManager.Instance.PlayMusic("ThemeGamePlay");
         /* MusicPlayer.instance.PlayTrack(_musicGamePlayBG);*/
         /*_characterSelected.SetActive(true);*/
-        MusicPlayer.instance.StopTrack();
         Debug.Log("Start");
         
         _characterSelectUI.SetActive(true);
@@ -41,26 +44,6 @@ public class MenuController : Singleton<MenuController>
         SceneManager.LoadScene("menu");
         //Debug.Log("Start");
         // AudioManager.Instance.PlayMusic("ThemeGamePlay");
-    }
-
-    public void ToggleMusic()
-    {
-        //AudioManager.Instance.ToggleMusic();
-    }
-
-    public void ToggleSFX()
-    {
-        //AudioManager.Instance.ToggleSFX();
-    }
-
-    public void MusicVolume()
-    {
-        //AudioManager.Instance.MusicVolume(_musicSlider.value);
-    }
-
-    public void SFXVolume()
-    {
-        //AudioManager.Instance.SFXVolume(_sfxSlider.value);
     }
 
     public void OnClickExit()

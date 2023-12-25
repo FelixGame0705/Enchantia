@@ -25,6 +25,7 @@ public class GamePlayController : Singleton<GamePlayController>
     // Start is called before the first frame update
     void Start()
     {
+        _characterPattern = GameData.Instance.SelectedCharacter;
         _character = Instantiate(_characterPattern);
         _currentWave = 1;
     }
