@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterBaseStatsDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro valueText;
+    [SerializeField] private TMP_Text valueText;
     [SerializeField] private float value;
 
     public void LoadData(float value)
