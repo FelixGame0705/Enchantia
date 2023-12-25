@@ -13,6 +13,7 @@ public class ButtonSkillController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        skillImg.sprite = GamePlayController.Instance.Character.GetComponent<CharacterBaseInfo>().MainSkill.icon;
         skillPanelCooldown.fillAmount = 0;
     }
 

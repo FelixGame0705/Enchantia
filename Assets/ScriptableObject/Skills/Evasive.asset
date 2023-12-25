@@ -18,7 +18,7 @@ MonoBehaviour:
   damage: 0
   cooldown: 10
   timeInUsing: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 32dfed8cce5daa6428f9bcb61558e71a, type: 3}
   _percentDodgeAddMultiplePercent: 0.2
   _percentSpeedAddMultiplePercent: 0.2
   _skillEffect: {fileID: 1028078754399211225, guid: e8d591e7fc1c19744ba9c82c103a5149, type: 3}

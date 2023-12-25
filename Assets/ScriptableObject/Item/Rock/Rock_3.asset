@@ -30,7 +30,7 @@ MonoBehaviour:
     _attackSpeed: 1.03
     _level: 0
     _weaponBaseModel: {fileID: 99345084846372263, guid: ef5296ec82f61d14a9ab1e7c7a9761df, type: 3}
-  itemImg: {fileID: 21300000, guid: e8a0478f41766a8429b74bbc200b3a2b, type: 3}
+  itemImg: {fileID: 21300000, guid: 240c7ccac4c37e44687a3040d912fa20, type: 3}
   itemBG: {fileID: 0}
   rarityColor: {r: 0, g: 0, b: 0, a: 0}
   tier: 3
