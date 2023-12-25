@@ -11,6 +11,10 @@ public class WeaponItemSwitcher : MonoBehaviour
     [SerializeField] private BAR_STATE StateBar { get; set; }
     public enum BAR_STATE { WEAPON, ITEM}
 
+    private void OnEnable()
+    {
+        ChangeBar(BAR_STATE.WEAPON);
+    }
     public void ChangeBar(BAR_STATE state)
     {
         StateBar = state;
