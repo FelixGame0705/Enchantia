@@ -138,9 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats:
     MaxHP:
-      BaseValue: 0
+      BaseValue: 20
     HPRegeneration:
-      BaseValue: 0
+      BaseValue: 1
     LifeSteal:
       BaseValue: 0
     Damage:
@@ -150,7 +150,7 @@ MonoBehaviour:
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
-      BaseValue: 0
+      BaseValue: 5
     AttackSpeed:
       BaseValue: 0
     CritChance:
@@ -164,17 +164,17 @@ MonoBehaviour:
     Dodge:
       BaseValue: 0
     Speed:
-      BaseValue: 0
+      BaseValue: 5
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0
+      BaseValue: 0.1
     HarvestRange:
-      BaseValue: 0
+      BaseValue: 3
   mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
   characterSprite: {fileID: -2691112631397518175, guid: 5e2e05aea4798fe4da2d491cb1ca6ce1, type: 3}
   characterBodySprite: {fileID: -2691112631397518175, guid: 5e2e05aea4798fe4da2d491cb1ca6ce1, type: 3}
-  baseWeapon: {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
+  baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
 --- !u!1001 &558321406644606294
 PrefabInstance:
   m_ObjectHideFlags: 0

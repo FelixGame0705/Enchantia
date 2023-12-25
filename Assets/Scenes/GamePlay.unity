@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7192b9de4323d8418df3fe193148a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefab: {fileID: 7803629493765453988, guid: 4f1c4e12a830f5c42b1d3c593dd9438c, type: 3}
+  objectPrefab: {fileID: 7803629493765453988, guid: 48a1119b3a4872c43908041d7c956fa0, type: 3}
   initialPoolSize: 10
 --- !u!4 &288192915
 Transform:
@@ -15008,7 +15008,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
   m_Origin: {x: -21, y: -18, z: 0}
   m_Size: {x: 50, y: 28, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
