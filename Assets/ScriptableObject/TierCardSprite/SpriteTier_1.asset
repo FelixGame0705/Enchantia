@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de216e5b46ae5f499f16af2654910a1, type: 3}
+  m_Name: SpriteTier_1
+  m_EditorClassIdentifier: 
+  tier: 1
+  background: {fileID: 21300000, guid: ccfb78f7c0a0760448f5f839f75f6007, type: 3}
+  iconBackground: {fileID: 21300000, guid: 5730ed0df4212cc4ea9523dbb1644dd4, type: 3}
+  tierColor: {r: 0, g: 0, b: 0, a: 0}
+  nameColor: {r: 0.14117648, g: 0.6627451, b: 0.28627452, a: 1}

@@ -2,16 +2,30 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.CompilerServices;
+using System;
 
 public class ItemViewListController : MonoBehaviour
 {
+    [Header("Controller")]
     [SerializeField] private List<ItemCardController> _cardControllerList;
     [SerializeField] private RerollPlayController _rerollPlayController;
+
+    [Header("Setting Param")]
+    [SerializeField] private List<TierCardSpriteInfo> _tierCardsSprite;
     public RerollPlayController RerollController{get => _rerollPlayController;}
+    public Dictionary<int, TierCardSpriteInfo> TierSpriteDictionary { get => tierSpriteDictionary; set => tierSpriteDictionary = value; }
+
     public bool _isFullLocked = false;
+    private Dictionary<int, TierCardSpriteInfo> tierSpriteDictionary = new Dictionary<int, TierCardSpriteInfo>();
+
+
     private void Awake()
     {
-       
+       foreach(var _tier in _tierCardsSprite)
+        {
+            tierSpriteDictionary.Add(_tier.Tier, _tier);
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -69,5 +83,4 @@ public class ItemViewListController : MonoBehaviour
             item.CanItemBuy();
         }
     }
-
 }
