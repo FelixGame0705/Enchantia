@@ -64,7 +64,6 @@ public class WeaponRanged : WeaponBase
                     AnimationClip clip = GetAnimationClip("Attack");
                     float attackAnimationTime = 1.0f / WeaponDataConfig.WeaponConfig.AttackSpeed;
                     WeaponAnimator.speed = clip.length / attackAnimationTime;
-                    Debug.Log("Frame rate " + clip.frameRate);
                     WeaponAnimator.Play("Attack");
                     StartCoroutine(DelayAttack(Target.transform));
                 }
