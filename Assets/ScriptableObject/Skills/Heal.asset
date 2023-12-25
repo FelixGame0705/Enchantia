@@ -17,9 +17,9 @@ MonoBehaviour:
   damage: 0
   cooldown: 0
   timeInUsing: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 849969683528b5c4c800d7d382b8dd13, type: 3}
   hpHealPerSecond: 0
-  timeDuration: 5
+  cooldownTime: 5
   timeEffectSkill: 3
   _healEffect: {fileID: 1028078754399211225, guid: e8d591e7fc1c19744ba9c82c103a5149, type: 3}
   _characterController: {fileID: 0}

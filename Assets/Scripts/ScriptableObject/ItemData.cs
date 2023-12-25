@@ -13,7 +13,7 @@ public class ItemData : ScriptableObject
     [SerializeField] private Color rarityColor;
     [SerializeField] private int tier;
     [SerializeField] private string itemName;
-    [SerializeField] private string itemDescription;
+    [SerializeField, TextArea] private string itemDescription;
     [SerializeField] private int itemPrice;
     [SerializeField] private ItemData nextItemWeapon;
     [SerializeField] private int id;

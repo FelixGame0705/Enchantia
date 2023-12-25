@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class UIPlayerController : MonoBehaviour
     [SerializeField] private Text _currentGoldTxt;
     [SerializeField] private Text _currentHealthTxt;
     [SerializeField] private ButtonSkillController _buttonSkillController;
+    [SerializeField] private Image _playerProfie;
 
     private float _currentHealth;
     private int _currentGold;
@@ -18,7 +20,7 @@ public class UIPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _playerProfie.sprite = GamePlayController.Instance.Character.GetComponent<CharacterBaseInfo>().CharacterSprite;
     }
 
     // Update is called once per frame

@@ -19,7 +19,7 @@ MonoBehaviour:
   damage: 5
   cooldown: 10
   timeInUsing: 0
-  icon: {fileID: 21300000, guid: 5e7b51d86cdf6ec4bb3d61a77214f6ca, type: 3}
+  icon: {fileID: 21300000, guid: c0ae20a960bb2e641bfe8c448df1dcb5, type: 3}
   skillEffectDuration: 5
   attackSpeed: 0.5
   fireBallPrefab: {fileID: 167000821084740648, guid: e7c445fde8fe3b54d813127e839916a6, type: 3}
