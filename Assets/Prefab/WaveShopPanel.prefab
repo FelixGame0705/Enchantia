@@ -340,7 +340,7 @@ MonoBehaviour:
   _moneyText: {fileID: 9057797475681281108}
   _waveText: {fileID: 6852552544678483470}
   _droppedItemController: {fileID: 0}
-  _detailWeapon: {fileID: 0}
+  _detailWeapon: {fileID: 3953671431233114754}
   _statsPanel: {fileID: 3822279255811833394}
   _characterController: {fileID: 0}
   _rerollMechanicController: {fileID: 3454377189469515471}
@@ -2689,6 +2689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a00a412f815682749abaf75dae153fc7, type: 3}
+--- !u!1 &3953671431233114754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1613484926714431657, guid: a00a412f815682749abaf75dae153fc7, type: 3}
+  m_PrefabInstance: {fileID: 2358334545297693227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4983030853235319072 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7322066769301437195, guid: a00a412f815682749abaf75dae153fc7, type: 3}
