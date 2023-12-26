@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
   itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+  rarityColor: {r: 0, g: 0.8392157, b: 0.23529412, a: 1}
   tier: 1
   itemName: Crossbow
   itemDescription: Pierces up to 1 times on critical hit

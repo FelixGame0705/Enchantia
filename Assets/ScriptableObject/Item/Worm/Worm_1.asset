@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: 834c8155e5fa8e84ab2842b985900a87, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0.6, g: 0.6, b: 0.6, a: 0}
+  rarityColor: {r: 0, g: 0.8392157, b: 0.23529412, a: 1}
   tier: 1
   itemName: Worm
   itemDescription: "+2 HP Regeneration  \n-1 HP recovered from consumables \n+3 Max
