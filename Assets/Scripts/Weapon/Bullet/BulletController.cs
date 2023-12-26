@@ -48,6 +48,7 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+            if(enemy!=null)
             enemy.TakeDamage(_damage);
             Debug.Log("Damage " + _damage);
             GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);

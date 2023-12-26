@@ -216,7 +216,7 @@ Animator:
   m_GameObject: {fileID: 2791037767686925329}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 04d076534644c534d80750dd4f8df64b, type: 2}
+  m_Controller: {fileID: 22100000, guid: 720a6132448f33446a87bada20d05920, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -359,7 +359,7 @@ MonoBehaviour:
   AnimatorEnemy: {fileID: 1507064205803770177}
   EnemyType: 1
   _attackStage: 0
-  _attackCollider: {fileID: 0}
+  _attackCollider: {fileID: 2663108331954931221}
 --- !u!61 &2854897206060401376
 BoxCollider2D:
   m_ObjectHideFlags: 0

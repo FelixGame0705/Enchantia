@@ -1,5 +1,82 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &683396216065935524
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6630049894454320545}
+  - component: {fileID: 5924957845062470553}
+  m_Layer: 6
+  m_Name: AttackCol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6630049894454320545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683396216065935524}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5837140005369307384}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5924957845062470553
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683396216065935524}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07306862, y: 0.30851904}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5291023, y: 0.38296193}
+  m_EdgeRadius: 0
 --- !u!1 &2887363150254497448
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8722739708809926964}
   - component: {fileID: 8408924363780627848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Dirt front '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8949139477562537554}
   - component: {fileID: 2567923097643703754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Headb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +257,7 @@ GameObject:
   - component: {fileID: 5380096534133707231}
   - component: {fileID: 211657958639648171}
   - component: {fileID: 4305204382784454994}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +274,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5571129873576878579}
@@ -217,7 +294,7 @@ Animator:
   m_GameObject: {fileID: 4908123560144473573}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d41c6276426f0d54db9e6133712a2cfd, type: 2}
+  m_Controller: {fileID: 22100000, guid: 2cb91cbfb106523439c25178a5744907, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -308,7 +385,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837140005369307384}
-  m_Layer: 0
+  - component: {fileID: 7423092235595210662}
+  - component: {fileID: 2278821058944084373}
+  - component: {fileID: 1481758377687616676}
+  m_Layer: 6
   m_Name: M_Mole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,8 +409,101 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8683371532096594478}
+  - {fileID: 6630049894454320545}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7423092235595210662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665747004756632522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46de09c4b3100334a91bd82b3b2eddac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyDataConfig: {fileID: 11400000, guid: 65a181646e3af894393a33d770cef4c6, type: 2}
+  Target: {fileID: 0}
+  CurrentHealth: 0
+  CurrentSpeed: 0
+  AnimatorEnemy: {fileID: 5380096534133707231}
+  EnemyType: 0
+  _attackStage: 0
+  _attackCollider: {fileID: 5924957845062470553}
+--- !u!50 &2278821058944084373
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665747004756632522}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &1481758377687616676
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665747004756632522}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000019073486, y: 0.43030286}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6752434, y: 0.49662685}
+  m_EdgeRadius: 0
 --- !u!1 &6666757581221495254
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 216865675099346697}
   - component: {fileID: 5481202043218713426}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Dirt back '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2035395264720489490}
   - component: {fileID: 6177306579966587580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'R_Arm '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671648508249399742}
   - component: {fileID: 7811658894858089621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5571129873576878579}
   - component: {fileID: 6292761412756510671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'L_Arm '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6258407718684634939}
   - component: {fileID: 2096145436493240789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Headb2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
