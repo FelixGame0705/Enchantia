@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class WeaponMelee : WeaponBase
 {
@@ -52,10 +53,13 @@ public class WeaponMelee : WeaponBase
 
             DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
         }
-        Flip();
-        Rotate();
-        if(Target!=null)
+
+        if (Target != null)
+        {
+            Flip();
+            Rotate();
             AttackMachanism(Target.transform);
+        }
     }
 
     public bool CanPerformAttack()
