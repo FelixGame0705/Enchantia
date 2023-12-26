@@ -81,7 +81,7 @@ public class BasicEnemy : EnemyBase
 
     private void FinishedAttack()
     {
-        AnimatorEnemy.Play("idle");
+        AnimatorEnemy.Play("Run");
         _attackCollider.enabled = false;
         _attackStage = ATTACK_STAGE.FINISHED;
     }
