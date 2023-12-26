@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class WeaponRanged : WeaponBase
 {
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _bulletPrefab;
 
     private GameObject _player;
     protected override void Attack()
@@ -119,7 +120,7 @@ public class WeaponRanged : WeaponBase
         //GameObject bullet = 
     }
 
-    AnimationClip GetAnimationClip(string animationName)
+    private AnimationClip GetAnimationClip(string animationName)
     {
         // L?y AnimationClip d?a trên tên
         AnimationClip[] clips = WeaponAnimator.runtimeAnimatorController.animationClips;
@@ -133,5 +134,10 @@ public class WeaponRanged : WeaponBase
         }
 
         return null;
+    }
+
+    public GameObject GetBulletPrefab()
+    {
+        return _bulletPrefab;
     }
 }

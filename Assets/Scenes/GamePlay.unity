@@ -2948,6 +2948,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPattern: {fileID: 7803629493765453988, guid: 4f1c4e12a830f5c42b1d3c593dd9438c, type: 3}
   BulletMeleePattern: {fileID: 7803629493765453988, guid: caded9dc0f30d40498a27c2866cbe98b, type: 3}
+  BulletObjectPool: {fileID: 1476139923173598827, guid: 88e2ee81b37b6fd4ab986b93a0e1df76, type: 3}
+  BulletPoolObjects: []
   HitEffectPatterns:
   - {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
   - {fileID: 5930641049452268680, guid: e57af0f4bd5623c4cbcea5ec657b2f36, type: 3}

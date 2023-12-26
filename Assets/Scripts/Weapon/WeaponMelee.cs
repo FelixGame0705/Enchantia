@@ -23,7 +23,7 @@ public class WeaponMelee : WeaponBase
     public override void SetTargetForAttack(Transform target)
     {
         Target = target.gameObject;
-        if(Target.activeSelf == false) Target = null;
+        if (Target.activeSelf == false) Target = null;
     }
 
     public override void SetPlayerPosition(Transform player)
@@ -41,21 +41,30 @@ public class WeaponMelee : WeaponBase
     // Update is called once per frame
     void Update()
     {
-        _colAttack.OverlapCollider(_contactFilter, _result);
-        foreach (Collider2D collision in _result)
-        {
-            EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-            enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
-            GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
-            GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
-            AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
-
-            DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
-        }
+        ColliderAttacking();
         Flip();
         Rotate();
-        if(Target!=null)
+        if (Target != null)
             AttackMachanism(Target.transform);
+
+
+    }
+
+    private void ColliderAttacking()
+    {
+        if (_colAttack != null)
+            _colAttack.OverlapCollider(_contactFilter, _result);
+        if (_result.Count > 0)
+            foreach (Collider2D collision in _result)
+            {
+                EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+                enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
+                GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
+                GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
+                AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
+
+                DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
+            }
     }
 
     public bool CanPerformAttack()
@@ -69,7 +78,7 @@ public class WeaponMelee : WeaponBase
         switch (PlayerAttackStage)
         {
             case ATTACK_STAGE.START:
-                
+
                 PlayerAttackStage = ATTACK_STAGE.DELAY;
                 SetStateAttacking(ATTACK_STAGE.DELAY, true);
                 transform.position = Target.transform.position;
@@ -86,8 +95,8 @@ public class WeaponMelee : WeaponBase
             case ATTACK_STAGE.DURATION:
                 PlayerAttackStage = ATTACK_STAGE.FINISHED;
                 SetStateAttacking(ATTACK_STAGE.FINISHED, true);
-                
-                
+
+
                 transform.position = initWeaponPosition;
                 break;
             case ATTACK_STAGE.FINISHED:
@@ -108,7 +117,7 @@ public class WeaponMelee : WeaponBase
                 {
                     if (Vector2.Distance(_player.transform.position, Target.transform.position) <= WeaponDataConfig.WeaponConfig.Range)
                     {
-                         
+
                         Flip();
                         if (Target != null)
                         {
@@ -127,7 +136,7 @@ public class WeaponMelee : WeaponBase
                     WeaponAnimator.enabled = true;
                     //AnimateAttack();
                     Attack();
-                    
+
                     //DamageEnemy();
                     base.PlayerAttackStage = ATTACK_STAGE.DURATION;
                 }
@@ -139,7 +148,7 @@ public class WeaponMelee : WeaponBase
                     WeaponAnimator.Play("Idle");
                     SetStateAttacking(ATTACK_STAGE.DURATION, false);
                     SetStateAttacking(ATTACK_STAGE.FINISHED, true);
-                    
+
                     base.PlayerAttackStage = ATTACK_STAGE.FINISHED;
                 }
                 break;
@@ -163,8 +172,8 @@ public class WeaponMelee : WeaponBase
 
     public void Flip()
     {
-        if(Target!=null)
-        transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        if (Target != null)
+            transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
         CheckDirectionRotate();
     }
 

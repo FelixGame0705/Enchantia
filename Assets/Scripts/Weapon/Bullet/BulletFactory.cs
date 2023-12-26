@@ -7,6 +7,8 @@ public class BulletFactory : MonoBehaviour
 {
     [SerializeField] protected GameObject BulletPattern;
     [SerializeField] protected GameObject BulletMeleePattern;
+    [SerializeField] protected GameObject BulletObjectPool;
+    [SerializeField] protected List<GameObject> BulletPoolObjects = new List<GameObject>();
     [SerializeField] protected List<GameObject> HitEffectPatterns;
     [SerializeField] protected GameObject BloodEffectPattern;
     [SerializeField] protected GameObject HitEffectPattern;
@@ -123,6 +125,24 @@ public class BulletFactory : MonoBehaviour
     public virtual void ReturnHitEffToPool(GameObject gameObject, HIT_EFFECT_TYPE type)
     {
         HitEffectPools[(int)type].GetComponent<ObjectPool>().ReturnObjectToPool(gameObject);
+    }
+
+    public void SetBulletModelPrefab(List<GameObject> bulletModels)
+    {
+        SpawnBulletObjectPool(bulletModels.Count);
+        for(int i = 0; i < bulletModels.Count; i++)
+        {
+            BulletPoolObjects[i].GetComponent<ObjectPool>().objectPrefab = bulletModels[i];
+        }
+    }
+
+    public void SpawnBulletObjectPool(int countObjectPool)
+    {
+        for(int i = 0; i < countObjectPool; i++)
+        {
+            GameObject pool = Instantiate(BulletObjectPool);
+            BulletPoolObjects.Add(pool);
+        }
     }
     
 }
