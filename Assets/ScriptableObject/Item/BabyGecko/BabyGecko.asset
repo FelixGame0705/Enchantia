@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: 73ef3e6f52652ad4e8c6ccd6031aae28, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 0}
+  rarityColor: {r: 0, g: 0.8392157, b: 0.23529412, a: 1}
   tier: 1
   itemName: Baby Gecko
   itemDescription: "+ 20% change to instantly attract a material when it dropped 

@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 2058221034898601602, guid: d862842a9f142570fb3dc3586c2f175f, type: 3}
   itemImg: {fileID: 21300000, guid: afed687958ae2b745a91b43fad579200, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0, g: 0, b: 0, a: 0}
+  rarityColor: {r: 0.5411765, g: 0.5529412, b: 0, a: 1}
   tier: 4
   itemName: Spear
   itemDescription: 
