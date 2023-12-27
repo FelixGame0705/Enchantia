@@ -114,7 +114,7 @@ public class WeaponMelee : WeaponBase
         switch (base.PlayerAttackStage)
         {
             case ATTACK_STAGE.START:
-                if (CheckIsAttack(PlayerAttackStage))
+                if (CheckIsAttack(PlayerAttackStage) && Target.activeSelf == true)
                 {
                     if (Vector2.Distance(_player.transform.position, Target.transform.position) <= WeaponDataConfig.WeaponConfig.Range)
                     {

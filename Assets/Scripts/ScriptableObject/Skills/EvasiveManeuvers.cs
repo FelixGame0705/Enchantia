@@ -38,7 +38,7 @@ public class EvasiveManeuvers : Skill
             case ATTACK_STAGE.FINISHED:
                 Destroy(_vfxInstance);
                 _characterController.CharacterModStats.Dodge.AddModifier(new StatModifier(-_percentDodgeAddMultiplePercent, StatModType.Flat));
-                _characterController.CharacterModStats.Speed.AddModifier(new StatModifier(_percentSpeedAddMultiplePercent, StatModType.PercentAdd));
+                _characterController.CharacterModStats.Speed.AddModifier(new StatModifier(-_percentSpeedAddMultiplePercent, StatModType.PercentAdd));
                 isUsingSkill = false;
                 stage = ATTACK_STAGE.START;
                 break;
