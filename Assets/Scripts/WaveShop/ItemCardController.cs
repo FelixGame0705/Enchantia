@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.PlasticSCM.Editor.WebApi;
 using TMPro;
 
 public class ItemCardController : MonoBehaviour

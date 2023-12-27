@@ -20,6 +20,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private GameOverController _gameOverController;
     [SerializeField] private float _timePlay = 0;
 
+    private bool _isSpawnedBulletPool = false;
     public int CurrentWave{get => _currentWave;}
     public GameObject Character { get => _character; set => _character = value; }
     public float TimePlay { get => _timePlay; set => _timePlay = value; }
@@ -67,6 +68,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
                 ResetEnemiesInWave();
+                _bulletFactory.ResetPoolObject();
                 _waveTimeController.SetWave(_currentWave);
                 SetTimeForEnemyFactory();
                 _enemyFactory.SetEnemyModelPool();
@@ -74,6 +76,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.PLAYING:
                 Time.timeScale = 1;
+                SetBulletPrefabBulletFactory();
                 StartCoroutine(_waveTimeController.Countdown());
                 StartCoroutine(TimePlayCounting());
                 _waveShop.SetActive(false);
@@ -81,6 +84,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 _enemyFactory.SetTarget(Character);
                 break;
             case GAME_STATES.GAME_OVER:
+                _isSpawnedBulletPool = false;
                 UpWave();
                 UpdateState(GAME_STATES.WAVE_SHOP);
                 break;
@@ -182,5 +186,28 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         RemoveEnemies();
         _enemyFactory.ResetEnemiesPool();
+    }
+
+    private Dictionary<int,GameObject> GetBulletModelPrefab()
+    {
+        Dictionary<int,GameObject> weapons = new Dictionary<int,GameObject>();
+        for(int i = 0; i < GetWeaponSystem().GetCountWeapon(); i++)
+        {
+            if(GetCharacterController().GetWeaponSystem().GetWeapon(i) as WeaponRanged)
+            {
+                WeaponRanged wp = (WeaponRanged) GetCharacterController().GetWeaponSystem().GetWeapon(i);
+                weapons.Add(wp.GetID(),wp.GetBulletPrefab());
+            }
+        }
+        return weapons;
+    }
+
+    private void SetBulletPrefabBulletFactory()
+    {
+        if (_isSpawnedBulletPool == false)
+        {
+            _bulletFactory.SetBulletModelPrefab(GetBulletModelPrefab());
+            _isSpawnedBulletPool = true;
+        }
     }
 }

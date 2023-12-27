@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationEvent : MonoBehaviour
+public class WeaponAnimationEvent : MonoBehaviour
 {
     [SerializeField] private Collider2D _colAttack;
 

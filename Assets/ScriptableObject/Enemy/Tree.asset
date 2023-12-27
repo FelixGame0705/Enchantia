@@ -18,8 +18,8 @@ MonoBehaviour:
     _hpAddPerWave: 0
     _speed: 0
     _damagePerWave: 0
-    _materialsDropped: 0
-    _lootCrateDropRate: 0
+    _materialsDropped: 1
+    _lootCrateDropRate: 1
     _firstWaveAppearing: 0
     _rangeAttack: 0
   _enemyName: 

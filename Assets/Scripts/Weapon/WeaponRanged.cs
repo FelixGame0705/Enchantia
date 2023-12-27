@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class WeaponRanged : WeaponBase
 {
     [SerializeField] private Transform _firePoint;
+    [SerializeField] private GameObject _bulletPrefab;
 
     private GameObject _player;
     protected override void Attack()
@@ -98,7 +99,7 @@ public class WeaponRanged : WeaponBase
         
         yield return new WaitUntil(() => WeaponAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         
-        if (target != null) GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
+        if (target != null) GamePlayController.Instance.GetBulletFactory().CreateBulletBaseOnPool(GetID(),target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
         //SetStateAttacking(ATTACK_STAGE.DURATION, true);
         PlayerAttackStage = ATTACK_STAGE.DURATION;
         
@@ -119,7 +120,7 @@ public class WeaponRanged : WeaponBase
         //GameObject bullet = 
     }
 
-    AnimationClip GetAnimationClip(string animationName)
+    private AnimationClip GetAnimationClip(string animationName)
     {
         // L?y AnimationClip d?a trên tên
         AnimationClip[] clips = WeaponAnimator.runtimeAnimatorController.animationClips;
@@ -133,5 +134,10 @@ public class WeaponRanged : WeaponBase
         }
 
         return null;
+    }
+
+    public GameObject GetBulletPrefab()
+    {
+        return _bulletPrefab;
     }
 }

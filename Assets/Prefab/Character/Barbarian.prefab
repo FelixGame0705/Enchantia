@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5635785078056490778}
   - component: {fileID: 5635785078056490777}
   - component: {fileID: 2430197011496947247}
+  - component: {fileID: 476572077899884280}
+  - component: {fileID: 5171921282234329759}
   m_Layer: 0
   m_Name: Barbarian
   m_TagString: Untagged
@@ -27,6 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5635785078056490776}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,7 +39,6 @@ Transform:
   - {fileID: 4242588011027545452}
   - {fileID: 2047371283179536288}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5635785078056490779
 MonoBehaviour:
@@ -138,9 +140,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats:
     MaxHP:
-      BaseValue: 0
+      BaseValue: 20
     HPRegeneration:
-      BaseValue: 0
+      BaseValue: 1
     LifeSteal:
       BaseValue: 0
     Damage:
@@ -150,7 +152,7 @@ MonoBehaviour:
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
-      BaseValue: 0
+      BaseValue: 5
     AttackSpeed:
       BaseValue: 0
     CritChance:
@@ -164,22 +166,95 @@ MonoBehaviour:
     Dodge:
       BaseValue: 0
     Speed:
-      BaseValue: 0
+      BaseValue: 5
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0
+      BaseValue: 0.1
     HarvestRange:
-      BaseValue: 0
+      BaseValue: 3
   mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
   characterSprite: {fileID: 6151712857128447991, guid: 1079d7989f0446d408ae72909b880e80, type: 3}
   characterBodySprite: {fileID: 6151712857128447991, guid: 1079d7989f0446d408ae72909b880e80, type: 3}
-  baseWeapon: {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
+  baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
+--- !u!61 &476572077899884280
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635785078056490776}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14390627, y: 0.86443496}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.0509887, y: 4.05}
+    newSize: {x: 4.0509887, y: 4.05}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1619861, y: 2.0047598}
+  m_EdgeRadius: 0
+--- !u!50 &5171921282234329759
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635785078056490776}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5635785077796927246
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5635785078056490772}
     m_Modifications:
     - target: {fileID: 3192688092232614464, guid: a0bfd5d7a359fd642b9be2ca886e585a, type: 3}
@@ -231,6 +306,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0bfd5d7a359fd642b9be2ca886e585a, type: 3}
 --- !u!114 &5859453451739114518 stripped
 MonoBehaviour:
@@ -253,12 +331,9 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5635785078056490772}
     m_Modifications:
-    - target: {fileID: 5935724512869093986, guid: a458bd8f9cd0f4e469b0fe3198c09cf5, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5935724512869093986, guid: a458bd8f9cd0f4e469b0fe3198c09cf5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -304,6 +379,9 @@ PrefabInstance:
       value: MC_Barbarian
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a458bd8f9cd0f4e469b0fe3198c09cf5, type: 3}
 --- !u!95 &701741757746911569 stripped
 Animator:
@@ -320,6 +398,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5635785078056490772}
     m_Modifications:
     - target: {fileID: 8419171614896682884, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
@@ -427,6 +506,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
 --- !u!114 &113693419595918239 stripped
 MonoBehaviour:

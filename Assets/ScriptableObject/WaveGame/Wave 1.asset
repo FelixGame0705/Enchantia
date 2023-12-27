@@ -15,10 +15,14 @@ MonoBehaviour:
   _enemiesConfig:
   - EnemyPrefab: {fileID: 1104530920869019027, guid: 39500eff196113341864f115e8ac7123, type: 3}
     RateAppear: 1
-  - EnemyPrefab: {fileID: 8845373745087624746, guid: 6d8de5c8893b23c499281158645fcc44, type: 3}
-    RateAppear: 10
+  - EnemyPrefab: {fileID: 5408616270285665258, guid: b33d80d544547cf43a64b649cccde2db, type: 3}
+    RateAppear: 1
+  - EnemyPrefab: {fileID: 7554134914787535927, guid: 13e875e776f790449abbf7f17c135769, type: 3}
+    RateAppear: 1
+  - EnemyPrefab: {fileID: 5665747004756632522, guid: 3a02d87b6a9379846b461943c5fd076c, type: 3}
+    RateAppear: 1
   _timeWave: 30
   _timeAppearEnemies: 3
   _minEnemies: 2
   _maxEnemies: 5
-  _sumRateAppear: 11
+  _sumRateAppear: 4
