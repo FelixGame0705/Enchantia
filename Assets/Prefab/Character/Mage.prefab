@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797494db8bec1d4f85008b937f2fbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterDataConfig: {fileID: 11400000, guid: 4756dfa9f5a0f9046b0da06085932972, type: 2}
+  CharacterDataConfig: {fileID: 11400000, guid: 44c9c55e77f2a9647845999aae433f4e, type: 2}
   WeaponSystemInCharacter: {fileID: 5859453451739114518}
   Target: {fileID: 0}
   CurrentHealth: 10
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillsWithKeys:
-  - skill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
+  - skill: {fileID: 11400000, guid: a1669d306cffdf54993fe5f7c8cd96c8, type: 2}
     activationKey: 32
     buttonSkillController: {fileID: 113693419595918239}
   activeSkillInstances: []
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats:
     MaxHP:
-      BaseValue: 20
+      BaseValue: 12
     HPRegeneration:
       BaseValue: 1
     LifeSteal:
@@ -152,11 +152,11 @@ MonoBehaviour:
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
-      BaseValue: 5
+      BaseValue: 0
     AttackSpeed:
-      BaseValue: 0
+      BaseValue: -0.1
     CritChance:
-      BaseValue: 0
+      BaseValue: 0.15
     Engineering:
       BaseValue: 0
     Range:
@@ -170,10 +170,10 @@ MonoBehaviour:
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0.1
+      BaseValue: 0
     HarvestRange:
       BaseValue: 3
-  mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
+  mainSkill: {fileID: 11400000, guid: a1669d306cffdf54993fe5f7c8cd96c8, type: 2}
   characterSprite: {fileID: 2479105827450233693, guid: 1b7104886f49356409cda9ea9ffc3c27, type: 3}
   characterBodySprite: {fileID: 2479105827450233693, guid: 1b7104886f49356409cda9ea9ffc3c27, type: 3}
   baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
@@ -209,7 +209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3617406, y: 3.387683}
+  m_Offset: {x: -0.2179156, y: 0.86114514}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -220,7 +220,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8320494, y: 4.292021}
+  m_Size: {x: 0.962324, y: 1.2908943}
   m_EdgeRadius: 0
 --- !u!50 &5404143974859225449
 Rigidbody2D:

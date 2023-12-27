@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797494db8bec1d4f85008b937f2fbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharacterDataConfig: {fileID: 11400000, guid: 4756dfa9f5a0f9046b0da06085932972, type: 2}
+  CharacterDataConfig: {fileID: 11400000, guid: 8f363f498297ca54088a6a6a1cb856d1, type: 2}
   WeaponSystemInCharacter: {fileID: 5859453451739114518}
   Target: {fileID: 0}
   CurrentHealth: 10
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillsWithKeys:
-  - skill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
+  - skill: {fileID: 11400000, guid: 15f395612af3eb94da74f8adab2ec630, type: 2}
     activationKey: 32
     buttonSkillController: {fileID: 113693419595918239}
   activeSkillInstances: []
@@ -173,7 +173,7 @@ MonoBehaviour:
       BaseValue: 0.1
     HarvestRange:
       BaseValue: 3
-  mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
+  mainSkill: {fileID: 11400000, guid: 15f395612af3eb94da74f8adab2ec630, type: 2}
   characterSprite: {fileID: -2691112631397518175, guid: 5e2e05aea4798fe4da2d491cb1ca6ce1, type: 3}
   characterBodySprite: {fileID: -2691112631397518175, guid: 5e2e05aea4798fe4da2d491cb1ca6ce1, type: 3}
   baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}

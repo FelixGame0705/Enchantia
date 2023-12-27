@@ -19,7 +19,7 @@ MonoBehaviour:
     _speed: 0
     _damagePerWave: 1
     _materialsDropped: 0
-    _lootCrateDropRate: 0
+    _lootCrateDropRate: 1
     _firstWaveAppearing: 0
     _rangeAttack: 1
   _enemyName: Mole

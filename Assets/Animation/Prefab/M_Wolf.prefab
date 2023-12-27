@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46de09c4b3100334a91bd82b3b2eddac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyDataConfig: {fileID: 11400000, guid: 5c32405de16d2bd46bdaa028cdae09fa, type: 2}
+  EnemyDataConfig: {fileID: 11400000, guid: efbf7a73ca696a240bbc157e61054eb5, type: 2}
   Target: {fileID: 0}
   CurrentHealth: 0
   CurrentSpeed: 0
