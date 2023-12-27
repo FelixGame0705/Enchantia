@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Character_Mod:
     MaxHP:
-      BaseValue: 0
+      BaseValue: 15
     HPRegeneration:
-      BaseValue: 0
+      BaseValue: 2
     LifeSteal:
       BaseValue: 0
     Damage:
       BaseValue: 0
     MeleeDamage:
-      BaseValue: 0
+      BaseValue: 3
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
@@ -40,11 +40,12 @@ MonoBehaviour:
     Dodge:
       BaseValue: 0
     Speed:
-      BaseValue: 0
+      BaseValue: 5
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0
+      BaseValue: 0.1
     HarvestRange:
-      BaseValue: 0
-  firstItems: []
+      BaseValue: 3
+  firstItems:
+  - {fileID: 11400000, guid: b49270b053258b546b8ca0043784ff9a, type: 2}
