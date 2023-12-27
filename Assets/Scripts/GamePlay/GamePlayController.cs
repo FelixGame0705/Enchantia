@@ -68,6 +68,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
                 ResetEnemiesInWave();
+                _bulletFactory.ResetPoolObject();
                 _waveTimeController.SetWave(_currentWave);
                 SetTimeForEnemyFactory();
                 _enemyFactory.SetEnemyModelPool();
@@ -187,15 +188,15 @@ public class GamePlayController : Singleton<GamePlayController>
         _enemyFactory.ResetEnemiesPool();
     }
 
-    private List<GameObject> GetBulletModelPrefab()
+    private Dictionary<int,GameObject> GetBulletModelPrefab()
     {
-        List<GameObject> weapons = new List<GameObject>();
+        Dictionary<int,GameObject> weapons = new Dictionary<int,GameObject>();
         for(int i = 0; i < GetWeaponSystem().GetCountWeapon(); i++)
         {
             if(GetCharacterController().GetWeaponSystem().GetWeapon(i) as WeaponRanged)
             {
                 WeaponRanged wp = (WeaponRanged) GetCharacterController().GetWeaponSystem().GetWeapon(i);
-                weapons.Add(wp.GetBulletPrefab());
+                weapons.Add(wp.GetID(),wp.GetBulletPrefab());
             }
         }
         return weapons;

@@ -99,7 +99,7 @@ public class WeaponRanged : WeaponBase
         
         yield return new WaitUntil(() => WeaponAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         
-        if (target != null) GamePlayController.Instance.GetBulletFactory().CreateBullet(target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
+        if (target != null) GamePlayController.Instance.GetBulletFactory().CreateBulletBaseOnPool(GetID(),target.position - _firePoint.position, WeaponDataConfig.WeaponConfig.Range, _firePoint.position, DealWithDamage());
         //SetStateAttacking(ATTACK_STAGE.DURATION, true);
         PlayerAttackStage = ATTACK_STAGE.DURATION;
         

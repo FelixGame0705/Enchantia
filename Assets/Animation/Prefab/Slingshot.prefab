@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6085253939643136543}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 2319751685768218005}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7023424929412112439
 MonoBehaviour:
@@ -52,11 +52,13 @@ MonoBehaviour:
   _attackParticle: {fileID: 0}
   _attackSound: {fileID: 0}
   _firePoint: {fileID: 8798074930117600014}
+  _bulletPrefab: {fileID: 7803629493765453988, guid: 290ef733224de6c429c357011bf6951f, type: 3}
 --- !u!1001 &8377025062433359011
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 179810313269911277}
     m_Modifications:
     - target: {fileID: 6084435901335109942, guid: 96486e567ca746f479ceb4b160ce0f73, type: 3}
@@ -108,6 +110,9 @@ PrefabInstance:
       value: W_Slingshot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96486e567ca746f479ceb4b160ce0f73, type: 3}
 --- !u!95 &449674128237510368 stripped
 Animator:

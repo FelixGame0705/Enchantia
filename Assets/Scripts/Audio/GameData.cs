@@ -10,7 +10,7 @@ public class GameData : Singleton<GameData>
     private const string VOLUME_AUDIO_GAME = "volumeAudioGame";
     private float _volumeAudioGame = 0f;
 
-    private GameObject _selectedCharacter;
+    [SerializeField] private GameObject _selectedCharacter;
 
 
     public float VolumeAudioGame { get => _volumeAudioGame; set => _volumeAudioGame = value; }

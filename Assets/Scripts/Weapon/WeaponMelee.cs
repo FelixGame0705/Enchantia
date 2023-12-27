@@ -201,8 +201,11 @@ public class WeaponMelee : WeaponBase
     public float RotateDirectionY = 1;
     public void CheckDirectionRotate()
     {
-        RotateDirectionX = transform.position.x > Target.transform.position.x ? 1 : -1;
-        RotateDirectionY = transform.position.y > Target.transform.position.y ? 1 : -1;
+        if (Target != null)
+        {
+            RotateDirectionX = transform.position.x > Target.transform.position.x ? 1 : -1;
+            RotateDirectionY = transform.position.y > Target.transform.position.y ? 1 : -1;
+        }
     }
 
     private void MoveToEnemy(Transform target)

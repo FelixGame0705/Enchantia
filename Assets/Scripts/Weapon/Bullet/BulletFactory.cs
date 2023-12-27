@@ -8,7 +8,7 @@ public class BulletFactory : MonoBehaviour
     [SerializeField] protected GameObject BulletPattern;
     [SerializeField] protected GameObject BulletMeleePattern;
     [SerializeField] protected GameObject BulletObjectPool;
-    [SerializeField] protected List<GameObject> BulletPoolObjects = new List<GameObject>();
+    [SerializeField] protected Dictionary<int,GameObject> BulletPoolObjects = new Dictionary<int,GameObject>();
     [SerializeField] protected List<GameObject> HitEffectPatterns;
     [SerializeField] protected GameObject BloodEffectPattern;
     [SerializeField] protected GameObject HitEffectPattern;
@@ -46,6 +46,17 @@ public class BulletFactory : MonoBehaviour
     {
         _bulletPool.objectPrefab = BulletPattern;
         GameObject bullet = _bulletPool.GetObjectFromPool();
+        bullet.transform.position = positionBullet;
+        bulletController = bullet.GetComponent<BulletController>();
+        bulletController.SetDistance(distance);
+        bulletController.SetDirection(direction);
+        bulletController.SetDamage(damage);
+        return bullet;
+    }
+
+    public GameObject CreateBulletBaseOnPool(int key, Vector3 direction, float distance, Vector3 positionBullet, float damage)
+    {
+        GameObject bullet = BulletPoolObjects[key].GetComponent<ObjectPool>().GetObjectFromPool();
         bullet.transform.position = positionBullet;
         bulletController = bullet.GetComponent<BulletController>();
         bulletController.SetDistance(distance);
@@ -127,22 +138,31 @@ public class BulletFactory : MonoBehaviour
         HitEffectPools[(int)type].GetComponent<ObjectPool>().ReturnObjectToPool(gameObject);
     }
 
-    public void SetBulletModelPrefab(List<GameObject> bulletModels)
+    public void SetBulletModelPrefab(Dictionary<int,GameObject> bulletModels)
     {
-        SpawnBulletObjectPool(bulletModels.Count);
-        for(int i = 0; i < bulletModels.Count; i++)
+        SpawnBulletObjectPool(bulletModels);
+        foreach(KeyValuePair<int, GameObject> objectPool in bulletModels)
         {
-            BulletPoolObjects[i].GetComponent<ObjectPool>().objectPrefab = bulletModels[i];
+            BulletPoolObjects[objectPool.Key].GetComponent<ObjectPool>().objectPrefab = objectPool.Value;
         }
     }
 
-    public void SpawnBulletObjectPool(int countObjectPool)
+    public void SpawnBulletObjectPool(Dictionary<int, GameObject> bulletModels)
     {
-        for(int i = 0; i < countObjectPool; i++)
+        foreach (KeyValuePair<int, GameObject> objectPool in bulletModels)
         {
-            GameObject pool = Instantiate(BulletObjectPool);
-            BulletPoolObjects.Add(pool);
+            GameObject poolInstance = Instantiate(BulletObjectPool);
+            BulletPoolObjects.Add(objectPool.Key, poolInstance);
         }
     }
     
+    public void ResetPoolObject()
+    {
+        foreach (KeyValuePair<int, GameObject> objectPool in BulletPoolObjects)
+        {
+            Destroy(objectPool.Value);
+        }
+        
+        BulletPoolObjects.Clear();
+    }
 }
