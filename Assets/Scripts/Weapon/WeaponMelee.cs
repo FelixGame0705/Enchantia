@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class WeaponMelee : WeaponBase
 {
@@ -237,7 +238,7 @@ public class WeaponMelee : WeaponBase
 
     AnimationClip GetAnimationClip(string animationName)
     {
-        // L?y AnimationClip d?a trên tên
+        // L?y AnimationClip d?a trï¿½n tï¿½n
         AnimationClip[] clips = WeaponAnimator.runtimeAnimatorController.animationClips;
 
         foreach (var animClip in clips)

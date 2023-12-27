@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: f971884dea9d350409a868ce773c6dd6, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0, g: 0, b: 0, a: 0}
+  rarityColor: {r: 0, g: 0.8392157, b: 0.23529412, a: 1}
   tier: 1
   itemName: Snake
   itemDescription: 'Burning spreads to a nearby enemy

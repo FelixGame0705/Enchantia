@@ -32,7 +32,7 @@ MonoBehaviour:
     _weaponBaseModel: {fileID: 0}
   itemImg: {fileID: 21300000, guid: d782df1bea61569498b9e070de41f20d, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0, g: 0, b: 0, a: 0}
+  rarityColor: {r: 0, g: 0.8392157, b: 0.23529412, a: 1}
   tier: 1
   itemName: Charcoal
   itemDescription: '+1 Elemental Damage

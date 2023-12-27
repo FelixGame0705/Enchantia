@@ -29,10 +29,10 @@ MonoBehaviour:
     TYPE: 1
     _attackSpeed: 0.7
     _level: 0
-    _weaponBaseModel: {fileID: 8474969733171250484, guid: d9535043106a3c84b905d70ab6c6d5ad, type: 3}
+    _weaponBaseModel: {fileID: 3393362224481154256, guid: fdacad8f22389ef42b8286e487770961, type: 3}
   itemImg: {fileID: 21300000, guid: ed0c6c52ef6c0f747986a6f5f1b05368, type: 3}
   itemBG: {fileID: 0}
-  rarityColor: {r: 0, g: 0, b: 0, a: 0}
+  rarityColor: {r: 0.50980395, g: 0, b: 0.45882353, a: 1}
   tier: 3
   itemName: Wand
   itemDescription: Deals 3x3/5x4/8x5/12x6(100%Elemental Damage.png) burning damage
