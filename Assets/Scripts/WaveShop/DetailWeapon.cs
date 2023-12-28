@@ -10,7 +10,6 @@ public class DetailWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -41,28 +40,26 @@ public class DetailWeapon : MonoBehaviour
     public void OnClickCombine()
     {
         int oldIndex = WaveShopMainController.Instance.GetIndexWeaponSelected();
-        int oldID = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[WaveShopMainController.Instance.GetIndexWeaponSelected()].GetCardData().Id;
+        int oldID = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[oldIndex].GetCardData().Id;
         if (FindIndexRemove(oldIndex, oldID) < 0) return;
         WaveShopMainController.Instance.GetWeaponInventory().UpgradeCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().UpgradeWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().SellWeapon(FindIndexRemove(oldIndex, oldID));
         WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(FindIndexRemove(oldIndex, oldID));
-        
-
     }
 
     private int FindIndexRemove(int oldIndex, int oldID)
     {
         int id_combine = -1;
-        for (int i = 0; i < WaveShopMainController.Instance.GetWeaponInventory().CardControllerList.Count; i++)
+        var cardControllerList = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList;
+        for (int i = 0; i < cardControllerList.Count; i++)
         {
-            if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetCardData().Id == oldID)
+            if (cardControllerList[i].GetCardData().Id == oldID)
             {
-                if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetID() != oldIndex)
+                if (cardControllerList[i].GetID() != oldIndex)
                 {
-                    id_combine = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetID();
+                    cardControllerList[i].GetID();
                 }
-
             }
 
             if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetCardData().NextItemWeapon == null) continue;
