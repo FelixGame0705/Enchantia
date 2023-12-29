@@ -38,4 +38,4 @@ MonoBehaviour:
   itemDescription: Deals 3x3/5x4/8x5/12x6(100%Elemental Damage.png) burning damage
   itemPrice: 122
   nextItemWeapon: {fileID: 0}
-  id: 0
+  id: 8

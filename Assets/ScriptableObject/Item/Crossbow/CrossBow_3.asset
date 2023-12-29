@@ -30,7 +30,7 @@ MonoBehaviour:
     _attackSpeed: 1.13
     _level: 0
     _weaponBaseModel: {fileID: 3563874935191199179, guid: 7b13599d2acfc6e4490802ba0e32e02e, type: 3}
-  itemImg: {fileID: 21300000, guid: f3a4a120bbea2b54f96de6e48ea9a163, type: 3}
+  itemImg: {fileID: -1201772774456808696, guid: 894c9a56e2e678b4295a9babdabf9e96, type: 3}
   itemBG: {fileID: 0}
   rarityColor: {r: 0.50980395, g: 0, b: 0.45882353, a: 1}
   tier: 3
@@ -38,4 +38,4 @@ MonoBehaviour:
   itemDescription: Pierces up to 3 times on critical hit
   itemPrice: 66
   nextItemWeapon: {fileID: 11400000, guid: a99a0ae5040608ebca6582ac057b60e7, type: 2}
-  id: 7
+  id: 2

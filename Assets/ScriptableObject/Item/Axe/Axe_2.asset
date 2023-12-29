@@ -38,4 +38,4 @@ MonoBehaviour:
   itemDescription: 
   itemPrice: 39
   nextItemWeapon: {fileID: 11400000, guid: cce9e4b21fd49ef4f970355f79b144e3, type: 2}
-  id: 0
+  id: 1
