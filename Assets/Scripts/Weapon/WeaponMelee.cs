@@ -59,6 +59,7 @@ public class WeaponMelee : WeaponBase
             foreach (Collider2D collision in _result)
             {
                 EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
+                if(enemy!=null)
                 enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
                 GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
                 GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
