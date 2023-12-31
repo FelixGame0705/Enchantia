@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class DetailWeapon : MonoBehaviour
@@ -10,7 +11,6 @@ public class DetailWeapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -38,35 +38,45 @@ public class DetailWeapon : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // 
     public void OnClickCombine()
     {
         int oldIndex = WaveShopMainController.Instance.GetIndexWeaponSelected();
-        int oldID = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[WaveShopMainController.Instance.GetIndexWeaponSelected()].GetCardData().Id;
+        int oldID = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[oldIndex].GetCardData().Id;
+        var indexRemove = FindIndexRemove(oldIndex,oldID);
         if (FindIndexRemove(oldIndex, oldID) < 0) return;
         WaveShopMainController.Instance.GetWeaponInventory().UpgradeCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().UpgradeWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        GamePlayController.Instance.GetWeaponSystem().SellWeapon(FindIndexRemove(oldIndex, oldID));
-        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(FindIndexRemove(oldIndex, oldID));
-        
-
+        GamePlayController.Instance.GetWeaponSystem().SellWeapon(indexRemove);
+        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(indexRemove);
     }
 
     private int FindIndexRemove(int oldIndex, int oldID)
     {
         int id_combine = -1;
-        for (int i = 0; i < WaveShopMainController.Instance.GetWeaponInventory().CardControllerList.Count; i++)
-        {
-            if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetCardData().Id == oldID)
-            {
-                if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetID() != oldIndex)
-                {
-                    id_combine = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetID();
-                }
+        var cardControllerList = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList;
+        var cardImage = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[oldIndex];
+        if(cardImage == null) return -1;
+        if(cardImage.GetCardData().NextItemWeapon == null) return -1;
+        var list = cardControllerList.FindAll(item => {
+            return item.GetCardData().name.Equals(cardImage.GetCardData().name) 
+            && item.GetCardData().Tier == cardImage.GetCardData().Tier
+            && item.GetID() != cardImage.GetID()
+            ;
+        });
+        if(list.Count > 0) id_combine = list[0].GetID();
+        // for (int i = 0; i < cardControllerList.Count; i++)
+        // {
+        //     if (cardControllerList[i].GetCardData().Id == oldID)
+        //     {
+        //         if (cardControllerList[i].GetID() != oldIndex)
+        //         {
+        //             cardControllerList[i].GetID();
+        //         }
+        //     }
 
-            }
-
-            if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetCardData().NextItemWeapon == null) continue;
-        }
+        //     if (WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[i].GetCardData().NextItemWeapon == null) continue;
+        // }
         return id_combine;
     }
 }

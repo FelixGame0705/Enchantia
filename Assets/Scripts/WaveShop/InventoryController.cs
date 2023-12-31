@@ -64,7 +64,8 @@ public class InventoryController : MonoBehaviour
             card.CombineRecycleInfo.CombineWave = WaveShopMainController.Instance.CurrentWave;
             card.CombineRecycleInfo.BuyWave = -1;
         }
-        _cardControllerList[id].SetCardData(_cardControllerList[id].GetCardData().NextItemWeapon);
+        _cardControllerList[id] = card;
+        // _cardControllerList[id].SetCardData(_cardControllerList[id].GetCardData().NextItemWeapon);
     }
 
     public void RemoveCard(int id)

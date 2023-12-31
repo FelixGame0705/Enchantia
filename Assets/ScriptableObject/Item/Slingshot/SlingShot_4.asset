@@ -38,4 +38,4 @@ MonoBehaviour:
   itemDescription: Bounces 4 times
   itemPrice: 122
   nextItemWeapon: {fileID: 0}
-  id: 0
+  id: 6
