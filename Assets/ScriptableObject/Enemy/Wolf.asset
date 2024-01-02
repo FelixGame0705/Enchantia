@@ -22,6 +22,8 @@ MonoBehaviour:
     _lootCrateDropRate: 0
     _firstWaveAppearing: 0
     _rangeAttack: 0
+    _damageIncrease: 1
+    _healthIncrease: 2.4
   _enemyName: 
   _particleAttack: {fileID: 0}
   _particleHurt: {fileID: 0}

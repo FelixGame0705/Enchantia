@@ -22,15 +22,16 @@ public class BasicEnemyFactory : EnemyFactory
 
     public GameObject CreateEnemyBaseOnPool(int enemyModel, GameObject target, Vector2 position)
     {
-        Debug.Log(enemyModel + "Index enemy" + _currentWave);
-        Debug.Log(enemyModel + "Index enemy prefab" + _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab.name);
         _enemyPools[enemyModel].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[enemyModel].EnemyPrefab;
         
         GameObject enemy = _enemyPools[(int)enemyModel].GetComponent<ObjectPool>().GetObjectFromPool();
         enemy.transform.position = position;
-        Debug.Log("Target la " + enemy);
         if (enemy.GetComponent<EnemyBase>() != null)
+        {
+            enemy.GetComponent<EnemyBase>().SetEnemyConfigStats(_currentWave);
             enemy.GetComponent<EnemyBase>().SetTarget(target);
+        }
+            
         return enemy;
     }
 
