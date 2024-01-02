@@ -90,10 +90,16 @@ public class BasicEnemy : EnemyBase
     {
         AnimatorEnemy.speed = 0.5f;
         AnimatorEnemy.Play("Attack");
-        Target.GetComponent<CharacterController>().TakeDamage(EnemyDataConfig.EnemyStats.DamagePerWave);
+        Target.GetComponent<CharacterController>().TakeDamage(CurrentDamage);
         //_playerUpDownController.TakeDamage(_enemyConfig.DamageAttack);
         _attackCollider.enabled = true;
         yield return new WaitUntil(() => AnimatorEnemy.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
         _attackStage = ATTACK_STAGE.DURATION;
+    }
+
+    public override void SetEnemyConfigStats(int currentWave)
+    {
+        CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth + EnemyDataConfig.EnemyStats.HealthIncrease * currentWave;
+        CurrentDamage = EnemyDataConfig.EnemyStats.DamagePerWave + EnemyDataConfig.EnemyStats.DamageIncrease * currentWave;
     }
 }

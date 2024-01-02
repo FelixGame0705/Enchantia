@@ -22,6 +22,8 @@ MonoBehaviour:
     _lootCrateDropRate: 1
     _firstWaveAppearing: 0
     _rangeAttack: 1
+    _damageIncrease: 1
+    _healthIncrease: 1
   _enemyName: Mole
   _particleAttack: {fileID: 0}
   _particleHurt: {fileID: 0}

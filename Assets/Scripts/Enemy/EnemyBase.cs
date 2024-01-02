@@ -7,6 +7,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject Target;
     [SerializeField] protected float CurrentHealth;
     [SerializeField] protected float CurrentSpeed;
+    [SerializeField] protected float CurrentDamage;
     [SerializeField] protected Animator AnimatorEnemy;
     [SerializeField] public ENEMY_TYPE EnemyType;
     public ATTACK_STAGE _attackStage;
@@ -29,11 +30,13 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void OnEnable()
     {
-        CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth;
+        //CurrentHealth = EnemyDataConfig.EnemyStats.MaxHealth + EnemyDataConfig.EnemyStats.HealthIncrease;
     }
     
     public void SetTarget(GameObject target)
     {
         Target = target;
     }
+
+    public virtual void SetEnemyConfigStats(int currentWave) { }
 }
