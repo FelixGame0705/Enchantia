@@ -6,10 +6,13 @@ using UnityEngine;
 public class CharacterBaseStatsDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text valueText;
+    [SerializeField] private TMP_Text titleText;
     [SerializeField] private float value;
+    [SerializeField] private string title;
 
-    public void LoadData(float value)
+    public void LoadData(string title,float value)
     {
+        this.title = title;
         if((int) value != value)
         {
             this.value = value * 100;
@@ -23,14 +26,25 @@ public class CharacterBaseStatsDisplay : MonoBehaviour
 
     public void Render()
     {
+        gameObject.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
         valueText.text = value.ToString();
-        this.gameObject.SetActive(true);
+        titleText.text = title.ToString();
     }
 
     public void DisableRender()
     {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
         value = 0;
         valueText.text = "";
-        this.gameObject.SetActive(false);
+        titleText.text = "";
+        title = "";
     }
 }

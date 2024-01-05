@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [Serializable]
@@ -122,4 +124,26 @@ public class Character_Mod
     public CharacterStat Harvesting;
     [Tooltip("Flat")]
     public CharacterStat HarvestRange;
+
+    public Dictionary<string, CharacterStat> GetProperties(){
+        var probList = new Dictionary<string, CharacterStat>();
+        probList.Add("Max HP", MaxHP);
+        probList.Add("HP Regenerate", HPRegeneration);
+        probList.Add("Life Steal", LifeSteal);
+        probList.Add("Damage", Damage);
+        probList.Add("Melee Damage", MeleeDamage);
+        probList.Add("Range Damage", RangedDamage);
+        probList.Add("Element Damage", ElementalDamage);
+        probList.Add("Attack Speed", AttackSpeed);
+        probList.Add("Crit Rate", CritChance);
+        probList.Add("Engineering", Engineering);
+        probList.Add("Range", Range);
+        probList.Add("Armor", Armor);
+        probList.Add("Dodge", Dodge);
+        probList.Add("Speed", Speed);
+        probList.Add("Luck", Luck);
+        probList.Add("Harvesting", Harvesting);
+        probList.Add("Harvest Range", HarvestRange);
+        return probList;
+    }
 }
