@@ -17,7 +17,7 @@ MonoBehaviour:
     reducing the damage they take for a moderate duration (+25% arrmor). \nCooldown:
     15 seconds."
   damage: 0
-  cooldown: 0
+  cooldown: 15
   timeInUsing: 0
   icon: {fileID: 21300000, guid: 257fdb0f4ab9c704ab7060dd205a992f, type: 3}
   _armorAddFlat: 25

@@ -27,6 +27,6 @@ MonoBehaviour:
     RateAppear: 3
   _timeWave: 90
   _timeAppearEnemies: 3
-  _minEnemies: 1
-  _maxEnemies: 5
+  _minEnemies: 5
+  _maxEnemies: 10
   _sumRateAppear: 16

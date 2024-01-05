@@ -27,10 +27,11 @@ Transform:
   m_GameObject: {fileID: 970110228860266583}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.100418, y: 0.19429278, z: 0.2939709}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1280892501096883379}
   m_Father: {fileID: 3620448717126279429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4756198187141747658
@@ -115,6 +116,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3620448717126279429}
+  - component: {fileID: 8838665994903921538}
   m_Layer: 0
   m_Name: W_Staff
   m_TagString: Untagged
@@ -131,10 +133,61 @@ Transform:
   m_GameObject: {fileID: 3393362224481154256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.98958, y: 2.2257073, z: -0.29397094}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4690503130704403985}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8838665994903921538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393362224481154256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8196a39b875845a4083c357f92f6c74b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponDataConfig: {fileID: 11400000, guid: 9c847e07b2880766facc7d668de22edc, type: 2}
+  WeaponAnimator: {fileID: 4644387391706197360}
+  Target: {fileID: 0}
+  PlayerAttackStage: 0
+  _attackParticle: {fileID: 0}
+  _attackSound: {fileID: 0}
+  _firePoint: {fileID: 1280892501096883379}
+  _bulletPrefab: {fileID: 7803629493765453988, guid: 3edecb9045b488946bbd427bbbef5add, type: 3}
+--- !u!1 &4019648009766937882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1280892501096883379}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1280892501096883379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019648009766937882}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.98, y: 1.08, z: 0}
+  m_LocalScale: {x: 3.333333, y: 3.333333, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4690503130704403985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

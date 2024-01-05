@@ -24,7 +24,7 @@ MonoBehaviour:
     _specialEffects: 0
     _basePrice: 36
     _unlockedBy: 0
-    _id: 1
+    _id: 
   weaponName: Crossbow
   _particleAttack: {fileID: 0}
   _attackSound: {fileID: 0}
