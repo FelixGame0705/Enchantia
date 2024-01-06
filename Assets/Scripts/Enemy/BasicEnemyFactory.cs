@@ -9,6 +9,7 @@ public class BasicEnemyFactory : EnemyFactory
     [SerializeField] private List<WaveGameData> _waveGameDatas;
     [SerializeField] private List<GameObject> _enemyPatternList;
     [SerializeField] private List<GameObject> _enemyPools = new List<GameObject>();
+    [SerializeField] private List<GameObject> _bossPools = new List<GameObject>();
     [SerializeField] private GameObject _poolModel;
     [SerializeField] private GameObject _bossPrefab;
     [SerializeField] private ObjectPool _signalPool;
@@ -35,11 +36,14 @@ public class BasicEnemyFactory : EnemyFactory
         return enemy;
     }
 
-    public override GameObject CreateBoss(Transform target)
+    public override void CreateBoss(Transform target)
     {
-        GameObject boss = Instantiate(_bossPrefab);
-        boss.GetComponent<EnemyBase>().SetTarget(target.gameObject);
-        return boss;
+        for(int i = 0; i < _waveGameDatas[_currentWave].BossPrefab.Count; i++)
+        {
+            GameObject boss = _bossPools[i].GetComponent<ObjectPool>().GetObjectFromPool();
+            boss.GetComponent<EnemyBase>().SetTarget(target.gameObject);
+            GetEnemies().Add(boss);
+        }
     }
     public int GetRandomEnemyType()
     {
@@ -63,12 +67,27 @@ public class BasicEnemyFactory : EnemyFactory
         _enemyPools.Add(pool);
     }
 
+    public void SpawnBossPool()
+    {
+        GameObject pool = Instantiate(_poolModel);
+        _bossPools.Add(pool);
+    }
+
     public override void SetEnemyModelPool()
     {
         for(int i = 0; i < _waveGameDatas[_currentWave].EnemiesConfig.Count; i++)
         {
             SpawnGameObjectPool();
             _enemyPools[i].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].EnemiesConfig[i].EnemyPrefab;
+        }
+    }
+
+    public override void SetBossModelPool()
+    {
+        for(int i = 0; i < _waveGameDatas[_currentWave].BossPrefab.Count; i++)
+        {
+            SpawnBossPool();
+            _bossPools[i].GetComponent<ObjectPool>().objectPrefab = _waveGameDatas[_currentWave].BossPrefab[i];
         }
     }
 
@@ -84,6 +103,18 @@ public class BasicEnemyFactory : EnemyFactory
         _enemyPools.Clear();
     }
 
+    public override void ResetBossesPool()
+    {
+        for (int i = _bossPools.Count - 1; i >= 0; i--)
+        {
+            _bossPools[i].GetComponent<ObjectPool>().ResetQueue();
+            Destroy(_bossPools[i]);
+
+
+        }
+        _bossPools.Clear();
+    }
+
     private Vector2 RandomPositionSpawn()
     {
         Vector2 spawnPoint = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10));
@@ -94,7 +125,7 @@ public class BasicEnemyFactory : EnemyFactory
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -109,6 +140,18 @@ public class BasicEnemyFactory : EnemyFactory
                 RandomSpawnEnemy();
             }
         }
+
+        if (isSpawnBoss == false && _bossPools.Count > 0)
+        {
+            CreateBoss(GamePlayController.Instance.GetEnemyFactory().GetTarget().transform);
+            isSpawnBoss = true;
+        }
+    }
+
+    bool isSpawnBoss = false;
+    private void LateUpdate()
+    {
+        
     }
 
     public override void ReturnEnemToPool(GameObject gameObject)

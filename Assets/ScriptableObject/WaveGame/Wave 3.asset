@@ -19,6 +19,8 @@ MonoBehaviour:
     RateAppear: 4
   - EnemyPrefab: {fileID: 5665747004756632522, guid: 3a02d87b6a9379846b461943c5fd076c, type: 3}
     RateAppear: 5
+  _bossPrefab:
+  - {fileID: 2294742969913562456, guid: 533f3191361f2ec479a5fc9c53cf7bf6, type: 3}
   _timeWave: 60
   _timeAppearEnemies: 3
   _minEnemies: 1

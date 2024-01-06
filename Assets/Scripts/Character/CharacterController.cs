@@ -207,6 +207,7 @@ public class CharacterController : MonoBehaviour
 
     public void AddCurrentHealth(int value)
     {
+        if(CurrentHealth < CharacterDataConfig.Character_Mod.MaxHP.Value)
         CurrentHealth += value;
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
     }

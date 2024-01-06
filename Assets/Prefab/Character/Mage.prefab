@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 601413731904299469}
   - component: {fileID: 1981485158848415871}
   - component: {fileID: 5404143974859225449}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ MonoBehaviour:
     Luck:
       BaseValue: 0
     Harvesting:
-      BaseValue: 0
+      BaseValue: 0.1
     HarvestRange:
       BaseValue: 3
   mainSkill: {fileID: 11400000, guid: a1669d306cffdf54993fe5f7c8cd96c8, type: 2}
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &5635785077796927246
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ using UnityEngine;
 public class WaveGameData : ScriptableObject
 {
     [SerializeField] private List<EnemyConfig> _enemiesConfig;
+    [SerializeField] private List<GameObject> _bossPrefab;
     [SerializeField] private float _timeWave;
     [SerializeField] private float _timeAppearEnemies;
     [SerializeField] private int _minEnemies;
@@ -33,6 +34,7 @@ public class WaveGameData : ScriptableObject
     public int MinEnemies { get => _minEnemies; set => _minEnemies = value; }
     public int MaxEnemies { get => _maxEnemies; set => _maxEnemies = value; }
     public float SumRateAppear { get => _sumRateAppear; set => _sumRateAppear = value; }
+    public List<GameObject> BossPrefab { get => _bossPrefab; set => _bossPrefab = value; }
 }
 
 [Serializable]

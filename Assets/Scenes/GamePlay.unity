@@ -2928,7 +2928,7 @@ MonoBehaviour:
   - {fileID: 8845373745087624746, guid: 6d8de5c8893b23c499281158645fcc44, type: 3}
   _enemyPools: []
   _poolModel: {fileID: 1476139923173598827, guid: 88e2ee81b37b6fd4ab986b93a0e1df76, type: 3}
-  _bossPrefab: {fileID: 7232690823073104611, guid: 892fa7121c478af4cab376161227b7e9, type: 3}
+  _bossPrefab: {fileID: 2294742969913562456, guid: 533f3191361f2ec479a5fc9c53cf7bf6, type: 3}
   _signalPool: {fileID: 395281587}
 --- !u!114 &1359198612
 MonoBehaviour:

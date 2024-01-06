@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    [SerializeField] private BulletData _bulletData;
-    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] protected BulletData BulletDataConfig;
+    [SerializeField] protected LayerMask _layerMask;
     protected float Damage;
     private float _distance;
     private Vector3 _direction;
@@ -16,7 +16,7 @@ public class BulletController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        transform.position += _direction.normalized * _bulletData.BulletConfig.Speed * Time.deltaTime;
+        transform.position += _direction.normalized * BulletDataConfig.BulletConfig.Speed * Time.deltaTime;
     }
 
     public virtual void SetDirection(Vector3 direction)
@@ -36,9 +36,14 @@ public class BulletController : MonoBehaviour
         _distance = distance;
     }
 
+    public virtual void SetTarget(Transform target)
+    {
+
+    }
+
     IEnumerator DelayReturnPool()
     {
-        yield return new WaitForSeconds(_distance/_bulletData.BulletConfig.Speed);
+        yield return new WaitForSeconds(_distance/BulletDataConfig.BulletConfig.Speed);
         GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
     }
 
