@@ -15,13 +15,14 @@ public class CharacterSelectDisplayController : MonoBehaviour
 
     public void Render()
     {
-        _characterSelectedDisplay.sprite = _characterSprite;
-        characterInfoListController.LoadData(_selectedCharacterData);
         if(isFirstRender == false)
         {
             this.gameObject.SetActive(true);
             isFirstRender = true;
         }
+        _characterSelectedDisplay.sprite = _characterSprite;
+        characterInfoListController.LoadData(_selectedCharacterData);
+        
     }
 
     public void LoadData(CharacterBaseInfo data)
