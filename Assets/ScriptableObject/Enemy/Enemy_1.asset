@@ -21,7 +21,9 @@ MonoBehaviour:
     _materialsDropped: 0
     _lootCrateDropRate: 0
     _firstWaveAppearing: 0
-    _rangeAttack: 1
+    _rangeAttack: 8
+    _damageIncrease: 0
+    _healthIncrease: 0
   _enemyName: Facy
   _particleAttack: {fileID: 0}
   _particleHurt: {fileID: 0}

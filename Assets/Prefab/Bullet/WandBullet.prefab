@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f863b63ff5ab9a4095c902ef76e0479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletData: {fileID: 11400000, guid: 28fcfeaf3255e5345ab5881bcbf8615c, type: 2}
+  BulletDataConfig: {fileID: 11400000, guid: 28fcfeaf3255e5345ab5881bcbf8615c, type: 2}
   _layerMask:
     serializedVersion: 2
     m_Bits: 64

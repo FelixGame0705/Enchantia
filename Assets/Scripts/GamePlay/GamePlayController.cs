@@ -72,6 +72,7 @@ public class GamePlayController : Singleton<GamePlayController>
                 _waveTimeController.SetWave(_currentWave);
                 SetTimeForEnemyFactory();
                 _enemyFactory.SetEnemyModelPool();
+                _enemyFactory.SetBossModelPool();
                 Time.timeScale = 0;
                 break;
             case GAME_STATES.PLAYING:

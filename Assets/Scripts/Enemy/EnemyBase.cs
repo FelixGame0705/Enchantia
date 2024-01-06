@@ -23,7 +23,7 @@ public abstract class EnemyBase : MonoBehaviour
     abstract protected void Move();
     abstract public void TakeDamage(float health);
     
-    public void Flip()
+    public virtual void Flip()
     {
         transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(-1, 1, 1) : new Vector3(1, 1, 1);
     }

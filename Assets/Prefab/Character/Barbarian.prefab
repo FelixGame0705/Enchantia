@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2430197011496947247}
   - component: {fileID: 476572077899884280}
   - component: {fileID: 5171921282234329759}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barbarian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,11 +140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats:
     MaxHP:
-      BaseValue: 20
+      BaseValue: 17
     HPRegeneration:
-      BaseValue: 1
-    LifeSteal:
       BaseValue: 0
+    LifeSteal:
+      BaseValue: 0.1
     Damage:
       BaseValue: 0
     MeleeDamage:
@@ -152,7 +152,7 @@ MonoBehaviour:
     RangedDamage:
       BaseValue: 0
     ElementalDamage:
-      BaseValue: 5
+      BaseValue: 0
     AttackSpeed:
       BaseValue: 0
     CritChance:
@@ -166,9 +166,9 @@ MonoBehaviour:
     Dodge:
       BaseValue: 0
     Speed:
-      BaseValue: 5
+      BaseValue: 4
     Luck:
-      BaseValue: 0
+      BaseValue: 0.05
     Harvesting:
       BaseValue: 0.1
     HarvestRange:
@@ -176,7 +176,7 @@ MonoBehaviour:
   mainSkill: {fileID: 11400000, guid: d5b55b81d4c221241bce8d04399b8644, type: 2}
   characterSprite: {fileID: 6151712857128447991, guid: 1079d7989f0446d408ae72909b880e80, type: 3}
   characterBodySprite: {fileID: 6151712857128447991, guid: 1079d7989f0446d408ae72909b880e80, type: 3}
-  baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
+  baseWeapon: {fileID: 11400000, guid: 05131308ac62f400faf22ae94a5ebe54, type: 2}
 --- !u!61 &476572077899884280
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1001 &5635785077796927246
 PrefabInstance:
   m_ObjectHideFlags: 0

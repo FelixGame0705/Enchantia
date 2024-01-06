@@ -24,10 +24,11 @@ public class BasicEnemy : EnemyBase
     {
         Move();
         Flip();
-        if(Vector3.Distance(gameObject.transform.position, Target.transform.position) <= EnemyDataConfig.EnemyStats.RangeAttack)
+        if (Vector3.Distance(gameObject.transform.position, Target.transform.position) <= EnemyDataConfig.EnemyStats.RangeAttack)
         {
             AttackMechanism();
-        }    }
+        }
+    }
 
     public override void TakeDamage(float health)
     {
@@ -36,7 +37,7 @@ public class BasicEnemy : EnemyBase
 
         GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.BLOOD_EFFECT);
 
-        if(CurrentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.GOLD, new Vector2(transform.position.x, transform.position.y));
