@@ -179,8 +179,8 @@ public class GamePlayController : Singleton<GamePlayController>
         for(int i = 0; i < GetEnemyFactory().GetEnemies().ToArray().Length; i++)
         {
             Destroy(GetEnemyFactory().GetEnemies().ToArray()[i]);
+            GetEnemyFactory().GetEnemies().RemoveWhere(x=>GetEnemyFactory().GetEnemies().ToArray()[i].GetComponent<EnemyBase>().isSurviveNextWave==false);
         }
-        GetEnemyFactory().GetEnemies().Clear();
     }
 
     public void ResetEnemiesInWave()
@@ -205,7 +205,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void SetBulletPrefabBulletFactory()
     {
-        if (_isSpawnedBulletPool == false)
+        //if (_isSpawnedBulletPool == false)
         {
             _bulletFactory.SetBulletModelPrefab(GetBulletModelPrefab());
             _isSpawnedBulletPool = true;
