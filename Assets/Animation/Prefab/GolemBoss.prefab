@@ -100,6 +100,7 @@ MonoBehaviour:
   CurrentDamage: 0
   AnimatorEnemy: {fileID: 8332806561925388013}
   EnemyType: 0
+  isSurviveNextWave: 1
   _attackStage: 0
   bulletRockPool: {fileID: 1476139923173598827, guid: 88e2ee81b37b6fd4ab986b93a0e1df76, type: 3}
   bigBulletRockPool: {fileID: 1476139923173598827, guid: 88e2ee81b37b6fd4ab986b93a0e1df76, type: 3}

@@ -10,6 +10,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected float CurrentDamage;
     [SerializeField] protected Animator AnimatorEnemy;
     [SerializeField] public ENEMY_TYPE EnemyType;
+    public bool isSurviveNextWave;
     public ATTACK_STAGE _attackStage;
 
     protected void Start()

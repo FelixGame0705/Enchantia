@@ -19,7 +19,7 @@ public class GolemBoss : EnemyBase
     private ATTACK_STAGE _stage = ATTACK_STAGE.START;
     protected void Start()
     {
-        CurrentHealth = 200f;
+        CurrentHealth = 500f;
         SpawnBulletRockPool();
         SpawnBigBulletRockPool();
     }
@@ -32,7 +32,7 @@ public class GolemBoss : EnemyBase
 
         if (CurrentHealth <= 0)
         {
-            //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
+            ClearBullet();
             GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.GOLD, new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
         }
@@ -129,5 +129,11 @@ public class GolemBoss : EnemyBase
     public override void Flip()
     {
         transform.localScale = transform.position.x < Target.transform.position.x ? new Vector3(-1* Mathf.Abs(transform.localScale.x), transform.localScale.y, 1) : new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, 1);
+    }
+
+    public void ClearBullet()
+    {
+        bulletRockPoolInstance.GetComponent<ObjectPool>().ResetQueue();
+        bigBulletRockPoolInstance.GetComponent<ObjectPool>().ResetQueue();
     }
 }
