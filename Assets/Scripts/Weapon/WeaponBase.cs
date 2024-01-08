@@ -11,7 +11,7 @@ public abstract class WeaponBase : MonoBehaviour
     protected ATTACK_STAGE currentState;
     protected abstract void Attack();
     public abstract void SetPlayerPosition(Transform player);
-    protected int ID;
+    [SerializeField] protected int ID;
     public virtual int GetID()
     {
         return ID;

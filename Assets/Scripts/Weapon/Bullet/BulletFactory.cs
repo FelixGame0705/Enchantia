@@ -56,13 +56,17 @@ public class BulletFactory : MonoBehaviour
 
     public GameObject CreateBulletBaseOnPool(int key, Vector3 direction, float distance, Vector3 positionBullet, float damage)
     {
-        GameObject bullet = BulletPoolObjects[key].GetComponent<ObjectPool>().GetObjectFromPool();
-        bullet.transform.position = positionBullet;
-        bulletController = bullet.GetComponent<BulletController>();
-        bulletController.SetDistance(distance);
-        bulletController.SetDirection(direction);
-        bulletController.SetDamage(damage);
-        return bullet;
+        if (BulletPoolObjects.Count > 0)
+        {
+            GameObject bullet = BulletPoolObjects[key].GetComponent<ObjectPool>().GetObjectFromPool();
+            bullet.transform.position = positionBullet;
+            bulletController = bullet.GetComponent<BulletController>();
+            bulletController.SetDistance(distance);
+            bulletController.SetDirection(direction);
+            bulletController.SetDamage(damage);
+            return bullet;
+        }
+        return null;
     }
     
     public virtual GameObject CreateBulletMelee(Vector3 direction, float distance, Vector3 positionBullet, float damage)

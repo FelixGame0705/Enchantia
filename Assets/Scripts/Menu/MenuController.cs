@@ -31,12 +31,12 @@ public class MenuController : Singleton<MenuController>
     {
         /*SceneManager.LoadScene("GamePlay");*/
         // AudioManager.Instance.PlayMusic("ThemeGamePlay");
-        MusicPlayer.instance.PlayTrack(_musicGamePlayBG);
+        //MusicPlayer.instance.PlayTrack(_musicGamePlayBG);
         /*_characterSelected.SetActive(true);*/
         Debug.Log("Start");
         
         _characterSelectUI.SetActive(true);
-        _menuUI.SetActive(false);
+        //_menuUI.SetActive(false);
     }
 
     public void ReturnToMenu()

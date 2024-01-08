@@ -1,3 +1,4 @@
+using CarterGames.Assets.AudioManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,14 @@ public class CharacterSelectionController : Singleton<CharacterSelectionControll
         CharacterSelectionListController.CharacterListInit();
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
     public void SetSelectedCharacter(GameObject characterSelected)
     {
         CharacterSelected = characterSelected;
@@ -43,5 +52,6 @@ public class CharacterSelectionController : Singleton<CharacterSelectionControll
     public void OnClickStart()
     {
         MenuController.Instance.HandleOnClickPlay();
+        MusicPlayer.instance.PlayTrack(SoundController.Instance.GetMusicGamePlayBG());
     }
 }

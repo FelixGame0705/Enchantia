@@ -180,12 +180,24 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void RemoveEnemies()
     {
-        for(int i = 0; i < GetEnemyFactory().GetEnemies().ToArray().Length; i++)
+        HashSet<GameObject> enemiesHashSet = GetEnemyFactory().GetEnemies();
+
+        // Chuy?n ??i HashSet thành m?ng ?? có th? s? d?ng index
+        GameObject[] enemiesArray = enemiesHashSet.ToArray();
+
+        for (int i = enemiesArray.Length - 1; i >= 0; i--)
         {
-            Destroy(GetEnemyFactory().GetEnemies().ToArray()[i]);
-            GetEnemyFactory().GetEnemies().RemoveWhere(x=>GetEnemyFactory().GetEnemies().ToArray()[i].GetComponent<EnemyBase>().isSurviveNextWave==false);
+            GameObject enemy = enemiesArray[i];
+            EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
+
+            if (enemyBase != null && !enemyBase.isSurviveNextWave)
+            {
+                Destroy(enemy);
+                enemiesHashSet.Remove(enemy);
+            }
         }
     }
+
 
     public void ResetEnemiesInWave()
     {
@@ -209,7 +221,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void SetBulletPrefabBulletFactory()
     {
-        //if (_isSpawnedBulletPool == false)
+        if (_isSpawnedBulletPool == false)
         {
             _bulletFactory.SetBulletModelPrefab(GetBulletModelPrefab());
             _isSpawnedBulletPool = true;
