@@ -48,4 +48,6 @@ public abstract class EnemyFactory : MonoBehaviour
     }
 
     public virtual WaveGameData GetWaveGameData() { return null; }
+
+    public virtual List<WaveGameData> WaveGameDataList(){ return null;}
 }

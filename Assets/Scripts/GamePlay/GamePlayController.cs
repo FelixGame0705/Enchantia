@@ -19,6 +19,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameOverController _gameOverController;
     [SerializeField] private float _timePlay = 0;
+    [SerializeField] private bool _isEndLess;
 
     private bool _isSpawnedBulletPool = false;
     public int CurrentWave{get => _currentWave;}
@@ -92,7 +93,10 @@ public class GamePlayController : Singleton<GamePlayController>
             case GAME_STATES.END_GAME:
                 Time.timeScale = 0;
                 _enemyFactory.SetIsSpawned(false);
-                _gameOverController.RenderUI();
+                var maxWave = _enemyFactory.WaveGameDataList().Count;
+                if(_isEndLess) _gameOverController.RenderUI(GAME_OVER_TYPE.ENDLESS);
+                else if(CurrentWave >= maxWave) _gameOverController.RenderUI(GAME_OVER_TYPE.WON);
+                else _gameOverController.RenderUI(GAME_OVER_TYPE.LOST);
                 break;
         }
     }
@@ -210,5 +214,13 @@ public class GamePlayController : Singleton<GamePlayController>
             _bulletFactory.SetBulletModelPrefab(GetBulletModelPrefab());
             _isSpawnedBulletPool = true;
         }
+    }
+
+    public bool CheckGameWonCondition(){
+        if(!_isEndLess){
+            var maxWave = _enemyFactory.WaveGameDataList().Count;
+            if(maxWave <= CurrentWave) return true;
+        }
+        return false;
     }
 }
