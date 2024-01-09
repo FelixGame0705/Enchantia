@@ -13,8 +13,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
     [SerializeField] private ItemViewListController _viewListController;
-    [SerializeField] private InventoryController inventoryController;
-    [SerializeField] private InventoryController weaponInventoryController;
+    [SerializeField] private InventoryController inventoryController;   
+//    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
     [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
@@ -66,7 +66,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             }
             
         }
-        if(weaponInventoryController.GetCountWeapon() == 0)
+        if(inventoryController.GetCountWeapon() == 0)
         {
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
@@ -123,7 +123,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                 CurrentMoney -= finalPrice;
                 itemCard.DisableItem();
             }
-            else if (weaponInventoryController.GetCountWeapon() < 6)
+            else if (inventoryController.GetCountWeapon() < 6)
             {
                 EquipItemWeapon(itemCard.CardItemInfo, itemCard.CardItemInfo.ItemStats.WeaponBaseModel);
                 CurrentMoney -= finalPrice;
@@ -148,13 +148,13 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void EquipItemWeapon(ItemData itemInfo, GameObject weaponModel)
     {
-        weaponInventoryController.AddCardToWeapon(itemInfo);
+        inventoryController.AddCardToWeapon(itemInfo);
         GamePlayController.Instance.GetWeaponSystem().EquipedWeapon(weaponModel);
     }
 
     public InventoryController GetWeaponInventory()
     {
-        return weaponInventoryController;
+        return inventoryController;
     }
 
     public void SetDetailWeapon(Transform anchorTransform, bool isActive)
@@ -189,7 +189,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
 
     public int GetCountWeapon(){
-        return weaponInventoryController.GetCountWeapon();
+        return inventoryController.GetCountWeapon();
     }
 
     private void UpdateViewListInfo(){

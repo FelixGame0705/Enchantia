@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6538907184290158499}
   - component: {fileID: 5753052168433412433}
   - component: {fileID: 1218473830607736944}
+  - component: {fileID: 7773892110628106297}
   m_Layer: 5
   m_Name: ItemBar
   m_TagString: Untagged
@@ -66,6 +67,24 @@ MonoBehaviour:
   _itemBtnImage: {fileID: 4578352736673005939}
   _unactiveColor: {r: 0, g: 0, b: 0, a: 0}
   _activeColor: {r: 0.14117648, g: 0.23529413, b: 0.3019608, a: 1}
+--- !u!114 &7773892110628106297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97271579382069645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188b74584f8902a499d1b8d1c98d8015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponControllerList: []
+  _itemControllerList: []
+  _weaponCardModel: {fileID: 4204834672564882571, guid: 383d38630b23a5440b4f3bb2ad751032, type: 3}
+  _itemCardModel: {fileID: 4204834672564882571, guid: bde7989ca37e4ad40ac4ab54bcecd678, type: 3}
+  _weaponContainer: {fileID: 8789399365261462778}
+  _itemContainer: {fileID: 1579048757754107539}
 --- !u!1 &100631313239787488
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,8 +360,7 @@ MonoBehaviour:
   _currentWave: 1
   _rerollTime: 0
   _viewListController: {fileID: 737416141599715362}
-  inventoryController: {fileID: 3235169635443399066}
-  weaponInventoryController: {fileID: 4085671801638176401}
+  inventoryController: {fileID: 7773892110628106297}
   _moneyText: {fileID: 9057797475681281108}
   _waveText: {fileID: 6852552544678483470}
   _droppedItemController: {fileID: 0}
@@ -619,7 +637,6 @@ GameObject:
   - component: {fileID: 8951930805848892601}
   - component: {fileID: 4831995830022151089}
   - component: {fileID: 2095360453626122764}
-  - component: {fileID: 3235169635443399066}
   m_Layer: 0
   m_Name: ItemsBar
   m_TagString: Untagged
@@ -708,20 +725,6 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &3235169635443399066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579048757754107539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188b74584f8902a499d1b8d1c98d8015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardControllerList: []
-  _cardModel: {fileID: 4204834672564882571, guid: bde7989ca37e4ad40ac4ab54bcecd678, type: 3}
 --- !u!1 &2300075850509375195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,7 +1418,6 @@ GameObject:
   - component: {fileID: 4205956365701078022}
   - component: {fileID: 7418834781351984405}
   - component: {fileID: 3607741205948527169}
-  - component: {fileID: 4085671801638176401}
   m_Layer: 0
   m_Name: WeaponBar
   m_TagString: Untagged
@@ -1474,20 +1476,6 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 5}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &4085671801638176401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8789399365261462778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 188b74584f8902a499d1b8d1c98d8015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardControllerList: []
-  _cardModel: {fileID: 4204834672564882571, guid: 383d38630b23a5440b4f3bb2ad751032, type: 3}
 --- !u!1 &8824962482728772116
 GameObject:
   m_ObjectHideFlags: 0
