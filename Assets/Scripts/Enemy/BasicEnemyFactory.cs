@@ -197,4 +197,8 @@ public class BasicEnemyFactory : EnemyFactory
     {
         return _waveGameDatas[_currentWave];
     }
+
+    public override List<WaveGameData> WaveGameDataList(){
+        return _waveGameDatas;
+    }
 }

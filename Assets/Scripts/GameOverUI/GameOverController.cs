@@ -11,6 +11,12 @@ public class GameOverController : MonoBehaviour
     [SerializeField] private TMP_Text _waveText;
     [SerializeField] private TMP_Text timeCount;
     [SerializeField] private Image _characterImage;
+    [SerializeField] private TMP_Text _resultWaveText;
+    [SerializeField] private Color _winColor;
+    [SerializeField] private Color _lostColor;
+    [SerializeField] private string _textWon;
+    [SerializeField] private string _textLost;
+    [SerializeField] private GAME_OVER_TYPE _gameOverType;
 
     private void OnEnable()
     {
@@ -34,7 +40,7 @@ public class GameOverController : MonoBehaviour
     public void OnClickedNewRun(){
         SceneManager.LoadScene("GamePlay");
     }
-    public void RenderUI()
+    public void RenderUI(GAME_OVER_TYPE type)
     {
         _resultController.Render();
         _gameOverStatsDisplayController.LoadData(GamePlayController.Instance.GetCharacterController().CharacterModStats);
@@ -42,12 +48,23 @@ public class GameOverController : MonoBehaviour
         var charBaseInfo = GamePlayController.Instance.Character.GetComponent<CharacterBaseInfo>();
         charBaseInfo.Load();
         _characterImage.sprite = charBaseInfo.CharacterSprite;
-            
+        switch(type){
+            case GAME_OVER_TYPE.ENDLESS:
+            case GAME_OVER_TYPE.LOST:
+                _resultWaveText.color = _lostColor;
+                _resultWaveText.text = _textLost;
+            break;
+            case GAME_OVER_TYPE.WON:
+                _resultWaveText.color = _winColor;
+                _resultWaveText.text = _textWon;  
+            break;
+        }  
         this.gameObject.SetActive(true);
     }
 
     private void UpdateWaveDisplay(){
-        _waveText.text = string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString());
+        var result = _gameOverType == GAME_OVER_TYPE.ENDLESS ? string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString(), " - Endless") : string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString());
+        _waveText.text = result;
     }
 
     private void LoadTime()
