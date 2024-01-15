@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
-
+[RequireComponent (typeof(GridLayoutGroup), typeof(RectTransform))]
 public class ContentScale : MonoBehaviour
 {
     [SerializeField] private GridLayoutGroup grid;
@@ -10,16 +9,22 @@ public class ContentScale : MonoBehaviour
     [SerializeField] private float cellSize = 1f;
     [SerializeField] private float cellBetween = 1f;
 
-    private void Awake()
+
+    private void Start()
     {
         cellSize = grid.cellSize.y;
         cellBetween = grid.spacing.y;
-        AdjustSize(7);
+        var allEntity = this.transform.childCount;
+        AdjustSize(allEntity);
     }
 
     public void AdjustSize(int columnEntity)
     {
-        var contentHight = columnEntity * (cellSize + cellBetween);
+        var contentHight = GetColumnNumber(columnEntity,contentTransform.sizeDelta.x) * (cellSize + cellBetween);
         contentTransform.sizeDelta = new Vector2(contentTransform.sizeDelta.x, contentHight);
+    }
+
+    public int GetColumnNumber(int numberOfEntity, float contentHorizontalSize){
+        return Mathf.RoundToInt(numberOfEntity * (cellSize + 2 * cellBetween) / contentHorizontalSize);
     }
 }

@@ -13,15 +13,17 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
     [SerializeField] private ItemViewListController _viewListController;
-    [SerializeField] private InventoryController inventoryController;   
+    [SerializeField] private InventoryController inventoryController;
+    [SerializeField] private StatsPanelController _statsPanel;
+    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private RerollMechanicController _rerollMechanicController;
+    [SerializeField] private CombindPanelController _combindPanelController;   
 //    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
     [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameObject _detailWeapon;
-    [SerializeField] private StatsPanelController _statsPanel;
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private RerollMechanicController _rerollMechanicController;
+
 
     
     bool isPanel = false;
@@ -33,6 +35,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public List<ItemData> ItemDataList {get => _itemDataList;}
     public ItemViewListController ViewListController { get => _viewListController; set => _viewListController = value; }
+
+    public CombindPanelController CombindPanelController {get => _combindPanelController;}
 
     private void Update()
     {
@@ -73,6 +77,11 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         }
         ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
         UpdateMoney();
+    }
+
+    private void OnDisable()
+    {
+        _combindPanelController.HidePanel();
     }
 
     public void UpdateStatsPanel(){

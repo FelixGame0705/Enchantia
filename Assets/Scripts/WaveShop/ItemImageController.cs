@@ -56,6 +56,8 @@ public class ItemImageController : MonoBehaviour
     {
         WaveShopMainController.Instance.SetDetailWeapon(transform, true);
         WaveShopMainController.Instance.GetDetailWeapon().SetDetailTxt(_content);
+        WaveShopMainController.Instance.CombindPanelController.SetCardData(_cardItemInfo);
+        WaveShopMainController.Instance.CombindPanelController.RenderPanel();
     }
 
     public int GetID()
