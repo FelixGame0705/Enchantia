@@ -77,3 +77,9 @@ public enum ITEM_TIER
     TIER_3,
     TIER_4
 }
+
+public enum GAME_OVER_TYPE {
+    WON,
+    LOST,
+    ENDLESS
+}
