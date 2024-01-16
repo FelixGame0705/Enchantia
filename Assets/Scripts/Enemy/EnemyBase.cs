@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
@@ -12,6 +13,7 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] public ENEMY_TYPE EnemyType;
     public bool isSurviveNextWave;
     public ATTACK_STAGE _attackStage;
+    public Dictionary<int, bool> dic = new Dictionary<int, bool>();
 
     protected void Start()
     {

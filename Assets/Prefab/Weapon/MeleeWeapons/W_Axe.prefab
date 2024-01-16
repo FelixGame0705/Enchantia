@@ -49,6 +49,7 @@ MonoBehaviour:
   WeaponDataConfig: {fileID: 11400000, guid: f0f6d643c6bfb2c86b55fee97270bc07, type: 2}
   WeaponAnimator: {fileID: 7630121762805761287}
   Target: {fileID: 0}
+  ID: 0
   PlayerAttackStage: 0
   _attackParticle: {fileID: 0}
   _attackSound: {fileID: 0}
@@ -70,7 +71,10 @@ MonoBehaviour:
     maxNormalAngle: 0
   _result: []
   _weaponAnimator: {fileID: 7630121762805761287}
-  Model: {fileID: 7678737195739260821}
+  Model: {fileID: 8140515559328727316}
+  weaponAnimationEvent: {fileID: 184847125033264896}
+  _canAttack: 0
+  isExisted: 0
   RotateDirectionX: 1
   RotateDirectionY: 1
 --- !u!1 &5553180979183865109
@@ -301,4 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5181816cfb24f94aa6c7c2cdcfc4eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponMelee: {fileID: 625712806565346890}
   _colAttack: {fileID: 2057045862797963644}
+  _enemyBase: {fileID: 0}
