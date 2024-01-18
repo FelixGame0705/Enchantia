@@ -11,10 +11,14 @@ public class WeaponMelee : WeaponBase
     [SerializeField] private Collider2D _colAttack;
     [SerializeField] private ContactFilter2D _contactFilter;
     [SerializeField] private List<Collider2D> _result;
+    [SerializeField] private Dictionary<EnemyBase, bool> _enemies = new Dictionary<EnemyBase, bool>();
     [SerializeField] private Animator _weaponAnimator;
     [SerializeField] private GameObject Model;
+    [SerializeField] private WeaponAnimationEvent weaponAnimationEvent;
     private GameObject _player;
     private Vector3 initWeaponPosition;
+
+    public bool _canAttack = false;
 
     protected override void Attack()
     {
@@ -51,6 +55,7 @@ public class WeaponMelee : WeaponBase
 
     }
 
+    public bool isExisted;
     private void ColliderAttacking()
     {
         if (_colAttack != null)
@@ -59,15 +64,26 @@ public class WeaponMelee : WeaponBase
             foreach (Collider2D collision in _result)
             {
                 EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
-                if(enemy!=null)
-                enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
-                GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
-                GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
-                AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
-
-                DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
+                //weaponAnimationEvent.SetEnemyBase(enemy);
+                bool isHurt;
+                isExisted = _enemies.TryGetValue(enemy, out isHurt);
+                if (isExisted == false)
+                    _enemies.Add(enemy, true);
+                if (isHurt == false)
+                {
+                    _enemies[enemy] = true;
+                    if (enemy != null)
+                        enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
+                    GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
+                    GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
+                    AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
+                    DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
+                }
             }
+        weaponAnimationEvent.SetEnemiesBase(_enemies);
     }
+
+
 
     public bool CanPerformAttack()
     {
