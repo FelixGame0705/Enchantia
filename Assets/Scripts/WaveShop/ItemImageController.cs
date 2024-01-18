@@ -11,10 +11,6 @@ public class ItemImageController : MonoBehaviour
     [SerializeField] private int _id;
     [SerializeField] private CombineRecycleInfo combineRecycleInfo;
     
-    private void Awake()
-    {
-        combineRecycleInfo = gameObject.AddComponent<CombineRecycleInfo>();
-    }
 
     private string _content;
     public void EnableItem()
