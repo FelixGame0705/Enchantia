@@ -74,7 +74,7 @@ public class WeaponMelee : WeaponBase
                     _enemies[enemy] = true;
                     if (enemy != null)
                         enemy.TakeDamage(WeaponDataConfig.WeaponConfig.Damage);
-                    GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
+                    GamePlayController.Instance.GetBulletFactory().CreateHitEffect(_firePoint.transform.position, HIT_EFFECT_TYPE.DAMAGE_EFFECT);
                     GamePlayController.Instance.GetBulletFactory().ReturnObjectToPool(gameObject);
                     AudioManager.instance.Play("Hit", GameData.Instance.GetVolumeAudioGame());
                     DynamicTextManager.CreateText2D(collision.transform.position, WeaponDataConfig.WeaponConfig.Damage.ToString(), DynamicTextManager.defaultData);
@@ -126,6 +126,7 @@ public class WeaponMelee : WeaponBase
         }
     }
 
+    private Vector2 TargetCollider2D;
     public void AttackMachanism(Transform target)
     {
         switch (base.PlayerAttackStage)
@@ -133,7 +134,8 @@ public class WeaponMelee : WeaponBase
             case ATTACK_STAGE.START:
                 if (CheckIsAttack(PlayerAttackStage) && Target.activeSelf == true)
                 {
-                    if (Vector2.Distance(_player.transform.position, Target.transform.position) <= WeaponDataConfig.WeaponConfig.Range)
+                    TargetCollider2D = Target.GetComponent<Collider2D>().ClosestPoint(_player.transform.position);
+                    if (Vector2.Distance(_player.transform.position, TargetCollider2D) <= WeaponDataConfig.WeaponConfig.Range)
                     {
 
                         Flip();
