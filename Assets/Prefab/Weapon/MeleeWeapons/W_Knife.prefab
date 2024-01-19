@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5181816cfb24f94aa6c7c2cdcfc4eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponMelee: {fileID: 0}
   _colAttack: {fileID: 8417256998312723680}
 --- !u!1 &4234511984586481998
 GameObject:
@@ -214,6 +215,7 @@ MonoBehaviour:
   WeaponDataConfig: {fileID: 11400000, guid: afa4376d12787ae5a968313c47eb73f3, type: 2}
   WeaponAnimator: {fileID: 8828871041398574325}
   Target: {fileID: 0}
+  ID: 0
   PlayerAttackStage: 0
   _attackParticle: {fileID: 0}
   _attackSound: {fileID: 0}
@@ -236,6 +238,9 @@ MonoBehaviour:
   _result: []
   _weaponAnimator: {fileID: 8828871041398574325}
   Model: {fileID: 6010690269502382076}
+  weaponAnimationEvent: {fileID: 208046288416259112}
+  _canAttack: 0
+  isExisted: 0
   RotateDirectionX: 1
   RotateDirectionY: 1
 --- !u!1 &6010690269502382076
