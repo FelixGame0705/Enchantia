@@ -66,8 +66,8 @@ public class WeaponMelee : WeaponBase
                 EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
                 //weaponAnimationEvent.SetEnemyBase(enemy);
                 bool isHurt;
-                isExisted = _enemies.TryGetValue(enemy, out isHurt);
-                if (isExisted == false)
+                //isExisted = _enemies.TryGetValue(enemy, out isHurt);
+                if (_enemies.TryGetValue(enemy, out isHurt) == false)
                     _enemies.Add(enemy, true);
                 if (isHurt == false)
                 {

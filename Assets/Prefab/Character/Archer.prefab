@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797494db8bec1d4f85008b937f2fbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VariableJoystickControl: {fileID: 2411813482869628578}
   CharacterDataConfig: {fileID: 11400000, guid: 8f363f498297ca54088a6a6a1cb856d1, type: 2}
   WeaponSystemInCharacter: {fileID: 5859453451739114518}
   Target: {fileID: 0}
@@ -489,6 +490,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8419171614897108983, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419171614897108983, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419171614897108983, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8419171615424944984, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -506,7 +519,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4134608788822755755, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
@@ -519,6 +533,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce02d2ee54461324b82e3dbd3820c8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2411813482869628578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8020399933681456246, guid: 674d2f13f59136f47882cd52596fb34e, type: 3}
+  m_PrefabInstance: {fileID: 5635785079219768020}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42844a4fccbd54746b90cade4ff70f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3569542209955500647 stripped

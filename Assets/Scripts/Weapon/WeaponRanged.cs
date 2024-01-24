@@ -40,9 +40,13 @@ public class WeaponRanged : WeaponBase
 
     public bool CanPerformAttack()
     {
+        if (Target == null)
+            return false;
+
         TargetCollider2D = Target.GetComponent<Collider2D>().ClosestPoint(_player.transform.position);
-        if (Target != null && Target.activeSelf && Vector3.Distance(_player.transform.position, TargetCollider2D) <= WeaponDataConfig.WeaponConfig.Range) return true;
-        return false;
+
+        return Target.activeSelf &&
+               Vector3.Distance(_player.transform.position, TargetCollider2D) <= WeaponDataConfig.WeaponConfig.Range;
     }
 
     private Vector2 TargetCollider2D;
