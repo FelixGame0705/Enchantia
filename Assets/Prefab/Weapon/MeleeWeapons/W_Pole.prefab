@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5181816cfb24f94aa6c7c2cdcfc4eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponMelee: {fileID: 0}
+  _weaponMelee: {fileID: 2960962161086121602}
   _colAttack: {fileID: 2389329386960447882}
 --- !u!1 &5725263653612666422
 GameObject:
