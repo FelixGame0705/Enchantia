@@ -76,3 +76,4 @@ crashlytics-build.properties
 /Assets/Firebase
 /Assets/Plugins/iOS/Firebase
 /Assets/Plugins/tvOS/Firebase
+/Assets/Plugins/Android
