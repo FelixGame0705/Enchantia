@@ -7180,7 +7180,7 @@ MonoBehaviour:
   _winColor: {r: 0.22352941, g: 0.95686275, b: 0.42745098, a: 1}
   _lostColor: {r: 0.78039217, g: 0.18431373, b: 0.18431373, a: 1}
   _textWon: RUN WON
-  _textLost: RUN
+  _textLost: 'RUN  '
   _gameOverType: 0
 --- !u!1 &8405135229059899435
 GameObject:
