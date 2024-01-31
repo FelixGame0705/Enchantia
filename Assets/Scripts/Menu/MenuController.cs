@@ -74,7 +74,8 @@ public class MenuController : Singleton<MenuController>
 
     public void HandleOnClickPlay()
     {
-        GameData.Instance.SelectedCharacter = CharacterSelectionController.Instance.CharacterSelected;
+        // GameData.Instance.SelectedCharacter = CharacterSelectionController.Instance.CharacterSelected;
+        GameData.Instance.SelectedCharacter = CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.SelectedCharacter;
         SceneManager.LoadScene("GamePlay");
     }
 }

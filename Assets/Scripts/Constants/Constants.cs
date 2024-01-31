@@ -83,3 +83,11 @@ public enum GAME_OVER_TYPE {
     LOST,
     ENDLESS
 }
+
+public enum CHARACTER_SELECT_STATES {
+    CHARACTER_SELECT,
+    PET_SELECT,
+    PET_BUY,
+    PLAYER_READY,
+    DISABLE
+}
