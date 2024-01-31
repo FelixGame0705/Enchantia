@@ -6,7 +6,7 @@ public class PetImageController : IItemImageController
 {
     public override void ChangeBackgroundToDefault()
     {
-        Background.sprite = CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.BackgroundDefault;
+        Background.color = CharacterSelectionControllerManagement.Instance.unselectedColor;
     }
 
     public override void LoadData(int index, Sprite image, bool isValid)
@@ -20,8 +20,8 @@ public class PetImageController : IItemImageController
     public override void OnImageClicked()
     {
         var controller = CharacterSelectionControllerManagement.Instance.PetSelectionController;
-        controller.HandlePetClicked(Index);
-        Background.sprite = controller.BackgroundSelected;
         controller.ResetBackgroundSelectedCharacterToDefault();
+        Background.color = CharacterSelectionControllerManagement.Instance.clickedColor;
+        controller.HandlePetClicked(Index);
     }
 }

@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class CharacterPetSelectionController : MonoBehaviour
 {
-    private IState currentState;
-    private List<IState> stateList;
 
     [Header("Select Info")]
     [SerializeField] private GameObject _selectedCharacter;
     [SerializeField] private GameObject _selectedPet;
+
+    public CHARACTER_SELECT_STATES currentState;
 
     public GameObject SelectedCharacter {get => this._selectedCharacter;}
     public GameObject SelectedPet {get => this._selectedPet;}
@@ -26,88 +26,59 @@ public class CharacterPetSelectionController : MonoBehaviour
         this._selectedPet = selectedPet;
     }
 
-    public void Awake()
-    {
-        this.stateList = new List<IState>(){
-            new CharacterSelectState(this),
-            new PetBuyState(this),
-            new PetSelectState(this),
-            new PlayerReadyState(this),
-            new CharacterUIExitState(this)
-        };
-    }
-
     public void OnEnable()
     {
-        UIFirstLoad();
+        currentState = CHARACTER_SELECT_STATES.SELECT_STATE;
+        var controller = CharacterSelectionControllerManagement.Instance;
+        controller.CharacterSelectionListController.CharacterListInit();
+        controller.PetSelectionController.PetListInit();
+        CheckIsReady();
     }
 
     public void OnDisable()
     {
 
     }
-
-    public void SetState(IState setState)
+    public void FunctionClicked()
     {
-        this.currentState = setState;
-    }
-    //Pet Select State Happen When Character Is Selected
-    //Pet Buy State Happen When Clicked Pet Not Owned
-    public IState GetStateConfig(CHARACTER_SELECT_STATES state)
-    {
-        IState stateNeed = null;
-        switch (state)
-        {
-            case CHARACTER_SELECT_STATES.CHARACTER_SELECT:
-                stateNeed = stateList.OfType<CharacterSelectState>().FirstOrDefault();
-                break;
-
-            case CHARACTER_SELECT_STATES.PET_SELECT:
-                stateNeed = stateList.OfType<PetSelectState>().FirstOrDefault();
-                break;
-
-            case CHARACTER_SELECT_STATES.PET_BUY:
-                stateNeed = stateList.OfType<PetBuyState>().FirstOrDefault();
-                break;
-
-            case CHARACTER_SELECT_STATES.PLAYER_READY:
-                stateNeed = stateList.OfType<PlayerReadyState>().FirstOrDefault();
-                break;
-            case CHARACTER_SELECT_STATES.DISABLE:
-                stateNeed = stateList.OfType<CharacterUIExitState>().FirstOrDefault();
-                break;
+        switch(currentState){
+            case CHARACTER_SELECT_STATES.SELECT_STATE:
+                currentState = CHARACTER_SELECT_STATES.READY_STATE;
+                CharacterSelectionControllerManagement.Instance.CharacterWeaponInfoDisplayController.CharacterSelectDisplayController.ConfigFunctionBtnStyle(true, "GO");
+                CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.GetBaseSelected?.ChangeStatusColor(true);
+                CharacterSelectionControllerManagement.Instance.PetSelectionController.SelectedImage?.ChangeStatusColor(true);
+            break;
+            case CHARACTER_SELECT_STATES.READY_STATE:
+                MenuController.Instance.HandleOnClickPlay();
+            break;
         }
-        return stateNeed;
     }
 
-    public CHARACTER_SELECT_STATES GetCurrentStateEnum()
-    {
-        if (currentState is CharacterSelectState)
-            return CHARACTER_SELECT_STATES.CHARACTER_SELECT;
-        else if (currentState is PetSelectState)
-            return CHARACTER_SELECT_STATES.PET_SELECT;
-        else if (currentState is PetBuyState)
-            return CHARACTER_SELECT_STATES.PET_BUY;
-        else if (currentState is PlayerReadyState)
-            return CHARACTER_SELECT_STATES.PLAYER_READY;
-        else if (currentState is CharacterUIExitState)
-            return CHARACTER_SELECT_STATES.DISABLE;
-        throw new Exception("State not found");
-    }
-
-
-    public void StateSwitchClicked()
-    {
-        this.currentState.ExitState();
-        this.currentState.UpdateState();
-        this.currentState.DoState();
-    }
-
-    public void UIFirstLoad(){
-        if(currentState == null){
-            currentState = GetStateConfig(CHARACTER_SELECT_STATES.CHARACTER_SELECT);
-            currentState.DoState();
+    public void CheckIsReady(){
+        if(_selectedPet != null && _selectedCharacter != null){
+            CharacterSelectionControllerManagement.Instance.CharacterWeaponInfoDisplayController.CharacterSelectDisplayController.ConfigFunctionBtnStyle(true, "SELECTED");
+        }else{
+            CharacterSelectionControllerManagement.Instance.CharacterWeaponInfoDisplayController.CharacterSelectDisplayController.ConfigFunctionBtnStyle(false, "PLEASE SELECTED");
         }
+    }
+
+    public void OnBackBtnClicked(){
+        switch(currentState){
+            case CHARACTER_SELECT_STATES.READY_STATE:
+            currentState = CHARACTER_SELECT_STATES.SELECT_STATE;
+            CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.GetBaseSelected?.ChangeStatusColor(false);
+            CharacterSelectionControllerManagement.Instance.PetSelectionController.SelectedImage?.ChangeStatusColor(false);
+            CheckIsReady();
+            break;
+
+            case CHARACTER_SELECT_STATES.SELECT_STATE:
+            MenuController.Instance.HandleSelectCharBack();
+            break;
+        }
+    }
+
+    public void ChangeStateCharSelectUI(bool state){
+        this.gameObject.SetActive(state);
     }
 
 }

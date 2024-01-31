@@ -32,4 +32,10 @@ public abstract class IItemImageController : MonoBehaviour
     public abstract void LoadData(int index, Sprite image, bool isValid);
 
     public abstract void ChangeBackgroundToDefault();
+
+    public void ChangeStatusColor(bool status){
+        if(status){
+             Background.color = CharacterSelectionControllerManagement.Instance.selectedColor;
+        }else  Background.color = CharacterSelectionControllerManagement.Instance.clickedColor;
+    }
 }

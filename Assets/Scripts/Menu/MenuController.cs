@@ -67,7 +67,8 @@ public class MenuController : Singleton<MenuController>
 
     public void HandleSelectCharBack()
     {
-        CharacterSelectionController.Instance.ChangeStateCharSelectUI(false);
+        // CharacterSelectionController.Instance.ChangeStateCharSelectUI(false);
+        CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.ChangeStateCharSelectUI(false);
         _menuUI.SetActive(true);
         MusicPlayer.instance.PlayTrack();
     }

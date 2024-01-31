@@ -21,7 +21,7 @@ public class PetSelectionController : MonoBehaviour
         _selectedImage = _petImageList[index];
         // CharacterSelectionController.Instance.SetSelectedCharacter(_characterList[index]);
         CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.SetSelectedPet(_petLists[index]);
-        CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.StateSwitchClicked();
+        CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.CheckIsReady();
     }
     public void ResetBackgroundSelectedCharacterToDefault()
     {

@@ -5,7 +5,7 @@ public class CharImageController : IItemImageController
 {
     public override void ChangeBackgroundToDefault()
     {
-        Background.sprite = CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.BackgroundDefault;
+        Background.color = CharacterSelectionControllerManagement.Instance.unselectedColor;
     }
 
     public override void LoadData(int index, Sprite image, bool isValid)
@@ -19,9 +19,9 @@ public class CharImageController : IItemImageController
     public override void OnImageClicked()
     {
         var controller = CharacterSelectionControllerManagement.Instance.CharacterSelectionListController;
-        controller.HandleCharacterClicked(Index);
-        Background.sprite = controller.BackgroundSelected;
         controller.ResetBackgroundSelectedCharacterToDefault();
-        CharacterSelectionControllerManagement.Instance.CharacterWeaponInfoDisplayController.CharacterSelectDisplayController.ConfigFunctionBtnStyle(true, "Select Character");
+        Background.color = CharacterSelectionControllerManagement.Instance.clickedColor;
+        controller.HandleCharacterClicked(Index);
+        
     }
 }

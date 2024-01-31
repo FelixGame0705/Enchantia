@@ -16,6 +16,7 @@ public class CharacterSelectionListController : MonoBehaviour
     public Sprite BackgroundDefault { get => _backgroundDefault; }
     public Sprite BackgroundSelected { get => _backgroundSelected; }
     public List<GameObject> CharacterList { get => _characterList; set => _characterList = value; }
+    public IItemImageController GetBaseSelected {get => _selectedImage;}
 
     //This will take the data from the index given, index is store in each character image
     //and set character select on main controller of this panel
@@ -24,6 +25,7 @@ public class CharacterSelectionListController : MonoBehaviour
         _selectedImage = _characterImageList[index];
         // CharacterSelectionController.Instance.SetSelectedCharacter(_characterList[index]);
         CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.SetSelectedCharacter(_characterList[index]);
+        CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.CheckIsReady();
     }
 
     public void CharacterListInit()

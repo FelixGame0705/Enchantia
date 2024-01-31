@@ -85,9 +85,7 @@ public enum GAME_OVER_TYPE {
 }
 
 public enum CHARACTER_SELECT_STATES {
-    CHARACTER_SELECT,
-    PET_SELECT,
-    PET_BUY,
-    PLAYER_READY,
-    DISABLE
+    SELECT_STATE,
+    READY_STATE,
+    BUY_STATE
 }
