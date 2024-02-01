@@ -67,14 +67,16 @@ public class MenuController : Singleton<MenuController>
 
     public void HandleSelectCharBack()
     {
-        CharacterSelectionController.Instance.ChangeStateCharSelectUI(false);
+        // CharacterSelectionController.Instance.ChangeStateCharSelectUI(false);
+        CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.ChangeStateCharSelectUI(false);
         _menuUI.SetActive(true);
         MusicPlayer.instance.PlayTrack();
     }
 
     public void HandleOnClickPlay()
     {
-        GameData.Instance.SelectedCharacter = CharacterSelectionController.Instance.CharacterSelected;
+        // GameData.Instance.SelectedCharacter = CharacterSelectionController.Instance.CharacterSelected;
+        GameData.Instance.SelectedCharacter = CharacterSelectionControllerManagement.Instance.CharacterPetSelectionController.SelectedCharacter;
         SceneManager.LoadScene("GamePlay");
     }
 }
