@@ -43,4 +43,8 @@ public class WeaponSkillDisplayController : MonoBehaviour
         skillData = data.MainSkill;
         Render();
     }
+
+    public void HiddenUI(){
+        
+    }
 }

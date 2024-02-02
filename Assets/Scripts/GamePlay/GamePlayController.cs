@@ -11,7 +11,6 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private GameObject _characterPattern;
     [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private BulletFactory _bulletFactory;
-    [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private GameObject TargetCharacter;
     [SerializeField] private int _currentWave;
     [SerializeField] private GameObject _waveShop;

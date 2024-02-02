@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
 {
     protected float MoveX;
     protected float MoveY;
+    [SerializeField] protected VariableJoystick VariableJoystickControl;
     [SerializeField] public CharacterData CharacterDataConfig;
     [SerializeField] protected WeaponSystem WeaponSystemInCharacter;
     [SerializeField] protected GameObject Target;
@@ -46,21 +47,21 @@ public class CharacterController : MonoBehaviour
         MoveX = 0;
         MoveY = 0;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || VariableJoystickControl.Vertical > 0)
         {
             MoveY = +1f;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S)||VariableJoystickControl.Vertical < 0)
         {
             MoveY = -1f;
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || VariableJoystickControl.Horizontal > 0)
         {
             MoveX = +1f;
             Flip(true);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || VariableJoystickControl.Horizontal < 0)
         {
             MoveX = -1f;
             Flip(false);
@@ -75,8 +76,10 @@ public class CharacterController : MonoBehaviour
             AnimatorPlayer.SetBool("isMoving", true);
         }
 
-        Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;
-        transform.Translate(moveDir * DeathWithSpeed() * Time.deltaTime); ;
+        Vector2 moveDirJoy = VariableJoystickControl.Direction.normalized;
+        //Vector2 moveDir = new Vector2(MoveX, MoveY).normalized;// test on pc
+        transform.Translate(moveDirJoy * DeathWithSpeed() * Time.deltaTime); ;
+        //transform.Translate(moveDir * DeathWithSpeed() * Time.deltaTime); ; // test on pc
     }
 
     private void Flip(bool isFlip)

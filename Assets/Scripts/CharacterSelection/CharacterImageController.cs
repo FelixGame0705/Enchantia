@@ -31,7 +31,7 @@ public class CharacterImageController : MonoBehaviour
         Render();
     }
 
-    public void ChanageBackgroundToDefault()
+    public void ChangeBackgroundToDefault()
     {
         background.sprite = CharacterSelectionController.Instance.CharacterSelectionListController.BackgroundDefault;
     }
