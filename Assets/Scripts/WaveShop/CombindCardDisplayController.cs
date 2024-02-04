@@ -13,7 +13,7 @@ public class CombindCardDisplayController : MonoBehaviour
     [SerializeField] private TMP_Text _itemNameText;
     [SerializeField] private TMP_Text _itemTypeText;
     [SerializeField] private TMP_Text _descriptionText;
-    [SerializeField] private GameObject _combindButton;
+    [SerializeField] private GameObject _combineButton;
 
     [SerializeField] private ItemData _itemData;
 
@@ -40,8 +40,8 @@ public class CombindCardDisplayController : MonoBehaviour
         }catch(NullReferenceException){
             Debug.LogError("Error when searching tier card sprite");
         }
-        if(CheckCanCombind()) _combindButton.SetActive(true);
-        else _combindButton.SetActive(false);
+        if(CheckCanCombine()) _combineButton.SetActive(true);
+        else _combineButton.SetActive(false);
     }
 
     public void ResetCard(){
@@ -49,48 +49,25 @@ public class CombindCardDisplayController : MonoBehaviour
         _itemNameText.text = "";
         _descriptionText.text = "";
         _itemIconImage.sprite = null;
-        _combindButton.SetActive(false);
+        _combineButton.SetActive(false);
     }
 
     public void OnClickRecycle()
     {
-        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        GamePlayController.Instance.GetWeaponSystem().SellWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        WaveShopMainController.Instance.CombindPanelController.HidePanel();
+        WaveShopMainController.Instance.CombineRecycleMechanicController.RecycleWeapon();
+        WaveShopMainController.Instance.CombindPanelController.DisableWeaponItemList();
+        WaveShopMainController.Instance.CombindPanelController.InitWeaponItemList();
     }
 
     public void OnClickCombine()
     {
-        int oldIndex = WaveShopMainController.Instance.GetIndexWeaponSelected();
-        int oldID = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList[oldIndex].GetCardData().Id;
-        var indexRemove = FindIndexRemove(oldIndex);
-        if (FindIndexRemove(oldIndex) < 0) return;
-        WaveShopMainController.Instance.GetWeaponInventory().UpgradeCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        GamePlayController.Instance.GetWeaponSystem().UpgradeWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
-        GamePlayController.Instance.GetWeaponSystem().SellWeapon(indexRemove);
-        WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(indexRemove);
-        _combindButton.SetActive(false);
+        WaveShopMainController.Instance.CombineRecycleMechanicController.CombineWeapon();
+        WaveShopMainController.Instance.CombindPanelController.DisableWeaponItemList();
+        WaveShopMainController.Instance.CombindPanelController.InitWeaponItemList();
     }
 
-    private int FindIndexRemove(int oldIndex)
-    {
-        int id_combine = -1;
-        var cardControllerList = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList;
-        var cardImage = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList[oldIndex];
-        if(cardImage == null) return -1;
-        if(cardImage.GetCardData().NextItemWeapon == null) return -1;
-        var list = cardControllerList.FindAll(item => {
-            return item.GetCardData().name.Equals(cardImage.GetCardData().name) 
-            && item.GetCardData().Tier == cardImage.GetCardData().Tier
-            && item.GetID() != cardImage.GetID()
-            ;
-        });
-        if(list.Count > 0) id_combine = list[0].GetID();
-        return id_combine;
-    }
-
-    private bool CheckCanCombind(){
-        int oldIndex = WaveShopMainController.Instance.GetIndexWeaponSelected();
-        return FindIndexRemove(oldIndex) >= 0;
+    private bool CheckCanCombine(){
+        var oldIndex = WaveShopMainController.Instance.CombindPanelController.GetIndexWeaponSelected();
+        return WaveShopMainController.Instance.CombineRecycleMechanicController.FindIndexRemove(oldIndex) >= 0;
     }
 }

@@ -1,7 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class CombindPanelController : MonoBehaviour
 {
@@ -11,8 +14,21 @@ public class CombindPanelController : MonoBehaviour
     [Header("Controller")]
     [SerializeField] private CombindCardDisplayController _combindCardDisplayController;
 
+    [SerializeField] private List<CombineImageController> _combineImageControllerList;
+    [SerializeField] private List<ItemImageController> weaponImageController;
+
+
+    [SerializeField] private GameObject _sampleImage;
+    [SerializeField] private GameObject _content;
+
+    [SerializeField] private int _indexWeaponSelected;
+
     public void CombindPanelClicked(){
         HidePanel();
+    }
+
+    public int GetIndexWeaponSelected(){
+        return _indexWeaponSelected;
     }
 
     public void HidePanel(){
@@ -29,8 +45,15 @@ public class CombindPanelController : MonoBehaviour
         _combindCardDisplayController.ResetCard();
     }
 
+    private void Awake()
+    {
+        _combineImageControllerList = new List<CombineImageController>();
+    }
+
     private void OnEnable()
     {
+        this.weaponImageController = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList;
+        InitWeaponItemList();
         _combindCardDisplayController.CardRender(_cardData);
     }
 
@@ -40,5 +63,48 @@ public class CombindPanelController : MonoBehaviour
 
     public TierCardSpriteInfo GetTierCardSpriteInfoByTier(int tier){
         return tierListSpriteInfo.First<TierCardSpriteInfo>(x => x.Tier == tier);
+    }
+
+    public void InitWeaponItemList(){
+        var i  = 0;
+        foreach(var item in weaponImageController){
+            var enableImageList = _combineImageControllerList.Where(x => x.Index < 0).ToList();
+            CombineImageController cloneCombineImage = null;
+            if(enableImageList.Count == 0){
+                cloneCombineImage =  Instantiate(_sampleImage,_content.transform)?.GetComponent<CombineImageController>();
+                _combineImageControllerList.Add(cloneCombineImage);
+            }else{
+                cloneCombineImage = enableImageList[0];
+            }
+            cloneCombineImage?.LoadData(i, item.GetCardData().ItemImg, item.GetCardData().Tier);
+            i++;
+        }
+    }
+
+    public void DisableWeaponItemList(){
+        foreach(var item in _combineImageControllerList){
+            item.DisableItem();
+        }
+    }
+
+
+    public void OnDoneClicked(){
+        HidePanel();
+    }
+
+    public void OnUndoClicked(){
+
+    }
+    public void HandleItemClicked(int index){
+        try{
+            var item = weaponImageController[index];
+            var a = item.GetCardData();
+            SetCardData(a);
+            _indexWeaponSelected = index;
+            _combindCardDisplayController.CardRender(_cardData);
+            
+        }catch(Exception){
+            Debug.LogError("Index Out Of Bounce");
+        }
     }
 }

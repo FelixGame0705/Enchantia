@@ -42,5 +42,6 @@ public class PetSelectionController : MonoBehaviour
             petImageControl.LoadData(count, petBaseInfo.CharacterSprite, true);
             count++;
         }
+        _contentScale.AdjustSize(_petImageList.Count);
     }
 }

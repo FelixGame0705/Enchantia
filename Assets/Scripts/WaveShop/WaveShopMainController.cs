@@ -12,12 +12,15 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentMoney = 0;
     [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
+
+    [Header ("Controller list")]
     [SerializeField] private ItemViewListController _viewListController;
     [SerializeField] private InventoryController inventoryController;
     [SerializeField] private StatsPanelController _statsPanel;
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private RerollMechanicController _rerollMechanicController;
     [SerializeField] private CombindPanelController _combindPanelController;   
+    [SerializeField] private CombineRecycleMechanicController _combineRecycleMechanicController;
 //    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
     [SerializeField] private Text _waveText;
@@ -37,6 +40,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public ItemViewListController ViewListController { get => _viewListController; set => _viewListController = value; }
 
     public CombindPanelController CombindPanelController {get => _combindPanelController;}
+    public CombineRecycleMechanicController CombineRecycleMechanicController {get => this._combineRecycleMechanicController;}
 
     private void Update()
     {
