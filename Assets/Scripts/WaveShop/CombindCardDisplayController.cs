@@ -36,7 +36,7 @@ public class CombindCardDisplayController : MonoBehaviour
         try{
             var itemBackground = WaveShopMainController.Instance.CombindPanelController.GetTierCardSpriteInfoByTier(_itemData.Tier);
             _itemBackgroundImage.sprite = itemBackground.IconBackground;
-            _background.sprite = itemBackground.Background;
+            _background.sprite = itemBackground.BackgroundHorizon;
 
         }catch(NullReferenceException){
             Debug.LogError("Error when searching tier card sprite");
