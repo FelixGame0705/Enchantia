@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -23,12 +24,17 @@ public class CombindPanelController : MonoBehaviour
 
     [SerializeField] private int _indexWeaponSelected;
 
+    public List<CombineImageController> CombineImageControllerList {get => this._combineImageControllerList;}
+
     public void CombindPanelClicked(){
         HidePanel();
     }
 
     public int GetIndexWeaponSelected(){
         return _indexWeaponSelected;
+    }
+    public void SetIndexWeaponSelected(int index){
+        this._indexWeaponSelected = index;
     }
 
     public void HidePanel(){
@@ -97,11 +103,13 @@ public class CombindPanelController : MonoBehaviour
     }
     public void HandleItemClicked(int index){
         try{
+            this._indexWeaponSelected = index;
             var item = weaponImageController[index];
             var a = item.GetCardData();
             SetCardData(a);
             _indexWeaponSelected = index;
             _combindCardDisplayController.CardRender(_cardData);
+            WaveShopMainController.Instance.SetIndexWeaponSelected(item.GetID());
             
         }catch(Exception){
             Debug.LogError("Index Out Of Bounce");

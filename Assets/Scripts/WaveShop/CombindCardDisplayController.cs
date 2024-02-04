@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,6 +58,12 @@ public class CombindCardDisplayController : MonoBehaviour
         WaveShopMainController.Instance.CombineRecycleMechanicController.RecycleWeapon();
         WaveShopMainController.Instance.CombindPanelController.DisableWeaponItemList();
         WaveShopMainController.Instance.CombindPanelController.InitWeaponItemList();
+        var combine = WaveShopMainController.Instance.CombindPanelController.CombineImageControllerList[0];
+        if(combine == null) WaveShopMainController.Instance.CombindPanelController.OnDoneClicked();
+        else{
+            WaveShopMainController.Instance.CombindPanelController.SetIndexWeaponSelected(combine.Index);
+            WaveShopMainController.Instance.CombindPanelController.HandleItemClicked(combine.Index);
+        }
     }
 
     public void OnClickCombine()
@@ -64,6 +71,10 @@ public class CombindCardDisplayController : MonoBehaviour
         WaveShopMainController.Instance.CombineRecycleMechanicController.CombineWeapon();
         WaveShopMainController.Instance.CombindPanelController.DisableWeaponItemList();
         WaveShopMainController.Instance.CombindPanelController.InitWeaponItemList();
+        var combineController = WaveShopMainController.Instance.CombindPanelController;
+        var combine = combineController.CombineImageControllerList[0];
+        WaveShopMainController.Instance.CombindPanelController.SetIndexWeaponSelected(combine.Index);
+        WaveShopMainController.Instance.CombindPanelController.HandleItemClicked(combine.Index);
     }
 
     private bool CheckCanCombine(){

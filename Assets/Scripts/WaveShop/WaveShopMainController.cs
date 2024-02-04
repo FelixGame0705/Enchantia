@@ -181,6 +181,10 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         return _indexWeaponSelected;
     }
 
+    public void SetIndexWeaponSelected(int index){
+        this._indexWeaponSelected = index;
+    }
+
     public DetailWeapon GetDetailWeapon()
     {
         return _detailWeapon.GetComponent<DetailWeapon>();
