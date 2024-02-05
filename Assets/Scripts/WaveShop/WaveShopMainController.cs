@@ -70,7 +70,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                     UpdateViewListInfo();
                 }
                 
-            }catch(Exception ex){
+            }catch(Exception){
             }
             
         }
