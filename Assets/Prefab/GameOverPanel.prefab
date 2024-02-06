@@ -6423,8 +6423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectModel: {fileID: 8309868011914261247, guid: 015634ce52531067fb714eb5698750d8, type: 3}
-  _weaponInventory: {fileID: 0}
-  _itemInventory: {fileID: 0}
   _weaponLists: {fileID: 8405135228683843622}
   _itemLists: {fileID: 8405135228619518489}
 --- !u!1 &8405135227991858634
@@ -7180,7 +7178,7 @@ MonoBehaviour:
   _winColor: {r: 0.22352941, g: 0.95686275, b: 0.42745098, a: 1}
   _lostColor: {r: 0.78039217, g: 0.18431373, b: 0.18431373, a: 1}
   _textWon: RUN WON
-  _textLost: 'RUN  '
+  _textLost: RUN LOST
   _gameOverType: 0
 --- !u!1 &8405135229059899435
 GameObject:

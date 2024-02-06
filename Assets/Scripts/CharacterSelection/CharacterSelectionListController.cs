@@ -50,4 +50,8 @@ public class CharacterSelectionListController : MonoBehaviour
             _selectedImage.ChangeBackgroundToDefault();
         }
     }
+
+    private void Awake() {
+        _contentScale.AdjustSize(_characterImageList.Count);
+    }
 }

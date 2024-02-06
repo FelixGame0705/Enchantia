@@ -42,7 +42,7 @@ public class DetailWeapon : MonoBehaviour
     public void OnClickCombine()
     {
         int oldIndex = WaveShopMainController.Instance.GetIndexWeaponSelected();
-        int oldID = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[oldIndex].GetCardData().Id;
+        int oldID = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList[oldIndex].GetCardData().Id;
         var indexRemove = FindIndexRemove(oldIndex,oldID);
         if (FindIndexRemove(oldIndex, oldID) < 0) return;
         WaveShopMainController.Instance.GetWeaponInventory().UpgradeCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
@@ -54,8 +54,8 @@ public class DetailWeapon : MonoBehaviour
     private int FindIndexRemove(int oldIndex, int oldID)
     {
         int id_combine = -1;
-        var cardControllerList = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList;
-        var cardImage = WaveShopMainController.Instance.GetWeaponInventory().CardControllerList[oldIndex];
+        var cardControllerList = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList;
+        var cardImage = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList[oldIndex];
         if(cardImage == null) return -1;
         if(cardImage.GetCardData().NextItemWeapon == null) return -1;
         var list = cardControllerList.FindAll(item => {

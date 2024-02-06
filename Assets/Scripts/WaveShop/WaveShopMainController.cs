@@ -12,16 +12,21 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private int _currentMoney = 0;
     [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
+
+    [Header ("Controller list")]
     [SerializeField] private ItemViewListController _viewListController;
     [SerializeField] private InventoryController inventoryController;
-    [SerializeField] private InventoryController weaponInventoryController;
+    [SerializeField] private StatsPanelController _statsPanel;
+    [SerializeField] private CharacterController _characterController;
+    [SerializeField] private RerollMechanicController _rerollMechanicController;
+    [SerializeField] private CombindPanelController _combindPanelController;   
+    [SerializeField] private CombineRecycleMechanicController _combineRecycleMechanicController;
+//    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
     [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameObject _detailWeapon;
-    [SerializeField] private StatsPanelController _statsPanel;
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private RerollMechanicController _rerollMechanicController;
+
 
     
     bool isPanel = false;
@@ -33,6 +38,9 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public List<ItemData> ItemDataList {get => _itemDataList;}
     public ItemViewListController ViewListController { get => _viewListController; set => _viewListController = value; }
+
+    public CombindPanelController CombindPanelController {get => _combindPanelController;}
+    public CombineRecycleMechanicController CombineRecycleMechanicController {get => this._combineRecycleMechanicController;}
 
     private void Update()
     {
@@ -62,17 +70,22 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                     UpdateViewListInfo();
                 }
                 
-            }catch(Exception ex){
+            }catch(Exception){
             }
             
         }
-        if(weaponInventoryController.GetCountWeapon() == 0)
+        if(inventoryController.GetCountWeapon() == 0)
         {
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
         ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
         UpdateMoney();
+    }
+
+    private void OnDisable()
+    {
+        _combindPanelController.HidePanel();
     }
 
     public void UpdateStatsPanel(){
@@ -123,7 +136,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                 CurrentMoney -= finalPrice;
                 itemCard.DisableItem();
             }
-            else if (weaponInventoryController.GetCountWeapon() < 6)
+            else if (inventoryController.GetCountWeapon() < 6)
             {
                 EquipItemWeapon(itemCard.CardItemInfo, itemCard.CardItemInfo.ItemStats.WeaponBaseModel);
                 CurrentMoney -= finalPrice;
@@ -148,13 +161,13 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void EquipItemWeapon(ItemData itemInfo, GameObject weaponModel)
     {
-        weaponInventoryController.AddCardToWeapon(itemInfo);
+        inventoryController.AddCardToWeapon(itemInfo);
         GamePlayController.Instance.GetWeaponSystem().EquipedWeapon(weaponModel);
     }
 
     public InventoryController GetWeaponInventory()
     {
-        return weaponInventoryController;
+        return inventoryController;
     }
 
     public void SetDetailWeapon(Transform anchorTransform, bool isActive)
@@ -166,6 +179,10 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public int GetIndexWeaponSelected()
     {
         return _indexWeaponSelected;
+    }
+
+    public void SetIndexWeaponSelected(int index){
+        this._indexWeaponSelected = index;
     }
 
     public DetailWeapon GetDetailWeapon()
@@ -189,7 +206,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
 
     public int GetCountWeapon(){
-        return weaponInventoryController.GetCountWeapon();
+        return inventoryController.GetCountWeapon();
     }
 
     private void UpdateViewListInfo(){

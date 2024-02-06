@@ -11,10 +11,6 @@ public class ItemImageController : MonoBehaviour
     [SerializeField] private int _id;
     [SerializeField] private CombineRecycleInfo combineRecycleInfo;
     
-    private void Awake()
-    {
-        combineRecycleInfo = gameObject.AddComponent<CombineRecycleInfo>();
-    }
 
     private string _content;
     public void EnableItem()
@@ -56,6 +52,8 @@ public class ItemImageController : MonoBehaviour
     {
         WaveShopMainController.Instance.SetDetailWeapon(transform, true);
         WaveShopMainController.Instance.GetDetailWeapon().SetDetailTxt(_content);
+        WaveShopMainController.Instance.CombindPanelController.SetCardData(_cardItemInfo);
+        WaveShopMainController.Instance.CombindPanelController.RenderPanel();
     }
 
     public int GetID()

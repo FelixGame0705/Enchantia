@@ -61,6 +61,8 @@ public class ItemCardController : MonoBehaviour
     {
         _isLocked = false;
         WaveShopMainController.Instance.BuyItem(_cardIndex);
+        if(WaveShopMainController.Instance.GetCountWeapon()>=6)
+            WaveShopMainController.Instance.CombineRecycleMechanicController.AutoCombine();
     }
 
     public void DisableItem()
@@ -100,7 +102,11 @@ public class ItemCardController : MonoBehaviour
 
     public void CanItemBuy(){
         if(_cardItemInfo.ItemStats.TYPE1 == ITEM_TYPE.WEAPON){
-            if(GetItemFinalPrice() > WaveShopMainController.Instance.CurrentMoney || WaveShopMainController.Instance.GetCountWeapon() >= 6) ChangeBuyButtonState(false);
+            if(GetItemFinalPrice() > WaveShopMainController.Instance.CurrentMoney || 
+            (WaveShopMainController.Instance.GetCountWeapon() >= 6 && 
+            !WaveShopMainController.Instance.CombineRecycleMechanicController.
+            CheckCanAutoCombine(CardItemInfo))) 
+                ChangeBuyButtonState(false);
             else ChangeBuyButtonState(true);
         }else{
             if(GetItemFinalPrice() > WaveShopMainController.Instance.CurrentMoney ) ChangeBuyButtonState(false);
