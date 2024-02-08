@@ -47,6 +47,8 @@ public class CharacterPetSelectionController : MonoBehaviour
                 CharacterSelectionControllerManagement.Instance.CharacterWeaponInfoDisplayController.CharacterSelectDisplayController.ConfigFunctionBtnStyle(true, "GO");
                 CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.GetBaseSelected?.ChangeStatusColor(true);
                 CharacterSelectionControllerManagement.Instance.PetSelectionController.SelectedImage?.ChangeStatusColor(true);
+                CharacterSelectionControllerManagement.Instance.PetSelectionController.ItemsDisableEnableByBool(false);
+                CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.ItemsDisableEnableByBool(false);
             break;
             case CHARACTER_SELECT_STATES.READY_STATE:
                 MenuController.Instance.HandleOnClickPlay();
@@ -68,6 +70,8 @@ public class CharacterPetSelectionController : MonoBehaviour
             currentState = CHARACTER_SELECT_STATES.SELECT_STATE;
             CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.GetBaseSelected?.ChangeStatusColor(false);
             CharacterSelectionControllerManagement.Instance.PetSelectionController.SelectedImage?.ChangeStatusColor(false);
+            CharacterSelectionControllerManagement.Instance.PetSelectionController.ItemsDisableEnableByBool(true);
+            CharacterSelectionControllerManagement.Instance.CharacterSelectionListController.ItemsDisableEnableByBool(true);
             CheckIsReady();
             break;
 

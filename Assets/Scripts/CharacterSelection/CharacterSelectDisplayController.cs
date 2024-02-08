@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Net.Sockets;
+using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.iOS;
 
 public class CharacterSelectDisplayController : MonoBehaviour
 {
     [Header ("Components")]
-    [SerializeField] private Image _characterSelectedDisplay;
+    [SerializeField] private GameObject _characterSelectedDisplay;
     [SerializeField] private CharacterInfoListController characterInfoListController;
     [SerializeField] Character_Mod _selectedCharacterData;
-    [SerializeField] private Sprite _characterSprite;
+    [SerializeField] private GameObject _characterObject;
     [SerializeField] private Button _functionBtn;
     [SerializeField] private TMP_Text _functionBtnText;
+    [SerializeField] private GameObject _characterClone;
+    [SerializeField] private Vector3 _scale;
 
     [Header ("Configs")]
     [SerializeField] private Color inactiveColor;
@@ -24,19 +26,26 @@ public class CharacterSelectDisplayController : MonoBehaviour
 
     public void Render()
     {
-        if(isFirstRender == false)
+        if(!isFirstRender)
         {
             this.gameObject.SetActive(true);
             isFirstRender = true;
-        }
-        _characterSelectedDisplay.sprite = _characterSprite;
+        }else Destroy(_characterClone);
+            _characterClone = Instantiate(_characterObject, _characterSelectedDisplay.transform);
+            var transform = _characterClone.AddComponent(typeof(RectTransform)) as RectTransform;
+            transform.localScale = _scale;
+            transform.anchorMin = new Vector2(0.5f, 0);
+            transform.anchorMax = new Vector2(0.5f, 0);
+            transform.pivot = new Vector2(0.5f,0);
+            transform.anchoredPosition3D = new Vector3(0,0,0);
+        _characterClone.transform.localScale = _scale;
         characterInfoListController.LoadData(_selectedCharacterData);
     }
 
     public void LoadData(CharacterBaseInfo data)
     {
         _selectedCharacterData = data.CharacterStats;
-        _characterSprite = data.CharacterSprite;
+        _characterObject = data.CharacterFullAnimation;
         Render();
     }
 

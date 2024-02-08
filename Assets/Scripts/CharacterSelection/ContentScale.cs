@@ -20,7 +20,8 @@ public class ContentScale : MonoBehaviour
 
     public void AdjustSize(int columnEntity)
     {
-        var contentHight = GetColumnNumber(columnEntity,contentTransform.sizeDelta.x) * (cellSize + cellBetween);
+        var contentHight = GetColumnNumber(columnEntity,contentTransform.rect.width) * (cellSize + cellBetween);
+        Debug.LogError(contentHight);
         contentTransform.sizeDelta = new Vector2(contentTransform.sizeDelta.x, contentHight);
     }
 

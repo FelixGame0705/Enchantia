@@ -178,6 +178,7 @@ MonoBehaviour:
   characterSprite: {fileID: 8200483186229724281, guid: cfb50b88437dcf446842ef31602ab914, type: 3}
   characterBodySprite: {fileID: 8200483186229724281, guid: cfb50b88437dcf446842ef31602ab914, type: 3}
   baseWeapon: {fileID: 11400000, guid: b49270b053258b546b8ca0043784ff9a, type: 2}
+  characterFullAnimation: {fileID: 1223056772923078623}
 --- !u!61 &8824431061783977171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -307,6 +308,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bc45413f5d2a5e43a89c2402e22811f, type: 3}
+--- !u!1 &1223056772923078623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4097310107631219737, guid: 9bc45413f5d2a5e43a89c2402e22811f, type: 3}
+  m_PrefabInstance: {fileID: 2892923335280083910}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1224561337327722374 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4096936998736387136, guid: 9bc45413f5d2a5e43a89c2402e22811f, type: 3}

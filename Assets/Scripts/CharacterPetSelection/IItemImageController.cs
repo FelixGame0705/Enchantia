@@ -1,5 +1,4 @@
 using System;
-using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +20,7 @@ public abstract class IItemImageController : MonoBehaviour
         imageRenderer.sprite = spriteImage;
         this.gameObject.SetActive(true);
         try{
-            var imageBtn = this.gameObject.GetComponent<Button>();
-            imageBtn.interactable = isValid;
+            AdjustInteractByBool(IsValid);
         }catch(Exception){
             Debug.LogError("Btn is null");
         }
@@ -37,5 +35,11 @@ public abstract class IItemImageController : MonoBehaviour
         if(status){
              Background.color = CharacterSelectionControllerManagement.Instance.selectedColor;
         }else  Background.color = CharacterSelectionControllerManagement.Instance.clickedColor;
+    }
+
+    public void AdjustInteractByBool(bool status){
+        this.isValid = status;
+        var imageBtn = this.gameObject.GetComponent<Button>();
+        imageBtn.interactable = this.isValid;
     }
 }

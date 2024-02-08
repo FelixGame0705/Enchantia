@@ -54,4 +54,10 @@ public class CharacterSelectionListController : MonoBehaviour
     private void Awake() {
         _contentScale.AdjustSize(_characterImageList.Count);
     }
+
+    public void ItemsDisableEnableByBool(bool status){
+        _characterImageList.ForEach(image => {
+            image.AdjustInteractByBool(status);
+        });
+    }
 }

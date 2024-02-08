@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f797494db8bec1d4f85008b937f2fbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VariableJoystickControl: {fileID: 0}
   CharacterDataConfig: {fileID: 11400000, guid: 4756dfa9f5a0f9046b0da06085932972, type: 2}
   WeaponSystemInCharacter: {fileID: 8281208823052059889}
   Target: {fileID: 0}

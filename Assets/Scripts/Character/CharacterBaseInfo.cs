@@ -12,6 +12,8 @@ public class CharacterBaseInfo : MonoBehaviour
     //This will contain sprite character body
     [SerializeField] private Sprite characterBodySprite;
     [SerializeField] private ItemData baseWeapon;
+
+    [SerializeField] private GameObject characterFullAnimation;
     public void Load()
     {
         var characterController = GetComponent<CharacterController>();
@@ -26,4 +28,5 @@ public class CharacterBaseInfo : MonoBehaviour
     public Sprite CharacterSprite { get => characterSprite; set => characterSprite = value; }
     public ItemData BaseWeapon { get => baseWeapon; set => baseWeapon = value; }
     public Sprite CharacterBodySprite { get => characterBodySprite; set => characterBodySprite = value; }
+    public GameObject CharacterFullAnimation {get => this.characterFullAnimation; set => this.characterFullAnimation = value;}
 }

@@ -44,4 +44,10 @@ public class PetSelectionController : MonoBehaviour
         }
         _contentScale.AdjustSize(_petImageList.Count);
     }
+
+    public void ItemsDisableEnableByBool(bool status){
+        _petImageList.ForEach(image => {
+            image.AdjustInteractByBool(status);
+        });
+    }
 }

@@ -178,6 +178,7 @@ MonoBehaviour:
   characterSprite: {fileID: 2479105827450233693, guid: 1b7104886f49356409cda9ea9ffc3c27, type: 3}
   characterBodySprite: {fileID: 2479105827450233693, guid: 1b7104886f49356409cda9ea9ffc3c27, type: 3}
   baseWeapon: {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
+  characterFullAnimation: {fileID: 8780354049529904068}
 --- !u!61 &1981485158848415871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -547,5 +548,10 @@ Transform:
 --- !u!95 &8195155966488949308 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1882415339963366777, guid: f1715e8b0ff88cf47821709c35371dcf, type: 3}
+  m_PrefabInstance: {fileID: 7756504957447835461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8780354049529904068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1332697520045323393, guid: f1715e8b0ff88cf47821709c35371dcf, type: 3}
   m_PrefabInstance: {fileID: 7756504957447835461}
   m_PrefabAsset: {fileID: 0}
