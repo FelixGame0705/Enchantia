@@ -15,7 +15,22 @@ public class PlayGamesManager : MonoBehaviour
 
     public void SignIn()
     {
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        PlayGamesPlatform.Activate();
+
+        // ??ng nh?p vào Google Play Services
+        Social.localUser.Authenticate(success => {
+            if (success)
+            {
+                Debug.Log("??ng nh?p thành công vào Google Play Services");
+                DetailsText.text = "Success \n ";
+            }
+            else
+            {
+                Debug.LogWarning("??ng nh?p th?t b?i vào Google Play Services");
+                DetailsText.text = "Failure \n ";
+            }
+        });
+       // PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
     internal void ProcessAuthentication(SignInStatus status)
     {
