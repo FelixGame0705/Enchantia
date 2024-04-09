@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 public class GameOverController : MonoBehaviour
 {
     [SerializeField] private ResultItemListController _resultController;
@@ -59,7 +58,8 @@ public class GameOverController : MonoBehaviour
                 _resultWaveText.text = _textWon;  
             break;
         }  
-        this.gameObject.SetActive(true);
+        // this.gameObject.SetActive(true);
+        UpdateWaveDisplay();
     }
 
     private void UpdateWaveDisplay(){

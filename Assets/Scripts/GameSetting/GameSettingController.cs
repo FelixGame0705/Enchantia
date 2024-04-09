@@ -2,29 +2,29 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CarterGames.Assets.AudioManager;
+using DG.Tweening;
 
 public class GameSettingController : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameSetting;
     [SerializeField] private Slider _bgm;
     [SerializeField] private Slider _sfx;
-
-    private bool _isActive = false;
+    [SerializeField] private Vector3 _originLocation;
+    public bool SettingPanelStatus {get => this.gameObject.activeInHierarchy;}
+    public Vector3 OriginLocation {get => this._originLocation;}
     private void Start()
     {
         _bgm.onValueChanged.AddListener(this.OnModifyBGMValue);
         _sfx.onValueChanged.AddListener(this.OnModifySFXValue);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            _gameSetting.SetActive(!_isActive);
-            _isActive = !_isActive;
-            Time.timeScale = _isActive == true ?  0 : 1;
-            Init();
-        }
+        Init();
+        Time.timeScale = 0;
+    }
+    private void OnDisable()
+    {
+        Time.timeScale = 1;
     }
 
     private void OnModifyBGMValue(float bfmValue)
@@ -44,17 +44,15 @@ public class GameSettingController : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void OnCickRestart()
+    public void OnClickRestart()
     {
         SceneManager.LoadScene("GamePlay");
     }
 
     public void OnClickResume()
     {
-        _gameSetting.SetActive(!_isActive);
-        Time.timeScale = 1;
     }
-
+    
     public void Init()
     {
         _bgm.value = GameData.Instance.GetVolumeAudioBG();

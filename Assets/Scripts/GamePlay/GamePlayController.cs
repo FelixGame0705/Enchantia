@@ -17,6 +17,7 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
     [SerializeField] private GameOverController _gameOverController;
+    [SerializeField] private GamePlayUIManager gamePlayUIManager;
     [SerializeField] private float _timePlay = 0;
     [SerializeField] private bool _isEndLess;
 
@@ -51,6 +52,10 @@ public class GamePlayController : Singleton<GamePlayController>
     public void SetState(GAME_STATES state)
     {
         GameState = state;
+    }
+
+    public void ActiveGameOverPanel(){
+        gamePlayUIManager.RenderGameOverPanel();
     }
 
     public void UpdateState(GAME_STATES state)
@@ -95,7 +100,8 @@ public class GamePlayController : Singleton<GamePlayController>
                 var maxWave = _enemyFactory.WaveGameDataList().Count;
                 if(_isEndLess) _gameOverController.RenderUI(GAME_OVER_TYPE.ENDLESS);
                 else if(CurrentWave >= maxWave) _gameOverController.RenderUI(GAME_OVER_TYPE.WON);
-                else _gameOverController.RenderUI(GAME_OVER_TYPE.LOST);
+                // else _gameOverController.RenderUI(GAME_OVER_TYPE.LOST);
+                else gamePlayUIManager.RenderGameOverPanel();
                 break;
         }
     }
@@ -181,7 +187,7 @@ public class GamePlayController : Singleton<GamePlayController>
     {
         HashSet<GameObject> enemiesHashSet = GetEnemyFactory().GetEnemies();
 
-        // Chuy?n ??i HashSet thành m?ng ?? có th? s? d?ng index
+        // Chuy?n ??i HashSet thï¿½nh m?ng ?? cï¿½ th? s? d?ng index
         GameObject[] enemiesArray = enemiesHashSet.ToArray();
 
         for (int i = enemiesArray.Length - 1; i >= 0; i--)

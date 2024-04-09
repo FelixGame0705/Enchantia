@@ -14,7 +14,6 @@ public class CharacterInfoListController : MonoBehaviour
     [SerializeField] private GameObject statsImage;
     [SerializeField] private GameObject contentObject;
     private Dictionary<string, CharacterStat> validateStatsList;
-    // private List<float> characterStats = new List<float>();
 
     private void Awake()
     {
