@@ -58,7 +58,7 @@ public class GameOverController : MonoBehaviour
                 _resultWaveText.text = _textWon;  
             break;
         }  
-        // this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
         UpdateWaveDisplay();
     }
 

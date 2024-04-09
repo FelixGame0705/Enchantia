@@ -54,9 +54,6 @@ public class GamePlayController : Singleton<GamePlayController>
         GameState = state;
     }
 
-    public void ActiveGameOverPanel(){
-        gamePlayUIManager.RenderGameOverPanel();
-    }
 
     public void UpdateState(GAME_STATES state)
     {
@@ -98,10 +95,9 @@ public class GamePlayController : Singleton<GamePlayController>
                 Time.timeScale = 0;
                 _enemyFactory.SetIsSpawned(false);
                 var maxWave = _enemyFactory.WaveGameDataList().Count;
-                if(_isEndLess) _gameOverController.RenderUI(GAME_OVER_TYPE.ENDLESS);
-                else if(CurrentWave >= maxWave) _gameOverController.RenderUI(GAME_OVER_TYPE.WON);
-                // else _gameOverController.RenderUI(GAME_OVER_TYPE.LOST);
-                else gamePlayUIManager.RenderGameOverPanel();
+                if(_isEndLess) gamePlayUIManager.RenderGameOverPanel(GAME_OVER_TYPE.ENDLESS);
+                else if(CurrentWave >= maxWave) gamePlayUIManager.RenderGameOverPanel(GAME_OVER_TYPE.WON);
+                else gamePlayUIManager.RenderGameOverPanel(GAME_OVER_TYPE.LOST);
                 break;
         }
     }

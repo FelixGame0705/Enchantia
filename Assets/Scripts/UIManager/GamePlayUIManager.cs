@@ -24,11 +24,10 @@ public class GamePlayUIManager : MonoBehaviour
         rect.DOScale(Vector3.one, 2f);
     }
 
-    public void RenderGameOverPanel(){
+    public void RenderGameOverPanel(GAME_OVER_TYPE gameOverType){
         RectTransform rect = _gameOverPanel.GetComponent<RectTransform>();
         GameOverController gameOverController = _gameOverPanel.GetComponent<GameOverController>();
-        gameOverController.RenderUI(GAME_OVER_TYPE.LOST);
-        rect.DOScale(Vector3.one, 0.5f);
+        rect.DOScale(Vector3.one, 0.5f).SetEase(Ease.Linear).OnComplete(() => gameOverController.RenderUI(gameOverType));
     }
 
     public void RenderGameSettingPanel(){
@@ -42,6 +41,5 @@ public class GamePlayUIManager : MonoBehaviour
             _settingPanel.SetActive(true);
             rect.DOAnchorPos3DY(0, 0.2f).SetEase(Ease.InSine);
         }
-        
     }
 }
