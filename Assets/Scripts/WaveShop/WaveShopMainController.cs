@@ -2,9 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.ComponentModel.Design;
-using System.Data.Common;
-using System.Runtime.CompilerServices;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
@@ -21,7 +18,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     [SerializeField] private RerollMechanicController _rerollMechanicController;
     [SerializeField] private CombindPanelController _combindPanelController;   
     [SerializeField] private CombineRecycleMechanicController _combineRecycleMechanicController;
-//    [SerializeField] private InventoryController weaponInventoryController;
     [SerializeField] private Text _moneyText;
     [SerializeField] private Text _waveText;
     [SerializeField] private DroppedItemController _droppedItemController;
@@ -47,11 +43,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
         if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) ViewListController.RerollController.ChangeRerollBtnState(false);
     }
 
-    private void FixedUpdate()
-    {
-       
-    }
-
     private void OnEnable()
     {
         _rerollTime = 0;
@@ -70,7 +61,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                     UpdateViewListInfo();
                 }
                 
-            }catch(Exception){
+            }catch(Exception ex){
+                Debug.LogError(ex.Message);
             }
             
         }
@@ -112,15 +104,6 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
     private Stack<ItemData> Random(int amount)
     { 
-        // Stack<ItemData> stack = new Stack<ItemData>();
-        // for(int i = 0; i < amount; i++)
-        // {
-        //     Debug.Log("Index card " + _itemDataList.Count);
-        //     int index = UnityEngine.Random.Range(0, _itemDataList.Count);
-        //     Debug.Log("Index card " +index);
-        //     stack.Push(_itemDataList[index]);
-        // }
-        // return stack;
         return _rerollMechanicController.GetRerollData();
     }
     public void BuyItem(int cardIndex)

@@ -1,7 +1,5 @@
 using DG.Tweening;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 
 public class GamePlayUIManager : MonoBehaviour
 {
@@ -17,11 +15,6 @@ public class GamePlayUIManager : MonoBehaviour
         this._gameOverControllerPanel = _waveShopPanel.GetComponent<GameOverController>();
         this._waveShopMainController = _waveShopPanel.GetComponent<WaveShopMainController>();
         this._gameSettingController = _settingPanel.GetComponent<GameSettingController>();
-    }
-    
-    public void RenderWaveShopPanel(){
-        RectTransform rect = _waveShopPanel.GetComponent<RectTransform>();
-        rect.DOScale(Vector3.one, 2f);
     }
 
     public void RenderGameOverPanel(GAME_OVER_TYPE gameOverType){
@@ -41,5 +34,13 @@ public class GamePlayUIManager : MonoBehaviour
             _settingPanel.SetActive(true);
             rect.DOAnchorPos3DY(0, 0.2f).SetEase(Ease.InSine);
         }
+    }
+
+    public void RenderWaveShopPanel(){
+        RectTransform rect = _waveShopPanel.GetComponent<RectTransform>();
+        bool panelStatus = _waveShopPanel.gameObject.activeInHierarchy;
+        float scale = panelStatus ? 0f:1f;
+        WaveShopMainController.Instance.UpdateMoney();
+        rect.DOScale(scale,0.5f).SetEase(Ease.InElastic).OnComplete(() => _waveShopPanel.SetActive(!panelStatus));        
     }
 }
