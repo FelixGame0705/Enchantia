@@ -7,13 +7,11 @@ public class GamePlayUIManager : MonoBehaviour
     [SerializeField] private GameObject _gameOverPanel;
     [SerializeField] private GameObject _settingPanel;
     [SerializeField] private GameOverController _gameOverControllerPanel;
-    [SerializeField] private WaveShopMainController _waveShopMainController;
     [SerializeField] private GameSettingController _gameSettingController;
     
     private void OnEnable()
     {
         this._gameOverControllerPanel = _waveShopPanel.GetComponent<GameOverController>();
-        this._waveShopMainController = _waveShopPanel.GetComponent<WaveShopMainController>();
         this._gameSettingController = _settingPanel.GetComponent<GameSettingController>();
     }
 

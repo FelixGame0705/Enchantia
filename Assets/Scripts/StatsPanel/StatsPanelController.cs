@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,16 +9,6 @@ public class StatsPanelController : MonoBehaviour
 
 
     private CharacterStat[] stats;
-
-
-    private void OnEnable()
-    {
-        DisplayStatsPanel(true);
-    }
-    private void OnDisable()
-    {
-        DisplayStatsPanel(false);
-    }
 
     private void OnValidate()
     {
@@ -61,9 +49,14 @@ public class StatsPanelController : MonoBehaviour
         }
     }
 
-    private void DisplayStatsPanel(bool status){
-        if(status) transform.DOScale(Vector3.one, 3f);
-        else transform.DOScale(Vector3.zero, 3f);
+    public async void DisplayStatsPanel(bool status){
+        if(status && !this.gameObject.activeInHierarchy) {
+            transform.anchoredPosition3D = new Vector3(-550,0,0);
+            this.gameObject.SetActive(status);
+            await transform.DOAnchorPos3D(Vector3.zero, 1f).AsyncWaitForCompletion();
+        }else if(!status && this.gameObject.activeInHierarchy){
+            await transform.DOAnchorPos3D(new Vector3(-550,0,0), 1f).OnComplete(() => this.gameObject.SetActive(status)).AsyncWaitForCompletion();
+        }
     }
 } 
 

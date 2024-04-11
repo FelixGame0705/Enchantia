@@ -175,7 +175,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     public void WatchStats()
     {
         isPanel = !isPanel;
-        _statsPanel.gameObject.SetActive(isPanel);
+        _statsPanel.DisplayStatsPanel(isPanel);
     }
 
     public void UpdateFullLockItemStatus(){
