@@ -36,12 +36,12 @@ public class BasicEnemy : EnemyBase
         Debug.Log("Current health: " + CurrentHealth);
 
         GamePlayController.Instance.GetBulletFactory().CreateHitEffect(transform.position, HIT_EFFECT_TYPE.BLOOD_EFFECT);
-
         if (CurrentHealth <= 0)
         {
             //GamePlayController.Instance.GetCurrencyController().SpawnGold(new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetDroppedItemController().SpawnDroppedItem(DROPPED_ITEM_TYPE.GOLD, new Vector2(transform.position.x, transform.position.y));
             GamePlayController.Instance.GetEnemyFactory().ReturnEnemToPool(gameObject);
+            GameDataController.Instance.CurrentGamePlayData.TotalKill = 1;
         }
     }
 

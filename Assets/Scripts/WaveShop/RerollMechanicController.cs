@@ -17,7 +17,10 @@ public class RerollMechanicController : MonoBehaviour
 
     private void Awake()
     {
-        this._itemAllDataList = WaveShopMainController.Instance.ItemDataList;
+        this._itemAllDataList = GameDataController.Instance.ItemAllDataList;
+        this._waveRatioList = GameDataController.Instance.WaveRatios;
+        this.tierInfo = GameDataController.Instance.TierInfo;
+        this._defaultWaveRatio = GameDataController.Instance.WaveRatioDefault;
     }
     private void ResetWaveInfo()
     {

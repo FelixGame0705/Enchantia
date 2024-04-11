@@ -41,7 +41,7 @@ public class WaveTimeController : MonoBehaviour
         countdownTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void SetCoundownTime(float seconds)
+    public void SetCountdownTime(float seconds)
     {
         currentTime = seconds;
     }

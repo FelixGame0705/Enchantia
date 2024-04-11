@@ -10,6 +10,7 @@ public class CombineRecycleMechanicController : MonoBehaviour
     {
         WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().SellWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
+        WaveShopMainController.Instance.UpdateViewListInfo();
     }
 
     public void CombineWeapon()
@@ -21,6 +22,7 @@ public class CombineRecycleMechanicController : MonoBehaviour
         GamePlayController.Instance.GetWeaponSystem().UpgradeWeapon(WaveShopMainController.Instance.GetIndexWeaponSelected());
         GamePlayController.Instance.GetWeaponSystem().SellWeapon(indexRemove);
         WaveShopMainController.Instance.GetWeaponInventory().RemoveCard(indexRemove);
+        WaveShopMainController.Instance.UpdateViewListInfo();
     }
 
     public int FindIndexRemove(int oldIndex)

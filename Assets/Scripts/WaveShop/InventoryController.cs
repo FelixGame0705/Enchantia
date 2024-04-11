@@ -1,17 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
-    [SerializeField] private List<ItemImageController> _weaponControllerList;
-    [SerializeField] private List<ItemImageController> _itemControllerList; 
+    // [SerializeField] private List<ItemImageController> _weaponControllerList;
+    // [SerializeField] private List<ItemImageController> _itemControllerList; 
     [SerializeField] private GameObject _weaponCardModel;
     [SerializeField] private GameObject _itemCardModel;
     [SerializeField] private GameObject _weaponContainer;
     [SerializeField] private GameObject _itemContainer;
 
-    public List<ItemImageController> ItemControllerList { get => _itemControllerList; set => _itemControllerList = value; }
-    public List<ItemImageController> WeaponControllerList { get =>  _weaponControllerList; set => _weaponControllerList = value;}
+    // public List<ItemImageController> ItemControllerList { get => _itemControllerList; set => _itemControllerList = value; }
+    // public List<ItemImageController> WeaponControllerList { get =>  _weaponControllerList; set => _weaponControllerList = value;}
+    public List<ItemImageController> WeaponControllerList { get => GameDataController.Instance.CurrentGamePlayData.WeaponControllerList; set => GameDataController.Instance.CurrentGamePlayData.WeaponControllerList = value; }
+    public List<ItemImageController> ItemControllerList { get =>  GameDataController.Instance.CurrentGamePlayData.ItemControllerList; set => GameDataController.Instance.CurrentGamePlayData.ItemControllerList = value;}
     // Start is called before the first frame update
     void Start()
     {
@@ -26,16 +27,16 @@ public class InventoryController : MonoBehaviour
 
     public ItemImageController GetWeaponCard(int index)
     {
-        return _weaponControllerList[index];
+        return WeaponControllerList[index];
     }
 
     private void OnEnable()
     {
-        foreach (var cardController in _weaponControllerList)
+        foreach (var cardController in WeaponControllerList)
         {
             cardController.EnableItem();
         }
-        foreach (var cardController in _itemControllerList){
+        foreach (var cardController in ItemControllerList){
             cardController.EnableItem();
         }
     }
@@ -44,7 +45,7 @@ public class InventoryController : MonoBehaviour
     {
         Debug.Log("Create item");
         GameObject card = Instantiate(_itemCardModel, _itemContainer.transform);
-        _itemControllerList.Add(card.GetComponent<ItemImageController>());
+        ItemControllerList.Add(card.GetComponent<ItemImageController>());
         card.GetComponent<ItemImageController>().SetCardData(item);
     }
 
@@ -52,43 +53,43 @@ public class InventoryController : MonoBehaviour
     {
         GameObject card = Instantiate(_weaponCardModel, _weaponContainer.transform);
         card.GetComponent<ItemImageController>().SetCardData(item);
-        card.GetComponent<ItemImageController>().SetID(_weaponControllerList.Count);
+        card.GetComponent<ItemImageController>().SetID(WeaponControllerList.Count);
         card.GetComponent<ItemImageController>().CombineRecycleInfo.BuyWave = WaveShopMainController.Instance.CurrentWave;
-        _weaponControllerList.Add(card.GetComponent<ItemImageController>());
+        WeaponControllerList.Add(card.GetComponent<ItemImageController>());
     }
 
     public int GetCountWeapon()
     {
-        return _weaponControllerList.Count;
+        return WeaponControllerList.Count;
     }
 
     public void UpgradeCard(int id)
     {
-        var card = _weaponControllerList[id];
+        var card = WeaponControllerList[id];
         var nextWeapon = card.GetCardData().NextItemWeapon;
         if(nextWeapon != null){
             card.SetCardData(nextWeapon);
             card.CombineRecycleInfo.CombineWave = WaveShopMainController.Instance.CurrentWave;
             card.CombineRecycleInfo.BuyWave = -1;
         }
-        _weaponControllerList[id] = card;
+        WeaponControllerList[id] = card;
         // _cardControllerList[id].SetCardData(_cardControllerList[id].GetCardData().NextItemWeapon);
     }
 
     public void RemoveCard(int id)
     {
-        var card = _weaponControllerList.Find(x => x.GetComponent<ItemImageController>().GetID() == id);
+        var card = WeaponControllerList.Find(x => x.GetComponent<ItemImageController>().GetID() == id);
         HandleGoldReturn(card);
         Destroy(card.gameObject);
-        _weaponControllerList.Remove(card);
+        WeaponControllerList.Remove(card);
         InitSetIDWeaponDefault();
     }
 
     private void InitSetIDWeaponDefault()
     {
-        for(int i = 0; i < _weaponControllerList.Count; i++)
+        for(int i = 0; i < WeaponControllerList.Count; i++)
         {
-            _weaponControllerList[i].SetID(i);
+            WeaponControllerList[i].SetID(i);
         }
     }
 

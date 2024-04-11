@@ -11,7 +11,6 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private EnemyFactory _enemyFactory;
     [SerializeField] private BulletFactory _bulletFactory;
     [SerializeField] private GameObject TargetCharacter;
-    [SerializeField] private int _currentWave;
     [SerializeField] private GameObject _waveShop;
     [SerializeField] private WaveTimeController _waveTimeController;
     [SerializeField] private DroppedItemController _droppedItemController;
@@ -21,18 +20,19 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private bool _isEndLess;
 
     private bool _isSpawnedBulletPool = false;
-    public int CurrentWave{get => _currentWave;}
+    // public int CurrentWave{get => _currentWave;}
+    private int CurrentWave{get => GameDataController.Instance.CurrentGamePlayData.CurrentWave;}
     public GameObject Character { get => _character; set => _character = value; }
     public float TimePlay { get => _timePlay; set => _timePlay = value; }
 
-    //[SerializeField] private Con
 
     // Start is called before the first frame update
     void Start()
     {
         _characterPattern = GameData.Instance.SelectedCharacter;
         _character = Instantiate(_characterPattern);
-        _currentWave = 1;
+        GameDataController.Instance.CurrentGamePlayData.Character = _character;
+        GameDataController.Instance.CurrentGamePlayData.CurrentWave = 1;
     }
 
     private void OnEnable()
@@ -64,12 +64,12 @@ public class GamePlayController : Singleton<GamePlayController>
                 break;
             case GAME_STATES.WAVE_SHOP:
                 _waveShop.SetActive(true);
-                _waveTimeController.SetCoundownTime(_enemyFactory.GetWaveGameData().TimeWave);
+                _waveTimeController.SetCountdownTime(_enemyFactory.GetWaveGameData().TimeWave);
                 WaveShopMainController.Instance.UpdateMoney();
                 GetCharacterController().ResetCurrentGold();
                 ResetEnemiesInWave();
                 _bulletFactory.ResetPoolObject();
-                _waveTimeController.SetWave(_currentWave);
+                _waveTimeController.SetWave(GameDataController.Instance.CurrentGamePlayData.CurrentWave);
                 SetTimeForEnemyFactory();
                 _enemyFactory.SetEnemyModelPool();
                 _enemyFactory.SetBossModelPool();
@@ -102,7 +102,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     private void SetTimeForEnemyFactory()
     {
-        _enemyFactory.SetCurrentWave(_currentWave-1);
+        _enemyFactory.SetCurrentWave(GameDataController.Instance.CurrentGamePlayData.CurrentWave-1);
         _enemyFactory.SetTimeAppearEnemies();
     }
 
@@ -121,6 +121,7 @@ public class GamePlayController : Singleton<GamePlayController>
         {
             yield return new WaitForSeconds(1.0f);
             TimePlay++;
+            GameDataController.Instance.CurrentGamePlayData.TimeSurvive = TimePlay;
         }
     }
 
@@ -154,12 +155,7 @@ public class GamePlayController : Singleton<GamePlayController>
 
     public void UpWave()
     {
-        _currentWave += 1;
-    }
-
-    public int GetCurrentWave()
-    {
-        return _currentWave;
+        GameDataController.Instance.CurrentGamePlayData.CurrentWave +=1;
     }
 
     public DroppedItemController GetDroppedItemController()

@@ -42,9 +42,12 @@ public class GameOverController : MonoBehaviour
     public void RenderUI(GAME_OVER_TYPE type)
     {
         _resultController.Render();
-        _gameOverStatsDisplayController.LoadData(GamePlayController.Instance.GetCharacterController().CharacterModStats);
+        var character = GameDataController.Instance.CurrentGamePlayData.Character;
+        _gameOverStatsDisplayController.LoadData(character.GetComponent<CharacterController>().CharacterModStats);
+        // _gameOverStatsDisplayController.LoadData(GamePlayController.Instance.GetCharacterController().CharacterModStats);
         LoadTime();
-        var charBaseInfo = GamePlayController.Instance.Character.GetComponent<CharacterBaseInfo>();
+        // var charBaseInfo = GamePlayController.Instance.Character.GetComponent<CharacterBaseInfo>();
+        var charBaseInfo = character.GetComponent<CharacterBaseInfo>();
         charBaseInfo.Load();
         _characterImage.sprite = charBaseInfo.CharacterSprite;
         switch(type){
@@ -63,7 +66,7 @@ public class GameOverController : MonoBehaviour
     }
 
     private void UpdateWaveDisplay(){
-        var result = _gameOverType == GAME_OVER_TYPE.ENDLESS ? string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString(), " - Endless") : string.Concat("Wave ",GamePlayController.Instance.CurrentWave.ToString());
+        var result = _gameOverType == GAME_OVER_TYPE.ENDLESS ? string.Concat("Wave ",GameDataController.Instance.CurrentGamePlayData.CurrentWave.ToString(), " - Endless") : string.Concat("Wave ",GameDataController.Instance.CurrentGamePlayData.CurrentWave.ToString());
         _waveText.text = result;
     }
 

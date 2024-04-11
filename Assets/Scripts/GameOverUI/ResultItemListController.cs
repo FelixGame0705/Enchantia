@@ -14,8 +14,10 @@ public class ResultItemListController : MonoBehaviour
 
     public void Render()
     {
-        var weaponList = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList;
-        var itemList = WaveShopMainController.Instance.GetWeaponInventory().ItemControllerList;
+        // var weaponList = WaveShopMainController.Instance.GetWeaponInventory().WeaponControllerList;
+        // var itemList = WaveShopMainController.Instance.GetWeaponInventory().ItemControllerList;
+        var weaponList = GameDataController.Instance.CurrentGamePlayData.WeaponControllerList;
+        var itemList = GameDataController.Instance.CurrentGamePlayData.ItemControllerList;
         RenderWeaponListWithAnimation(weaponList);
         RenderItemListWithAnimation(itemList);
     }

@@ -5,9 +5,6 @@ using System;
 
 public class WaveShopMainController : Singleton<WaveShopMainController>
 {
-    [SerializeField] private List<ItemData> _itemDataList;
-    [SerializeField] private int _currentMoney = 0;
-    [SerializeField] private int _currentWave = 0;
     [SerializeField] private int _rerollTime = 0;
 
     [Header ("Controller list")]
@@ -29,10 +26,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private int _indexWeaponSelected;
     private Character_Mod _characterMod;
-    public int CurrentMoney { get { return _currentMoney; } set { _currentMoney = value; } }
-    public int CurrentWave { get { return _currentWave;} set { _currentWave = value; } }
-
-    public List<ItemData> ItemDataList {get => _itemDataList;}
+    public int CurrentMoney { get { return GameDataController.Instance.CurrentGamePlayData.CurrentGold; } set { GameDataController.Instance.CurrentGamePlayData.CurrentGold = value; } }
+    public int CurrentWave { get { return GameDataController.Instance.CurrentGamePlayData.CurrentWave -1;} set { GameDataController.Instance.CurrentGamePlayData.CurrentWave = value; } }
     public ItemViewListController ViewListController { get => _viewListController; set => _viewListController = value; }
 
     public CombindPanelController CombindPanelController {get => _combindPanelController;}
@@ -40,13 +35,12 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     private void Update()
     {
-        if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime + 1) < 0) ViewListController.RerollController.ChangeRerollBtnState(false);
+        if(CurrentMoney - Utils.Instance.GetWaveShopRerollPrice(CurrentWave, _rerollTime + 1) < 0) ViewListController.RerollController.ChangeRerollBtnState(false);
     }
 
     private void OnEnable()
     {
         _rerollTime = 0;
-        CurrentWave = GamePlayController.Instance.CurrentWave - 1;
         AddGoldValue(GamePlayController.Instance.GetCharacterController().Harvesting());
         UpdateWaveDisplay();
         if (GamePlayController.Instance.GetCharacterController() != null)
@@ -71,7 +65,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
             for (int i = 0; i < _characterController.GetCharacterData().FirstItems.Count; i ++)
                 EquipItemWeapon(_characterController.GetCharacterData().FirstItems[i], _characterController.GetCharacterData().FirstItems[i].ItemStats.WeaponBaseModel);
         }
-        ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+        ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(CurrentWave, _rerollTime));
         UpdateMoney();
     }
 
@@ -92,14 +86,16 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void Reroll()
     {
-        var moneyPayNeed = Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime);
+        var moneyPayNeed = Utils.Instance.GetWaveShopRerollPrice(CurrentWave, _rerollTime);
         if(CurrentMoney - moneyPayNeed >= 0){
             ViewListController.ReRoll(Random(4));
             _rerollTime ++;
-            _currentMoney -= moneyPayNeed;
-            ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(_currentWave, _rerollTime));
+            CurrentMoney -= moneyPayNeed;
+            ViewListController.RerollController.ChangeRerollPriceUI(Utils.Instance.GetWaveShopRerollPrice(CurrentWave, _rerollTime));
             UpdateMoney();
             UpdateViewListInfo();
+            GameDataController.Instance.CurrentGamePlayData.TotalReroll += 1;
+            GameDataController.Instance.CurrentGamePlayData.TotalSpend = moneyPayNeed;
         }
     }
     private Stack<ItemData> Random(int amount)
@@ -125,6 +121,8 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
                 CurrentMoney -= finalPrice;
                 itemCard.DisableItem();
             }
+            GameDataController.Instance.CurrentGamePlayData.TotalSpend = finalPrice;
+            GameDataController.Instance.CurrentGamePlayData.TotalBuy += 1;
         }
         
         UpdateMoney();
@@ -139,7 +137,7 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
 
     public void AddGoldValue(int amount)
     {
-        _currentMoney += amount;
+        CurrentMoney += amount;
     }
 
     public void EquipItemWeapon(ItemData itemInfo, GameObject weaponModel)
@@ -185,14 +183,14 @@ public class WaveShopMainController : Singleton<WaveShopMainController>
     }
 
     public void UpdateWaveDisplay(){
-        _waveText.text = string.Concat("Wave ", _currentWave.ToString());
+        _waveText.text = string.Concat("Wave ", CurrentWave.ToString());
     }
 
     public int GetCountWeapon(){
         return inventoryController.GetCountWeapon();
     }
 
-    private void UpdateViewListInfo(){
+    public void UpdateViewListInfo(){
         ViewListController.CheckAllValid();
     }
 }

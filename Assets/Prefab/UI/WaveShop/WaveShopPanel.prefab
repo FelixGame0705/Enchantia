@@ -79,8 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188b74584f8902a499d1b8d1c98d8015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponControllerList: []
-  _itemControllerList: []
   _weaponCardModel: {fileID: 4204834672564882571, guid: 383d38630b23a5440b4f3bb2ad751032, type: 3}
   _itemCardModel: {fileID: 4204834672564882571, guid: bde7989ca37e4ad40ac4ab54bcecd678, type: 3}
   _weaponContainer: {fileID: 8789399365261462778}
@@ -416,49 +414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroy: 0
-  _itemDataList:
-  - {fileID: 11400000, guid: 25845711fbd85dd468b2eb99f537db39, type: 2}
-  - {fileID: 11400000, guid: 0742c5f405ca08d4a8d8a7047d2564f9, type: 2}
-  - {fileID: 11400000, guid: 51dee994c51502547997ef66eb93a1dd, type: 2}
-  - {fileID: 11400000, guid: f731464b0cf133d48bb3e1ca1638b250, type: 2}
-  - {fileID: 11400000, guid: 195d88a0e7ef00045b296c3ef55bf1fa, type: 2}
-  - {fileID: 11400000, guid: 5b79ada146238ace980c3fd1fb186502, type: 2}
-  - {fileID: 11400000, guid: a99a0ae5040608ebca6582ac057b60e7, type: 2}
-  - {fileID: 11400000, guid: 98bf6b3af428d233db40237067199f39, type: 2}
-  - {fileID: 11400000, guid: 4c16e05ec8d70d7dd948ce914299086d, type: 2}
-  - {fileID: 11400000, guid: fc8872ae4203be83cbf2d9d27d557980, type: 2}
-  - {fileID: 11400000, guid: c5321541393af3b5a93db2ada51a8404, type: 2}
-  - {fileID: 11400000, guid: e3f3e30bff82588a8ab2b969299db57f, type: 2}
-  - {fileID: 11400000, guid: f2c9833ed41fd1a85943d436b382c264, type: 2}
-  - {fileID: 11400000, guid: b3a2588dd23517fd6a30466bd4af2a59, type: 2}
-  - {fileID: 11400000, guid: 6fce07639661bd949a1781b79dbb1d44, type: 2}
-  - {fileID: 11400000, guid: 1c83b33f6f9a1dedb921ecee3a82af15, type: 2}
-  - {fileID: 11400000, guid: 8277fddf276cbeeb38cd0ef63cdbfff0, type: 2}
-  - {fileID: 11400000, guid: f999e8ba2e8c80bd0950b2501856bf77, type: 2}
-  - {fileID: 11400000, guid: fae1b1239cfe7bcd68545a9e79707878, type: 2}
-  - {fileID: 11400000, guid: 60c14a41b41a7154fb267f83e82a1d9e, type: 2}
-  - {fileID: 11400000, guid: 8a56dafb595e0f65cb938189b424bf18, type: 2}
-  - {fileID: 11400000, guid: 7dee0166dc0f6eed4899aa3a1df2133e, type: 2}
-  - {fileID: 11400000, guid: fcb8e50b836921b49b6eb72a9cae8d00, type: 2}
-  - {fileID: 11400000, guid: d7d03ec46113d26b28f4e531af6f766c, type: 2}
-  - {fileID: 11400000, guid: 1fc9e017a33f6365fa7301f8f0b47406, type: 2}
-  - {fileID: 11400000, guid: cdb6e75a4dc308ce2aa03ae067720f0a, type: 2}
-  - {fileID: 11400000, guid: 18f7c979fa7a6ea278d9d95f500f18ea, type: 2}
-  - {fileID: 11400000, guid: 05131308ac62f400faf22ae94a5ebe54, type: 2}
-  - {fileID: 11400000, guid: feca26fb513c88b00810455afef6e26a, type: 2}
-  - {fileID: 11400000, guid: cce9e4b21fd49ef4f970355f79b144e3, type: 2}
-  - {fileID: 11400000, guid: 3d08f4ab8c5639d95976aadb293d3163, type: 2}
-  - {fileID: 11400000, guid: b49270b053258b546b8ca0043784ff9a, type: 2}
-  - {fileID: 11400000, guid: 6c90369a6fd175efeb84df0afa7c6726, type: 2}
-  - {fileID: 11400000, guid: 9984d6a7c28a9dc4f93f67f286cdc23e, type: 2}
-  - {fileID: 11400000, guid: c5823792c1f8a45f2ab2083b522f66b5, type: 2}
-  - {fileID: 11400000, guid: 0406b8d1d82ab5b4994d195918a4cca4, type: 2}
-  - {fileID: 11400000, guid: 17e1342bb2243e8408dd8574bfa480e7, type: 2}
-  - {fileID: 11400000, guid: 88772fca1ff15f140b6b39af419410ef, type: 2}
-  - {fileID: 11400000, guid: 71ab34521d5055a4fa3ce471b9e73207, type: 2}
-  - {fileID: 11400000, guid: ca01e46be970f0045b6aeda826d4b363, type: 2}
-  _currentMoney: 0
-  _currentWave: 1
   _rerollTime: 0
   _viewListController: {fileID: 737416141599715362}
   inventoryController: {fileID: 7773892110628106297}
@@ -483,20 +438,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7428454db22ae95b7bd1138cbae8edb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _waveRatioList:
-  - {fileID: 11400000, guid: 1f8b06fdaa4f8e1ff9a55059d6fcb3d6, type: 2}
-  - {fileID: 11400000, guid: b0de47410b07bd5cba40459898d8c1b6, type: 2}
-  - {fileID: 11400000, guid: 9aec7ffd92bc126569703185edb6f252, type: 2}
+  _waveRatioList: []
   _itemAllDataList: []
-  tierInfo:
-  - {fileID: 11400000, guid: 1efd3bec1ca2e088b9e12972dfab359b, type: 2}
-  - {fileID: 11400000, guid: c9876f2387099f729acdaab5facd83a0, type: 2}
-  - {fileID: 11400000, guid: cf081aeab5597fdaa93f834250bb6929, type: 2}
-  - {fileID: 11400000, guid: 9448df5e54d7c592aa49a08621472735, type: 2}
+  tierInfo: []
   _currentWave: 1
   _currentTierData: []
   _currentWaveRatio: {fileID: 0}
-  _defaultWaveRatio: {fileID: 11400000, guid: ecb288dec883a84daa0335535859ccdf, type: 2}
+  _defaultWaveRatio: {fileID: 0}
 --- !u!1 &737416141599715365
 GameObject:
   m_ObjectHideFlags: 0

@@ -108,7 +108,9 @@ public class CharacterController : MonoBehaviour
         {
             return;
         }
-        CurrentHealth -= (damage - damage*DealWithArmor());
+        var damageOutput = (damage - damage*DealWithArmor());
+        GameDataController.Instance.CurrentGamePlayData.DamageTaken = damageOutput;
+        CurrentHealth -= damageOutput;
         _uiPlayerController.SetCurrentHealthValue(CurrentHealth);
         if(CurrentHealth <= 0) 
         // MenuController.Instance.ReturnToMenu();
@@ -180,6 +182,7 @@ public class CharacterController : MonoBehaviour
 
     public void ResetCurrentGold()
     {
+        GameDataController.Instance.CurrentGamePlayData.TotalGoldHarvest = CurrentGold;
         CurrentGold = 0;
         _uiPlayerController.ResetCurrentGold();
     }
