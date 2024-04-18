@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
@@ -17,16 +15,16 @@ public class PlayGamesManager : MonoBehaviour
     {
         PlayGamesPlatform.Activate();
 
-        // ??ng nh?p vào Google Play Services
+        // ??ng nh?p vï¿½o Google Play Services
         Social.localUser.Authenticate(success => {
             if (success)
             {
-                Debug.Log("??ng nh?p thành công vào Google Play Services");
+                Debug.Log("??ng nh?p thï¿½nh cï¿½ng vï¿½o Google Play Services");
                 DetailsText.text = "Success \n ";
             }
             else
             {
-                Debug.LogWarning("??ng nh?p th?t b?i vào Google Play Services");
+                Debug.LogWarning("??ng nh?p th?t b?i vï¿½o Google Play Services");
                 DetailsText.text = "Failure \n ";
             }
         });

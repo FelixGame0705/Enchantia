@@ -12,6 +12,7 @@ public class MenuController : Singleton<MenuController>
     [SerializeField] private GameObject _characterSelectUI;
     [SerializeField] private GameObject _menuUI;
     [SerializeField] private AudioMenuController _audioMenuController;
+    [SerializeField] private GameObject _scoreBoardUI;
 
     private void Awake()
     {
@@ -52,7 +53,8 @@ public class MenuController : Singleton<MenuController>
     }
     public void OnClickScore()
     {
-
+        var controller = _scoreBoardUI.GetComponent<LeaderboardController>();
+        controller.RenderLeaderBoard();
     }
 
     public void OnClickSetting()

@@ -15,10 +15,10 @@ public class LeaderboardItem : MonoBehaviour
 
     public void SetData(LeaderboardItemData data)
     {
-        rank.SetText(data.rank.ToString());
-        Name.SetText(data.name);
-        time.SetText(data.time.ToString("mm:ss"));
-        wave.SetText(data.wave.ToString());
-        score.SetText(data.score.ToString());
+        rank.SetText(data.Rank.ToString());
+        Name.SetText(data.PlayerName);
+        time.SetText(data.Time.ToString("mm:ss"));
+        wave.SetText(data.Wave.ToString());
+        score.SetText(data.Score.ToString());
     }
 }

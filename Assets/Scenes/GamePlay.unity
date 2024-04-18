@@ -2828,6 +2828,13 @@ MonoBehaviour:
   _currentWave: 1
   _currentGold: 0
   _totalGoldHarvest: 0
+  _totalReroll: 0
+  _totalBuy: 0
+  _totalSpend: 0
+  _totalRecycle: 0
+  _totalKill: 0
+  _timeSurvive: 0
+  _damageTaken: 0
   _itemControllerList: []
   _weaponControllerList: []
   _characterClone: {fileID: 0}
@@ -3013,7 +3020,6 @@ MonoBehaviour:
   _gameOverPanel: {fileID: 7911180421065190759}
   _settingPanel: {fileID: 1495491522}
   _gameOverControllerPanel: {fileID: 0}
-  _waveShopMainController: {fileID: 0}
   _gameSettingController: {fileID: 0}
 --- !u!1 &1319826115 stripped
 GameObject:

@@ -89,3 +89,12 @@ public enum CHARACTER_SELECT_STATES {
     READY_STATE,
     BUY_STATE
 }
+
+
+public enum POPUP_TYPE {
+    WARNING,
+    NOTIFICATION,
+    SUCCESS,
+    FAILED,
+    WINDOWS
+}
