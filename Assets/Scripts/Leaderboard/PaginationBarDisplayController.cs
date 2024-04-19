@@ -12,33 +12,49 @@ public class PaginationBarDisplayController : MonoBehaviour
     [SerializeField] private Button forwardAllBtn;
     [SerializeField] private TMP_Text pageNum;
 
-    private void Awake(){
+    private void Awake()
+    {
         pageNum.text = "0";
     }
 
-    public void UpdateDisplayPagination(int page, int maxPage){
-        pageNum.text = page.ToString();
-        if(page == 0){
-            if(page == maxPage){
-                ChangeActiveBackBtn(false);
-                ChangeActiveForwardBtn(false);
-            }else{
-                ChangeActiveBackBtn(false);
-            }
-        }else if(page == maxPage){
+    public void UpdateDisplayPagination(int page, int maxPage)
+    {
+        int currentPage = page + 1; // Adjust to convert from zero-based to one-based index
+        pageNum.text = currentPage.ToString();
+
+        if (currentPage == 1)
+        {
             ChangeActiveBackBtn(false);
-        }else {
+            if (maxPage == 0)
+            {
+                ChangeActiveForwardBtn(false);
+            }
+            else
+            {
+                ChangeActiveForwardBtn(true);
+            }
+        }
+        else if (currentPage == maxPage)
+        {
+            ChangeActiveBackBtn(true);
+            ChangeActiveForwardBtn(false);
+        }
+        else
+        {
             ChangeActiveBackBtn(true);
             ChangeActiveForwardBtn(true);
         }
     }
 
-    private void ChangeActiveBackBtn(bool state){
+
+    private void ChangeActiveBackBtn(bool state)
+    {
         backAllBtn.interactable = state;
         backBtn.interactable = state;
     }
 
-    private void ChangeActiveForwardBtn(bool state){
+    private void ChangeActiveForwardBtn(bool state)
+    {
         forwardBtn.interactable = state;
         forwardAllBtn.interactable = state;
     }

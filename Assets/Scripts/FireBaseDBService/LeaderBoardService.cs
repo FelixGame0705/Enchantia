@@ -31,14 +31,14 @@ public class LeaderBoardService : MonoBehaviour
             {
                 var snapshot = task.Result;
                 List<LeaderboardItemData> itemDatas = new List<LeaderboardItemData>();
-                var list = snapshot.Children.Skip(startIndex).Take(pageSize).ToList();
-                foreach (var item in list)
+                foreach (var item in snapshot.Children)
                 {
                     var json = item.GetRawJsonValue();
                     var value = JsonUtility.FromJson<LeaderBoardJsonUserData>(json);
                     itemDatas.Add(new LeaderboardItemData(value));
                 }
-                callBack?.Invoke(itemDatas);
+                var result = itemDatas.OrderByDescending(x => x.Wave).ThenByDescending(x => x.Time).Skip(startIndex).Take(pageSize).ToList();
+                callBack?.Invoke(result);
             }
         });
     }
@@ -69,18 +69,16 @@ public class LeaderBoardService : MonoBehaviour
     }
 
     public async Task<long> GetMaxPage(long pageSize){
-        long maxPage = 0;
         var result =await firebaseDBRef.Child("counter_info").Child("leaderboard_counter").GetValueAsync();
         if (result.Exists)
         {
-            return (long)Convert.ToInt64(result.Value)/pageSize;
+            return (long)Mathf.Ceil((float)(Convert.ToDouble(result.Value)/pageSize));
         }
         else
         {
             Debug.LogWarning("Leaderboard counter does not exist in the database.");
-            return (long)0; // Or handle the case as needed
+            return (long)0;
         }
-        return maxPage;
     }
 }
 

@@ -9,7 +9,6 @@ using UnityEngine;
 
 public class CharacterInfoListController : MonoBehaviour
 {
-    // [SerializeField] private List<CharacterBaseStatsDisplay> statsController;
     [SerializeField] private List<GameObject> statListPooling;
     [SerializeField] private GameObject statsImage;
     [SerializeField] private GameObject contentObject;
@@ -33,17 +32,12 @@ public class CharacterInfoListController : MonoBehaviour
         validateStatsList = data.GetProperties()
         .Where(x => x.Value.Value > 0)
         .ToDictionary(x => x.Key, x => x.Value);
-        // characterStats.Add(data.MaxHP.Value);
-        // characterStats.Add(data.Damage.Value);
-        // characterStats.Add(data.AttackSpeed.Value);
-        // characterStats.Add(data.Armor.Value);
-        // characterStats.Add(data.Speed.Value);
         Render();
     }
 
     private void CreateStatsItem(KeyValuePair<string, CharacterStat> statPair){
         GameObject itemInstance = null;
-        var imageUseable = statListPooling.Where(x => x.activeInHierarchy == false).ToList();
+        var imageUseable = statListPooling.Where(x => !x.activeInHierarchy).ToList();
         if(imageUseable.Count == 0){
             itemInstance = Instantiate(statsImage, contentObject.transform);
             var controller = itemInstance.GetComponent<CharacterBaseStatsDisplay>();
@@ -56,7 +50,7 @@ public class CharacterInfoListController : MonoBehaviour
     }
 
     private void DisableActiveStatItem(){
-        var activeList = statListPooling.Where(x => x.activeInHierarchy == true).ToList();
+        var activeList = statListPooling.Where(x => x.activeInHierarchy).ToList();
         foreach(var item in  activeList) item.GetComponent<CharacterBaseStatsDisplay>().DisableRender();
     }
 }

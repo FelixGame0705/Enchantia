@@ -13,24 +13,14 @@ public class LeaderboardController : MonoBehaviour
     [SerializeField] private int page;
     [SerializeField] private int pageSize;
     [SerializeField] private int maxPage;
-    // private List<LeaderboardItemData> dataSample = new List<LeaderboardItemData> {
-    //     new LeaderboardItemData(1,"Son1",100,1,9999), 
-    //     new LeaderboardItemData(2,"Son2",100,4,9998), 
-    //     new LeaderboardItemData(3,"Son3",100,1,9988), 
-    //     new LeaderboardItemData(4,"Son4",100,8,9888), 
-    //     new LeaderboardItemData(5,"Son5",100,7,8888), 
-    //     new LeaderboardItemData(6,"Son6",100,6,8887), 
-    //     new LeaderboardItemData(7,"son7",100,5,8880), 
-    // };
 
     [SerializeField] private List<LeaderboardItem> items;
 
-    private async void Awake()
+    private void Awake()
     {
         items = new();
         page = 0;
         pageSize = 5;
-        
     }
 
     public void RenderLeaderBoard(){
@@ -38,15 +28,16 @@ public class LeaderboardController : MonoBehaviour
             rectTransform.localScale = new Vector3(0, 0, 0);
             CleanLeaderBoard();
             gameObject.SetActive(true);
-            // foreach(var item in dataSample){
-            //     FireBaseManager.Instance.LeaderboardService.AddNewLeaderBoard(item);
-            // }
             rectTransform.DOScale(1f,0.5f).OnComplete(LoadDataFromFireBase);
         }else {
             CleanLeaderBoard();
             rectTransform.DOScale(0f, 0.5f);
             gameObject.SetActive(false);
         }
+    }
+
+    public void CloseLeaderBoardClicked(){
+        RenderLeaderBoard();
     }
 
     public async void OnOpen(List<LeaderboardItemData> datas)

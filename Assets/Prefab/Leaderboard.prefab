@@ -2408,7 +2408,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2474722768970834614}
         m_TargetAssemblyTypeName: LeaderboardController, Assembly-CSharp
-        m_MethodName: OnOpen
+        m_MethodName: CloseLeaderBoardClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
