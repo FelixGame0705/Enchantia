@@ -534,7 +534,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7133507000106454663}
         m_TargetAssemblyTypeName: GameSettingController, Assembly-CSharp
         m_MethodName: OnClickBackToMenu
         m_Mode: 1
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7133507000106454663}
         m_TargetAssemblyTypeName: GameSettingController, Assembly-CSharp
         m_MethodName: OnClickResume
         m_Mode: 1
@@ -1670,9 +1670,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7133507000106454663}
         m_TargetAssemblyTypeName: GameSettingController, Assembly-CSharp
-        m_MethodName: OnCickRestart
+        m_MethodName: OnClickRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

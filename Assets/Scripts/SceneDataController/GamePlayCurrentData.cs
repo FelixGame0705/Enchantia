@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Xml.Schema;
 using UnityEngine;
 
 public class GamePlayCurrentData : MonoBehaviour

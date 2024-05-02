@@ -34,7 +34,7 @@ public class SkillManager : MonoBehaviour
             SkillInstance instance = new SkillInstance(it);
             instance.Initialize(skillWithKey.skill);
             activeSkillInstances.Add(instance);
-            // Gán phím kích ho?t t? SkillWithKey
+            // Gï¿½n phï¿½m kï¿½ch ho?t t? SkillWithKey
             instance.activationKey = skillWithKey.activationKey;
             instance.buttonSkillController = skillWithKey.buttonSkillController;
             instance.buttonSkillController.SetTimeCooldown(it.cooldown);

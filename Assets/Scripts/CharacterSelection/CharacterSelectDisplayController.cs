@@ -1,9 +1,6 @@
-using System.Net.Sockets;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.iOS;
 
 public class CharacterSelectDisplayController : MonoBehaviour
 {

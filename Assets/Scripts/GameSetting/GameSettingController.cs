@@ -51,6 +51,7 @@ public class GameSettingController : MonoBehaviour
 
     public void OnClickResume()
     {
+        GamePlayController.Instance.GamePlayUIManager.RenderGameSettingPanel();
     }
     
     public void Init()

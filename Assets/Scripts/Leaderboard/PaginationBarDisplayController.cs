@@ -19,7 +19,7 @@ public class PaginationBarDisplayController : MonoBehaviour
 
     public void UpdateDisplayPagination(int page, int maxPage)
     {
-        int currentPage = page + 1; // Adjust to convert from zero-based to one-based index
+        int currentPage = page + 1; 
         pageNum.text = currentPage.ToString();
 
         if (currentPage == 1)

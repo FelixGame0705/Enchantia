@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001198446009874355}
+  - component: {fileID: 3035143397821878485}
   - component: {fileID: 2554985180354170214}
   m_Layer: 0
   m_Name: GameDataController
@@ -32,6 +33,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3035143397821878485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4818764006165785134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a844a973f308a2cb9f718a6ebf5ee90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2554985180354170214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,3 +111,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9448df5e54d7c592aa49a08621472735, type: 2}
   _defaultWaveRatio: {fileID: 11400000, guid: ecb288dec883a84daa0335535859ccdf, type: 2}
   _gamePlayCurrentData: {fileID: 0}
+  _userData: {fileID: 3035143397821878485}

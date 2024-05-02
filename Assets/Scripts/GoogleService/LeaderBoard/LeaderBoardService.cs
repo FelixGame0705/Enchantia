@@ -31,11 +31,14 @@ public class LeaderBoardService : MonoBehaviour
             {
                 var snapshot = task.Result;
                 List<LeaderboardItemData> itemDatas = new List<LeaderboardItemData>();
+                int rankIndex = startIndex + 1;
                 foreach (var item in snapshot.Children)
                 {
                     var json = item.GetRawJsonValue();
                     var value = JsonUtility.FromJson<LeaderBoardJsonUserData>(json);
+                    value.rank = rankIndex;
                     itemDatas.Add(new LeaderboardItemData(value));
+                    rankIndex++;
                 }
                 var result = itemDatas.OrderByDescending(x => x.Wave).ThenByDescending(x => x.Time).Skip(startIndex).Take(pageSize).ToList();
                 callBack?.Invoke(result);

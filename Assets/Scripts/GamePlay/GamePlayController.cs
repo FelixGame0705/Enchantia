@@ -20,12 +20,11 @@ public class GamePlayController : Singleton<GamePlayController>
     [SerializeField] private bool _isEndLess;
 
     private bool _isSpawnedBulletPool = false;
-    // public int CurrentWave{get => _currentWave;}
     private int CurrentWave{get => GameDataController.Instance.CurrentGamePlayData.CurrentWave;}
     public GameObject Character { get => _character; set => _character = value; }
     public float TimePlay { get => _timePlay; set => _timePlay = value; }
 
-
+    public GamePlayUIManager GamePlayUIManager { get {return gamePlayUIManager;} }
     // Start is called before the first frame update
     void Start()
     {

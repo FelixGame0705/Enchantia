@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
-using UnityEngine.UI;
 
 public class LeaderboardController : MonoBehaviour
 {
@@ -43,7 +42,7 @@ public class LeaderboardController : MonoBehaviour
     public async void OnOpen(List<LeaderboardItemData> datas)
     {   
         List<Task> taskList = new();
-        maxPage = (int) await FireBaseManager.Instance.LeaderboardService.GetMaxPage(pageSize);
+        maxPage = (int) await GoogleServiceManager.Instance.LeaderboardService.GetMaxPage(pageSize);
         foreach (var data in datas)
         {
             var newItems = Instantiate(_leaderBoardItemPrefab, _leaderBoardContainer);
@@ -84,7 +83,7 @@ public class LeaderboardController : MonoBehaviour
     }
 
     private void LoadDataFromFireBase(){
-        FireBaseManager.Instance.LeaderboardService.GetLeaderBoardWithPagination(page,pageSize, OnOpen);
+        GoogleServiceManager.Instance.LeaderboardService.GetLeaderBoardWithPagination(page,pageSize, OnOpen);
         
     }
 

@@ -10,6 +10,7 @@ public class CharacterPetSelectionController : MonoBehaviour
     [Header("Select Info")]
     [SerializeField] private GameObject _selectedCharacter;
     [SerializeField] private GameObject _selectedPet;
+    private bool _isFirstInit = false;
 
     public CHARACTER_SELECT_STATES currentState;
 
@@ -30,8 +31,12 @@ public class CharacterPetSelectionController : MonoBehaviour
     {
         currentState = CHARACTER_SELECT_STATES.SELECT_STATE;
         var controller = CharacterSelectionControllerManagement.Instance;
-        controller.CharacterSelectionListController.CharacterListInit();
-        controller.PetSelectionController.PetListInit();
+        if(!_isFirstInit){
+            controller.CharacterSelectionListController.CharacterListInit();
+            controller.PetSelectionController.PetListInit();
+            _isFirstInit = true;
+        }
+        
         CheckIsReady();
     }
 

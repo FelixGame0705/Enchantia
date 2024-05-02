@@ -90,11 +90,8 @@ public enum CHARACTER_SELECT_STATES {
     BUY_STATE
 }
 
-
-public enum POPUP_TYPE {
-    WARNING,
-    NOTIFICATION,
-    SUCCESS,
-    FAILED,
-    WINDOWS
+public enum PAYMENT_ITEM_TYPE {
+    CONSUMABLE,
+    NON_CONSUMABLE,
+    SUBSCRIPTION
 }

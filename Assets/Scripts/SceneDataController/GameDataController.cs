@@ -12,6 +12,9 @@ public class GameDataController : Singleton<GameDataController>
     [Header("Flexible Data")]
     [SerializeField] private GamePlayCurrentData _gamePlayCurrentData;
 
+    [Header("Google Play Data")]
+    [SerializeField] private UserData _userData;
+
     public GamePlayCurrentData CurrentGamePlayData{
         get {
             if(_gamePlayCurrentData == null){
@@ -28,4 +31,5 @@ public class GameDataController : Singleton<GameDataController>
     public List<ItemTierData> TierInfo {get => _tierInfo;}
     public List<ItemData> ItemDataPlayerOwnedList{ get => _itemDataPlayerOwnedList;}
     public WaveRatio WaveRatioDefault{get => _defaultWaveRatio;}
+    public UserData GoogleUserData {get => _userData;}
 }
