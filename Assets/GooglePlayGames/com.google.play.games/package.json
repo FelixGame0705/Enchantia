@@ -7,5 +7,7 @@
     "author": {
         "name": "Google LLC"
     },
-    "dependencies": {}
+    "dependencies": {
+        "com.google.play.games": "file:"
+    }
 }
